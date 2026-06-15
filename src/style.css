@@ -1,0 +1,160 @@
+/* ===========================================================================
+   OwpenGram site — design tokens + base styles
+   Brand palette derived from the logo: cyan -> blue chevron on a light hex.
+   =========================================================================== */
+:root {
+  /* brand */
+  --cyan: #20cbe8;
+  --blue: #1b84e2;
+  --blue-deep: #1565c7;
+  --grad: linear-gradient(135deg, #2ad6ef 0%, #1a7fe0 55%, #1565c7 100%);
+  --grad-soft: linear-gradient(135deg, rgba(42, 214, 239, 0.16), rgba(26, 127, 224, 0.16));
+
+  /* light surface */
+  --bg: #ffffff;
+  --bg-soft: #f4f8fc;
+  --bg-tint: #eef5fb;
+  --line: #e3ecf4;
+
+  /* ink */
+  --ink: #0c1b2e;
+  --body: #46586d;
+  --muted: #6c7e92;
+
+  /* dark surface (dramatic sections + footer) */
+  --navy: #0a1626;
+  --navy-2: #0e2034;
+  --navy-line: rgba(255, 255, 255, 0.1);
+  --navy-ink: #eaf2fa;
+  --navy-body: #9fb2c6;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --container: 1140px;
+  --shadow: 0 18px 50px -22px rgba(13, 38, 66, 0.28);
+  --shadow-cyan: 0 22px 60px -20px rgba(27, 132, 226, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--body);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--blue); text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section { padding: 96px 0; }
+.section--tight { padding: 72px 0; }
+
+.section-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.section-head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+.section-head p { font-size: 1.1rem; color: var(--muted); }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    border-color 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--grad); color: #fff; box-shadow: var(--shadow-cyan); }
+.btn-primary:hover { box-shadow: 0 26px 70px -18px rgba(27, 132, 226, 0.7); }
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+.btn-dark { background: rgba(255, 255, 255, 0.08); color: #fff; border-color: var(--navy-line); }
+.btn-dark:hover { background: rgba(255, 255, 255, 0.16); }
+.btn svg { width: 18px; height: 18px; }
+
+/* ---------- cards ---------- */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: rgba(27, 132, 226, 0.35);
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+  .section { padding: 68px 0; }
+  .section-head { margin-bottom: 40px; }
+}

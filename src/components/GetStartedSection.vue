@@ -3,26 +3,58 @@ import { LINKS } from '../data.js'
 import IconSvg from './IconSvg.vue'
 
 const cards = [
-  { icon: 'desktop', title: 'Desktop client', text: 'Windows, macOS & Linux.', href: LINKS.desktop, cta: 'Desktop repo' },
-  { icon: 'phone', title: 'Android client', text: 'Native multi-server app.', href: LINKS.android, cta: 'Android repo' },
-  { icon: 'server', title: 'Server', text: 'Self-host with Docker.', href: LINKS.server, cta: 'Server repo' },
+  {
+    icon: 'desktop',
+    title: 'Windows client',
+    text: 'Release build on GitHub',
+    href: LINKS.desktopRelease,
+    cta: 'Download',
+  },
+  {
+    icon: 'phone',
+    title: 'Android client',
+    text: 'APK from latest release',
+    href: LINKS.androidRelease,
+    cta: 'Download',
+  },
+  {
+    icon: 'server',
+    title: 'Server',
+    text: 'Docker deployment',
+    href: LINKS.server,
+    cta: 'Repository',
+  },
 ]
 </script>
 
 <template>
   <section class="section" id="get-started">
     <div class="container">
-      <div class="banner" v-reveal>
+      <div class="banner panel" v-reveal>
         <div class="banner-copy">
-          <span class="eyebrow eyebrow--light">Get started</span>
-          <h2>Open source. Free to use. Yours to run.</h2>
+          <span class="eyebrow eyebrow--panel">Get started</span>
+          <h2>Download. Deploy. Audit.</h2>
           <p>
-            Grab the clients, spin up a server, read the code. Everything lives on
-            GitHub — contributions and curiosity welcome.
+            Grab the Windows or Android client, spin up a server, read every line
+            of code on GitHub. No license fee — just infrastructure you run.
           </p>
-          <a :href="LINKS.org" target="_blank" rel="noopener" class="btn btn-dark">
-            <IconSvg name="github" /> Explore the GitHub organization
-          </a>
+          <div class="banner-actions">
+            <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" class="btn btn-primary">
+              <IconSvg name="desktop" /> Windows
+            </a>
+            <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary">
+              <IconSvg name="phone" /> Android
+            </a>
+            <a :href="LINKS.org" target="_blank" rel="noopener" class="btn btn-dark">
+              <IconSvg name="github" /> GitHub
+            </a>
+            <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="btn btn-dark">
+              Telegram channel
+            </a>
+            <a :href="LINKS.telegramChat" target="_blank" rel="noopener" class="btn btn-dark">
+              Telegram chat
+            </a>
+          </div>
         </div>
 
         <div class="cards">
@@ -33,11 +65,13 @@ const cards = [
             target="_blank"
             rel="noopener"
             class="gcard"
-            v-reveal="i * 80"
+            v-reveal="i * 60"
           >
             <span class="ic"><IconSvg :name="c.icon" /></span>
-            <strong>{{ c.title }}</strong>
-            <small>{{ c.text }}</small>
+            <div class="meta">
+              <strong>{{ c.title }}</strong>
+              <small>{{ c.text }}</small>
+            </div>
             <span class="go"><IconSvg name="arrow" /> {{ c.cta }}</span>
           </a>
         </div>
@@ -48,49 +82,93 @@ const cards = [
 
 <style scoped>
 .banner {
-  position: relative;
-  background:
-    radial-gradient(70% 120% at 90% 0%, #123653, transparent 60%),
-    var(--navy);
-  border-radius: 28px;
-  padding: 48px;
+  border-radius: var(--radius-lg);
+  padding: 44px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 44px;
+  gap: 36px;
   align-items: center;
-  overflow: hidden;
+  border: 1px solid var(--panel-line);
 }
-.banner :deep(h2) { color: var(--navy-ink); font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
-.banner-copy p { color: var(--navy-body); margin-bottom: 22px; }
-.eyebrow--light { color: var(--cyan); }
 
-.cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.banner-copy h2 {
+  color: var(--panel-ink);
+  font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+}
+
+.banner-copy p {
+  color: var(--panel-body);
+  margin-bottom: 22px;
+  line-height: 1.7;
+}
+
+.banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cards {
+  display: grid;
+  gap: 10px;
+}
+
 .gcard {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-areas: 'ic title go' 'ic text go';
-  column-gap: 14px;
+  gap: 12px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--navy-line);
-  border-radius: 16px;
-  padding: 16px 18px;
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: border-color 0.18s ease, background 0.18s ease;
 }
-.gcard:hover { transform: translateY(-3px); border-color: rgba(32, 203, 232, 0.55); background: rgba(255, 255, 255, 0.08); }
+
+.gcard:hover {
+  border-color: color-mix(in srgb, var(--accent-bright) 45%, var(--panel-line));
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .ic {
-  grid-area: ic; width: 44px; height: 44px; padding: 11px;
-  border-radius: 12px; color: #fff; background: var(--grad); box-shadow: var(--shadow-cyan);
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--grad);
 }
-.gcard strong { grid-area: title; color: var(--navy-ink); align-self: end; }
-.gcard small { grid-area: text; color: var(--navy-body); align-self: start; font-size: 0.85rem; }
-.go { grid-area: go; display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); font-weight: 700; font-size: 0.82rem; white-space: nowrap; }
-.go :deep(svg) { width: 16px; height: 16px; }
+
+.meta strong {
+  display: block;
+  color: var(--panel-ink);
+  font-size: 0.95rem;
+}
+
+.meta small {
+  color: var(--panel-body);
+  font-size: 0.82rem;
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent-bright);
+  font-weight: 700;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.go :deep(svg) {
+  width: 15px;
+  height: 15px;
+}
 
 @media (max-width: 900px) {
-  .banner { grid-template-columns: 1fr; padding: 36px; }
-}
-@media (max-width: 480px) {
-  .banner { padding: 26px; border-radius: 22px; }
+  .banner {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
 }
 </style>

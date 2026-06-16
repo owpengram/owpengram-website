@@ -14,33 +14,50 @@ const cols = [
   {
     head: 'Clients',
     links: [
-      { label: 'Desktop client', href: LINKS.desktop },
-      { label: 'Android client', href: LINKS.android },
+      { label: 'Windows desktop', href: LINKS.desktopRelease },
+      { label: 'Android', href: LINKS.androidRelease },
+    ],
+  },
+  {
+    head: 'Community',
+    links: [
+      { label: 'Telegram channel', href: LINKS.telegramChannel },
+      { label: 'Telegram chat', href: LINKS.telegramChat },
+      { label: 'GitHub', href: LINKS.org },
     ],
   },
   {
     head: 'On this page',
     links: [
-      { label: 'Features', href: '#features' },
+      { label: 'What works today', href: '#available' },
+      { label: 'Product', href: '#product' },
       { label: 'Multi-server', href: '#multiserver' },
-      { label: 'Who it’s for', href: '#who' },
     ],
   },
 ]
 </script>
 
 <template>
-  <footer class="foot">
+  <footer class="foot panel">
     <div class="container foot-inner">
       <div class="brand">
         <div class="logo">
-          <img src="/logo.png" alt="OwpenGram logo" />
+          <img src="/logo.png" alt="OwpenGram" />
           <strong>{{ SITE.name }}</strong>
         </div>
         <p>{{ SITE.tagline }}</p>
-        <a :href="LINKS.org" target="_blank" rel="noopener" class="gh">
-          <IconSvg name="github" /> Open source on GitHub
-        </a>
+        <p class="platforms">Clients: Windows · Android</p>
+        <div class="social">
+          <a :href="LINKS.org" target="_blank" rel="noopener" class="social-link">
+            <IconSvg name="github" /> GitHub
+          </a>
+          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="social-link">
+            Telegram channel
+          </a>
+          <a :href="LINKS.telegramChat" target="_blank" rel="noopener" class="social-link">
+            Telegram chat
+          </a>
+        </div>
       </div>
 
       <div class="cols">
@@ -59,36 +76,120 @@ const cols = [
 
     <div class="container bottom">
       <span>© {{ year }} {{ SITE.name }} · {{ SITE.domain }}</span>
-      <span class="wip">● Open source · Work in progress</span>
+      <span class="oss">Open source · Self-hostable</span>
     </div>
   </footer>
 </template>
 
 <style scoped>
-.foot { background: var(--navy-2); color: var(--navy-body); padding: 64px 0 28px; border-top: 1px solid var(--navy-line); }
-.foot-inner { display: grid; grid-template-columns: 1.2fr 2fr; gap: 48px; }
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo img { width: 34px; height: 34px; }
-.logo strong { color: var(--navy-ink); font-size: 1.2rem; }
-.brand p { margin: 14px 0 18px; max-width: 280px; }
-.gh { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font-weight: 600; }
-.gh :deep(svg) { width: 18px; height: 18px; }
+.foot {
+  padding: 60px 0 24px;
+  border-top: 1px solid var(--panel-line);
+}
 
-.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.col h4 { color: var(--navy-ink); margin: 0 0 14px; font-size: 0.95rem; }
-.col a { display: block; color: var(--navy-body); padding: 6px 0; font-size: 0.92rem; transition: color 0.15s ease; }
-.col a:hover { color: var(--cyan); }
+.foot-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 2fr;
+  gap: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img { width: 32px; height: 32px; }
+
+.logo strong {
+  color: var(--panel-ink);
+  font-size: 1.15rem;
+}
+
+.brand p {
+  margin: 12px 0 0;
+  max-width: 280px;
+  color: var(--panel-body);
+  font-size: 0.92rem;
+}
+
+.platforms {
+  font-size: 0.82rem !important;
+  color: var(--accent-bright) !important;
+  font-weight: 600;
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-bright);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.15s ease;
+}
+
+.social-link:hover {
+  opacity: 0.85;
+}
+
+.social-link :deep(svg) {
+  width: 17px;
+  height: 17px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.col h4 {
+  color: var(--panel-ink);
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+}
+
+.col a {
+  display: block;
+  color: var(--panel-body);
+  padding: 5px 0;
+  font-size: 0.88rem;
+  transition: color 0.15s ease;
+}
+
+.col a:hover { color: var(--accent-bright); }
 
 .bottom {
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-  margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--navy-line);
-  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--panel-line);
+  font-size: 0.82rem;
+  color: var(--panel-body);
 }
-.wip { color: var(--cyan); }
+
+.oss {
+  color: var(--accent-bright);
+  font-weight: 600;
+}
 
 @media (max-width: 820px) {
-  .foot-inner { grid-template-columns: 1fr; gap: 36px; }
+  .foot-inner { grid-template-columns: 1fr; }
 }
+
 @media (max-width: 520px) {
   .cols { grid-template-columns: 1fr 1fr; }
 }

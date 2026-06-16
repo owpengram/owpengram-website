@@ -1,10 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './style.css'
+import { initTheme } from './composables/useTheme.js'
+
+initTheme()
 
 const app = createApp(App)
 
-// Lightweight scroll-reveal directive (no animation library needed).
 const observer =
   typeof IntersectionObserver !== 'undefined'
     ? new IntersectionObserver(
@@ -16,7 +18,7 @@ const observer =
             }
           })
         },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
       )
     : null
 
@@ -27,9 +29,7 @@ app.directive('reveal', {
       return
     }
     el.classList.add('reveal')
-    if (binding.value) {
-      el.style.transitionDelay = `${binding.value}ms`
-    }
+    if (binding.value) el.style.transitionDelay = `${binding.value}ms`
     observer.observe(el)
   },
 })

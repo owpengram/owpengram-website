@@ -2,10 +2,12 @@
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import PillarsSection from './components/PillarsSection.vue'
-import MultiserverSection from './components/MultiserverSection.vue'
+import AvailableSection from './components/AvailableSection.vue'
+import PlannedSection from './components/PlannedSection.vue'
 import FeaturesSection from './components/FeaturesSection.vue'
+import MultiserverSection from './components/MultiserverSection.vue'
+import ServerSection from './components/ServerSection.vue'
 import PersonasSection from './components/PersonasSection.vue'
-import RoadmapSection from './components/RoadmapSection.vue'
 import GetStartedSection from './components/GetStartedSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 </script>
@@ -15,10 +17,12 @@ import SiteFooter from './components/SiteFooter.vue'
   <main>
     <HeroSection />
     <PillarsSection />
-    <MultiserverSection />
+    <AvailableSection />
+    <PlannedSection />
     <FeaturesSection />
+    <MultiserverSection />
+    <ServerSection />
     <PersonasSection />
-    <RoadmapSection />
     <GetStartedSection />
   </main>
   <SiteFooter />

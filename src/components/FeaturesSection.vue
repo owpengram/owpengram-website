@@ -1,38 +1,40 @@
 <script setup>
-import { FEATURES } from '../data.js'
+import { SHOWCASE } from '../data.js'
 import IconSvg from './IconSvg.vue'
-import ScreenshotFrame from './ScreenshotFrame.vue'
+import ScreenshotPair from './ScreenshotPair.vue'
 </script>
 
 <template>
-  <section class="section" id="features">
+  <section class="section" id="product">
     <div class="container">
       <div class="section-head" v-reveal>
-        <span class="eyebrow">What works today</span>
-        <h2>A full messenger — already running</h2>
+        <span class="eyebrow">Product</span>
+        <h2>Real software — not a slide deck</h2>
         <p>
-          OwpenGram is a work in progress, but it’s far from a concept. Here’s what
-          you can use right now, on real devices and real servers.
+          Screens from the current Windows and Android builds. Same flows, same
+          polish — running against servers you choose.
         </p>
       </div>
 
-      <div class="shots" v-reveal>
-        <ScreenshotFrame label="Chats" variant="desktop" src="/shot-chats.png" />
-        <ScreenshotFrame label="Calls" variant="desktop" src="/shot-calls.png" />
-      </div>
-
-      <div class="grid">
+      <div class="showcase-list">
         <article
-          v-for="(f, i) in FEATURES"
-          :key="f.title"
-          class="card feat"
-          v-reveal="(i % 4) * 70"
+          v-for="(row, i) in SHOWCASE"
+          :key="row.id"
+          class="showcase-row"
+          :class="{ reverse: i % 2 === 1 }"
+          v-reveal="i * 70"
         >
-          <div class="dot"><IconSvg name="check" /></div>
-          <div>
-            <h3>{{ f.title }}</h3>
-            <p>{{ f.text }}</p>
+          <div class="copy">
+            <span class="row-eyebrow">{{ row.eyebrow }}</span>
+            <h3>{{ row.title }}</h3>
+            <p>{{ row.text }}</p>
+            <ul>
+              <li v-for="point in row.points" :key="point">
+                <IconSvg name="check" /> {{ point }}
+              </li>
+            </ul>
           </div>
+          <ScreenshotPair :desktop="row.desktop" :phone="row.phone" />
         </article>
       </div>
     </div>
@@ -40,24 +42,81 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
 </template>
 
 <style scoped>
-.shots {
+.showcase-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-bottom: 56px;
+  gap: 80px;
 }
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.feat { display: flex; gap: 14px; align-items: flex-start; padding: 22px; }
-.dot {
-  width: 34px; height: 34px; flex: none; padding: 7px;
-  border-radius: 10px; color: #fff; background: var(--grad);
-}
-.feat h3 { font-size: 1.04rem; margin-bottom: 4px; }
-.feat p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
-@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 720px) {
-  .shots { grid-template-columns: 1fr; }
+.showcase-row {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 40px;
+  align-items: center;
 }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+.showcase-row.reverse {
+  grid-template-columns: 1.12fr 0.88fr;
+}
+
+.showcase-row.reverse .copy {
+  order: 2;
+}
+
+.copy h3 {
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+  margin-bottom: 12px;
+}
+
+.copy p {
+  color: var(--body);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.row-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 10px;
+}
+
+.copy ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.copy li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.copy :deep(svg) {
+  width: 17px;
+  height: 17px;
+  color: var(--accent);
+  flex: none;
+}
+
+@media (max-width: 980px) {
+  .showcase-row,
+  .showcase-row.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-row.reverse .copy { order: 0; }
+}
+
+@media (max-width: 560px) {
+  .showcase-list { gap: 56px; }
+}
 </style>

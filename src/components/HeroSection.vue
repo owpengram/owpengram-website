@@ -1,51 +1,58 @@
 <script setup>
-import { LINKS, SITE } from '../data.js'
+import { LINKS, SCREENSHOTS, SITE, STATS } from '../data.js'
 import IconSvg from './IconSvg.vue'
-import ScreenshotFrame from './ScreenshotFrame.vue'
+import ScreenshotPair from './ScreenshotPair.vue'
 </script>
 
 <template>
   <section id="top" class="hero">
-    <div class="glow glow-a"></div>
-    <div class="glow glow-b"></div>
+    <div class="glow"></div>
+    <div class="grid-bg"></div>
 
     <div class="container hero-inner">
       <div class="copy">
-        <span class="eyebrow" v-reveal>● Open source · Work in progress</span>
-        <h1 v-reveal="60">
-          Your messenger.<br />
-          Your <span class="grad-text">server</span>. Your rules.
+        <span class="eyebrow" v-reveal>Windows · Android · Self-hosted</span>
+
+        <h1 v-reveal="50">
+          Messaging you<br />
+          <span class="grad-text">actually own.</span>
         </h1>
-        <p class="lead" v-reveal="120">
-          {{ SITE.name }} is an open-source, multi-server messaging platform.
-          Chat on the official network, your own private server, or any community
-          node — all from one familiar app. Private by design, free from
-          censorship, and yours to control.
+
+        <p class="lead" v-reveal="100">
+          {{ SITE.name }} pairs a familiar messenger with a server you can deploy
+          yourself. Ready-made clients for <strong>Windows</strong> and
+          <strong>Android</strong> — connect to the official network or your
+          private node from one app.
         </p>
 
-        <div class="cta" v-reveal="180">
-          <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary">
-            <IconSvg name="phone" /> Download for Android
-          </a>
+        <div class="cta" v-reveal="150">
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" class="btn btn-primary">
-            <IconSvg name="desktop" /> Download for Desktop
+            <IconSvg name="desktop" /> Windows
+          </a>
+          <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary">
+            <IconSvg name="phone" /> Android
           </a>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-ghost">
-            <IconSvg name="server" /> Self-host the server
+            <IconSvg name="server" /> Deploy server
           </a>
         </div>
 
-        <ul class="ticks" v-reveal="240">
-          <li><IconSvg name="check" /> Private & self-hostable</li>
-          <li><IconSvg name="check" /> No cloud lock-in</li>
-          <li><IconSvg name="check" /> Familiar experience</li>
-        </ul>
+        <p class="note" v-reveal="190">
+          Linux & macOS desktop builds are in development — source is on GitHub today.
+        </p>
       </div>
 
-      <div class="art" v-reveal="160">
-        <ScreenshotFrame label="Desktop client" variant="desktop" src="/hero-desktop.png" />
-        <div class="phone">
-          <ScreenshotFrame label="Mobile client" variant="phone" src="/hero-phone.jpg" />
+      <div class="visual" v-reveal="120">
+        <ScreenshotPair desktop="desktopChatList" phone="androidChatList" />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="stats" v-reveal="220">
+        <div v-for="s in STATS" :key="s.label" class="stat">
+          <strong>{{ s.value }}</strong>
+          <span class="stat-label">{{ s.label }}</span>
+          <small>{{ s.detail }}</small>
         </div>
       </div>
     </div>
@@ -55,49 +62,128 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
 <style scoped>
 .hero {
   position: relative;
-  padding: 150px 0 90px;
+  padding: 128px 0 0;
   overflow: hidden;
-  background:
-    radial-gradient(60% 60% at 50% -10%, var(--bg-tint), transparent 70%),
-    var(--bg);
 }
+
 .glow {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
+  inset: -20% 0 auto;
+  height: 70%;
+  background:
+    radial-gradient(50% 50% at 70% 20%, var(--hero-glow), transparent 70%),
+    radial-gradient(40% 40% at 20% 10%, color-mix(in srgb, var(--accent-bright) 18%, transparent), transparent 70%);
   pointer-events: none;
 }
-.glow-a { width: 420px; height: 420px; background: rgba(42, 214, 239, 0.35); top: -80px; right: -60px; }
-.glow-b { width: 360px; height: 360px; background: rgba(26, 127, 224, 0.28); bottom: -120px; left: -80px; }
+
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--hero-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, black, transparent 90%);
+  pointer-events: none;
+}
 
 .hero-inner {
   position: relative;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 40px;
   align-items: center;
+  padding-bottom: 52px;
 }
-h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
-.lead { font-size: 1.18rem; color: var(--body); max-width: 560px; }
 
-.cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 22px; }
-
-.ticks { list-style: none; display: flex; flex-wrap: wrap; gap: 18px; padding: 0; margin: 0; }
-.ticks li { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--muted); font-size: 0.92rem; }
-.ticks :deep(svg) { width: 18px; height: 18px; color: var(--cyan); }
-
-.art { position: relative; }
-.phone { position: absolute; right: -10px; bottom: 4px; width: 150px; }
-
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-  .art { max-width: 520px; margin: 0 auto; width: 100%; }
-  .phone { right: 0; width: 130px; }
+h1 {
+  font-size: clamp(2.6rem, 5.8vw, 4.4rem);
+  max-width: 10ch;
 }
+
+.lead {
+  font-size: 1.08rem;
+  color: var(--body);
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+.lead strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 14px;
+}
+
+.note {
+  font-size: 0.84rem;
+  color: var(--muted);
+  max-width: 420px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 52px;
+}
+
+.stat {
+  background: var(--surface);
+  padding: 26px 22px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.stat small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  h1 { max-width: none; }
+
+  .visual {
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 @media (max-width: 720px) {
-  .hero { padding: 122px 0 70px; }
-  .lead { font-size: 1.06rem; }
-  .phone { display: none; }
+  .hero { padding-top: 108px; }
+  .stats { grid-template-columns: 1fr; }
 }
 </style>

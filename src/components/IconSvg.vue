@@ -73,5 +73,10 @@ defineProps({ name: { type: String, required: true } })
 </template>
 
 <style scoped>
-svg { width: 100%; height: 100%; display: block; }
+svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  flex: none;
+}
 </style>

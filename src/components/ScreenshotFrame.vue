@@ -1,83 +1,89 @@
 <script setup>
-// Placeholder app-window frame. Pass `src` later to show a real screenshot.
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   src: { type: String, default: '' },
-  label: { type: String, default: 'Screenshot' },
-  variant: { type: String, default: 'desktop' }, // 'desktop' | 'phone'
+  alt: { type: String, default: 'OwpenGram screenshot' },
+  caption: { type: String, default: '' },
+  variant: { type: String, default: 'desktop' },
+  aspect: { type: String, default: '' },
 })
+
+const screenStyle = computed(() => (props.aspect ? { aspectRatio: props.aspect } : {}))
 </script>
 
 <template>
-  <div class="frame" :class="`frame--${variant}`">
-    <div class="bar" v-if="variant === 'desktop'">
-      <span></span><span></span><span></span>
-    </div>
-    <div class="notch" v-else></div>
-
-    <div class="screen">
-      <img v-if="src" :src="src" :alt="label" />
-      <div v-else class="ph">
-        <div class="ph-logo">&gt;</div>
-        <span>{{ label }}</span>
-        <small>Coming soon</small>
+  <figure class="shot" :class="`shot--${variant}`">
+    <div class="frame">
+      <div class="screen" :style="screenStyle">
+        <img
+          v-if="src"
+          :src="src"
+          :alt="alt"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
-  </div>
+    <figcaption v-if="caption" class="caption">{{ caption }}</figcaption>
+  </figure>
 </template>
 
 <style scoped>
+.shot {
+  margin: 0;
+  width: 100%;
+}
+
 .frame {
-  background: #0c1b2e;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 0;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--shot-border);
+  background: var(--shot-bg);
+  box-shadow: var(--shot-shadow);
 }
-.frame--phone {
-  border-radius: 30px;
-  max-width: 290px;
-  margin: 0 auto;
-  /* bigger bottom "chin" so the screenshot clears the phone's rounded corners */
-  padding: 10px 8px 26px;
-  background: #0a1626;
-}
-.bar {
-  display: flex;
-  gap: 7px;
-  padding: 12px 14px;
-  background: #0a1626;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-.bar span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, 0.22); }
-.bar span:first-child { background: #ff5f57; }
-.bar span:nth-child(2) { background: #febc2e; }
-.bar span:nth-child(3) { background: #28c840; }
-.notch {
-  width: 46%;
-  height: 22px;
-  margin: 2px auto 8px;
-  background: #0a1626;
-  border-radius: 0 0 14px 14px;
-}
+
 .screen {
-  aspect-ratio: 16 / 10;
-  background: radial-gradient(120% 120% at 30% 0%, #11233a, #0a1626);
-  display: grid;
-  place-items: center;
+  line-height: 0;
+  background: var(--shot-bg);
 }
-.frame--phone .screen { aspect-ratio: 9 / 19; border-radius: 12px; overflow: hidden; }
-.screen img { width: 100%; height: 100%; object-fit: cover; }
-.ph { text-align: center; color: var(--navy-body); display: grid; gap: 6px; justify-items: center; }
-.ph-logo {
-  width: 56px; height: 56px;
-  display: grid; place-items: center;
-  font-weight: 900; font-size: 1.6rem; color: #fff;
-  background: var(--grad);
-  border-radius: 16px;
-  box-shadow: var(--shadow-cyan);
-  margin-bottom: 6px;
+
+.screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: top center;
 }
-.ph span { font-weight: 700; color: var(--navy-ink); letter-spacing: 0.01em; }
-.ph small { font-size: 0.78rem; opacity: 0.7; }
+
+.shot--phone {
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.shot--phone .frame {
+  border-radius: 20px;
+}
+
+.shot--wide .frame {
+  border-radius: var(--radius);
+}
+
+.shot--card {
+  max-width: 420px;
+}
+
+.shot--card .frame {
+  border-radius: var(--radius);
+}
+
+.caption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 </style>

@@ -1,26 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a1626" />
-
+    <meta name="theme-color" content="#f7f9fc" />
+    <script>
+      (function () {
+        var t = localStorage.getItem('owpengram-theme')
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = t
+      })()
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>OwpenGram — Your messenger. Your server. Your rules.</title>
     <meta
       name="description"
-      content="OwpenGram is an open-source, multi-server messaging platform. Chat on the official network, your own private server, or any community node — from one familiar app."
+      content="OwpenGram is an open-source, multi-server messenger with Windows and Android clients and a self-hosted server you control."
     />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="OwpenGram — Your messenger. Your server. Your rules." />
     <meta
       property="og:description"
-      content="Open-source, multi-server messaging. Privacy, control and freedom from censorship — self-host it or use any server you trust."
+      content="Windows & Android clients. Self-hosted server. Multi-network accounts. Open source."
     />
     <meta property="og:image" content="/logo-1024.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <div id="app"></div>

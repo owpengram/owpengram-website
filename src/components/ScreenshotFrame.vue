@@ -38,7 +38,8 @@ defineProps({
   border-radius: 30px;
   max-width: 290px;
   margin: 0 auto;
-  padding: 8px;
+  /* bigger bottom "chin" so the screenshot clears the phone's rounded corners */
+  padding: 10px 8px 26px;
   background: #0a1626;
 }
 .bar {
@@ -65,7 +66,7 @@ defineProps({
   display: grid;
   place-items: center;
 }
-.frame--phone .screen { aspect-ratio: 9 / 19; border-radius: 22px; }
+.frame--phone .screen { aspect-ratio: 9 / 19; border-radius: 12px; overflow: hidden; }
 .screen img { width: 100%; height: 100%; object-fit: cover; }
 .ph { text-align: center; color: var(--navy-body); display: grid; gap: 6px; justify-items: center; }
 .ph-logo {

@@ -40,9 +40,9 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
       </div>
 
       <div class="art" v-reveal="160">
-        <ScreenshotFrame label="Desktop client" variant="desktop" />
+        <ScreenshotFrame label="Desktop client" variant="desktop" src="/hero-desktop.png" />
         <div class="phone">
-          <ScreenshotFrame label="Mobile client" variant="phone" />
+          <ScreenshotFrame label="Mobile client" variant="phone" src="/hero-phone.jpg" />
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@ h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
 .ticks :deep(svg) { width: 18px; height: 18px; color: var(--cyan); }
 
 .art { position: relative; }
-.phone { position: absolute; right: -10px; bottom: -34px; width: 150px; }
+.phone { position: absolute; right: -10px; bottom: 4px; width: 150px; }
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 48px; }

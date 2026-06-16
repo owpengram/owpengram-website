@@ -17,8 +17,8 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
       </div>
 
       <div class="shots" v-reveal>
-        <ScreenshotFrame label="Chats" variant="desktop" />
-        <ScreenshotFrame label="Calls" variant="desktop" />
+        <ScreenshotFrame label="Chats" variant="desktop" src="/shot-chats.png" />
+        <ScreenshotFrame label="Calls" variant="desktop" src="/shot-calls.png" />
       </div>
 
       <div class="grid">

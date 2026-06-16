@@ -24,8 +24,11 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
         </p>
 
         <div class="cta" v-reveal="180">
-          <a :href="LINKS.org" target="_blank" rel="noopener" class="btn btn-primary">
-            <IconSvg name="download" /> Get the apps
+          <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary">
+            <IconSvg name="phone" /> Download for Android
+          </a>
+          <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" class="btn btn-primary">
+            <IconSvg name="desktop" /> Download for Desktop
           </a>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-ghost">
             <IconSvg name="server" /> Self-host the server

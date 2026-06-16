@@ -12,6 +12,8 @@ export const LINKS = {
   server: 'https://github.com/owpengram/owpengram-server',
   android: 'https://github.com/owpengram/owpengram-android-client',
   desktop: 'https://github.com/owpengram/owpengram-desktop-client',
+  androidRelease: 'https://github.com/owpengram/owpengram-android-client/releases/latest',
+  desktopRelease: 'https://github.com/owpengram/owpengram-desktop-client/releases/latest',
 }
 
 // The four core promises of the project.

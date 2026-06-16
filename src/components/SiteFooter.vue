@@ -24,6 +24,7 @@ const cols = [
       { label: 'Telegram channel', href: LINKS.telegramChannel },
       { label: 'Telegram chat', href: LINKS.telegramChat },
       { label: 'Patreon', href: LINKS.patreon },
+      { label: 'Contact', href: '#contact' },
       { label: 'GitHub', href: LINKS.org },
     ],
   },
@@ -34,6 +35,7 @@ const cols = [
       { label: 'Product', href: '#product' },
       { label: 'Multi-server', href: '#multiserver' },
       { label: 'Support', href: '#support' },
+      { label: 'Contact', href: '#contact' },
     ],
   },
 ]
@@ -49,6 +51,9 @@ const cols = [
         </div>
         <p>{{ SITE.tagline }}</p>
         <div class="social">
+          <a :href="`mailto:${LINKS.contactEmail}`" class="social-link">
+            {{ LINKS.contactEmail }}
+          </a>
           <a :href="LINKS.patreon" target="_blank" rel="noopener" class="social-link social-link--patreon">
             <IconSvg name="patreon" /> Support on Patreon
           </a>
@@ -80,7 +85,6 @@ const cols = [
 
     <div class="container bottom">
       <span>© {{ year }} {{ SITE.name }} · {{ SITE.domain }}</span>
-      <span class="oss">Open source · Self-hostable</span>
     </div>
   </footer>
 </template>
@@ -181,11 +185,6 @@ const cols = [
   border-top: 1px solid var(--panel-line);
   font-size: 0.82rem;
   color: var(--panel-body);
-}
-
-.oss {
-  color: var(--accent-bright);
-  font-weight: 600;
 }
 
 @media (max-width: 820px) {

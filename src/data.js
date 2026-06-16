@@ -16,6 +16,7 @@ export const LINKS = {
   telegramChannel: 'https://t.me/owpengram',
   telegramChat: 'https://t.me/+nO84bf4m2-9lYzky',
   patreon: 'https://www.patreon.com/cw/onysd',
+  contactEmail: 'owpengram@gmail.com',
 }
 
 // ─── What works today — edit here when shipping new capabilities ─────────────

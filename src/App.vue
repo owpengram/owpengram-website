@@ -10,6 +10,7 @@ import ServerSection from './components/ServerSection.vue'
 import PersonasSection from './components/PersonasSection.vue'
 import GetStartedSection from './components/GetStartedSection.vue'
 import SupportSection from './components/SupportSection.vue'
+import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 </script>
 
@@ -26,6 +27,7 @@ import SiteFooter from './components/SiteFooter.vue'
     <PersonasSection />
     <GetStartedSection />
     <SupportSection />
+    <ContactSection />
   </main>
   <SiteFooter />
 </template>

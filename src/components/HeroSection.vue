@@ -11,8 +11,6 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
     <div class="container hero-inner">
       <div class="copy">
-        <span class="eyebrow" v-reveal>Windows · Android · Self-hosted</span>
-
         <h1 v-reveal="50">
           Messaging you<br />
           <span class="grad-text">actually own.</span>

@@ -3,9 +3,20 @@ defineProps({ name: { type: String, required: true } })
 </script>
 
 <template>
+  <svg
+    v-if="name === 'patreon'"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      d="M15.386.524C10.622.524 6.759 4.382 6.759 9.143c0 4.76 3.863 8.617 8.627 8.617 4.76 0 8.621-3.857 8.621-8.617C24.007 4.382 20.146.524 15.386.524M0 24h4.635V0H0"
+    />
+  </svg>
+
   <!-- GitHub mark (filled) -->
   <svg
-    v-if="name === 'github'"
+    v-else-if="name === 'github'"
     viewBox="0 0 24 24"
     fill="currentColor"
     aria-hidden="true"

@@ -23,6 +23,7 @@ const cols = [
     links: [
       { label: 'Telegram channel', href: LINKS.telegramChannel },
       { label: 'Telegram chat', href: LINKS.telegramChat },
+      { label: 'Patreon', href: LINKS.patreon },
       { label: 'GitHub', href: LINKS.org },
     ],
   },
@@ -32,6 +33,7 @@ const cols = [
       { label: 'What works today', href: '#available' },
       { label: 'Product', href: '#product' },
       { label: 'Multi-server', href: '#multiserver' },
+      { label: 'Support', href: '#support' },
     ],
   },
 ]
@@ -46,8 +48,10 @@ const cols = [
           <strong>{{ SITE.name }}</strong>
         </div>
         <p>{{ SITE.tagline }}</p>
-        <p class="platforms">Clients: Windows · Android</p>
         <div class="social">
+          <a :href="LINKS.patreon" target="_blank" rel="noopener" class="social-link social-link--patreon">
+            <IconSvg name="patreon" /> Support on Patreon
+          </a>
           <a :href="LINKS.org" target="_blank" rel="noopener" class="social-link">
             <IconSvg name="github" /> GitHub
           </a>
@@ -113,12 +117,6 @@ const cols = [
   font-size: 0.92rem;
 }
 
-.platforms {
-  font-size: 0.82rem !important;
-  color: var(--accent-bright) !important;
-  font-weight: 600;
-}
-
 .social {
   display: flex;
   flex-direction: column;
@@ -139,6 +137,10 @@ const cols = [
 
 .social-link:hover {
   opacity: 0.85;
+}
+
+.social-link--patreon {
+  color: #ff7a82;
 }
 
 .social-link :deep(svg) {

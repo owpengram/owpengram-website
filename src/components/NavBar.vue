@@ -15,6 +15,7 @@ const nav = [
   { href: '#product', label: 'Product' },
   { href: '#multiserver', label: 'Multi-server' },
   { href: '#server', label: 'Server' },
+  { href: '#support', label: 'Support' },
 ]
 const close = () => (open.value = false)
 </script>
@@ -29,9 +30,20 @@ const close = () => (open.value = false)
 
       <nav class="links" :class="{ open }">
         <a v-for="l in nav" :key="l.href" :href="l.href" @click="close">{{ l.label }}</a>
-        <a :href="LINKS.org" target="_blank" rel="noopener" class="gh" @click="close">
-          <IconSvg name="github" /> GitHub
-        </a>
+        <div class="ext-links">
+          <a
+            :href="LINKS.patreon"
+            target="_blank"
+            rel="noopener"
+            class="ext ext--patreon"
+            @click="close"
+          >
+            <IconSvg name="patreon" /> Patreon
+          </a>
+          <a :href="LINKS.org" target="_blank" rel="noopener" class="ext" @click="close">
+            <IconSvg name="github" /> GitHub
+          </a>
+        </div>
       </nav>
 
       <div class="actions">
@@ -104,7 +116,13 @@ const close = () => (open.value = false)
 
 .links a:hover { color: var(--accent); }
 
-.gh {
+.ext-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ext {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -115,7 +133,12 @@ const close = () => (open.value = false)
   background: var(--surface);
 }
 
-.gh :deep(svg) { width: 16px; height: 16px; }
+.ext--patreon:hover {
+  border-color: color-mix(in srgb, #ff424d 55%, var(--line));
+  color: #ff424d !important;
+}
+
+.ext :deep(svg) { width: 16px; height: 16px; }
 
 .actions {
   display: flex;
@@ -185,9 +208,15 @@ const close = () => (open.value = false)
     border-bottom: 1px solid var(--line);
   }
 
-  .gh {
-    justify-content: center;
+  .ext-links {
+    flex-direction: column;
+    width: 100%;
     margin-top: 10px;
+  }
+
+  .ext {
+    justify-content: center;
+    width: 100%;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue'
 
-const theme = ref('light')
+const theme = ref('dark')
 let initialized = false
 
 function applyTheme(value) {
@@ -14,8 +14,7 @@ export function initTheme() {
   initialized = true
 
   const saved = localStorage.getItem('owpengram-theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  theme.value = saved || (prefersDark ? 'dark' : 'light')
+  theme.value = saved || 'dark'
   applyTheme(theme.value)
 
   watch(theme, (value) => {

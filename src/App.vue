@@ -1,6 +1,8 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useMousePosition } from './composables/useMousePosition.js'
 import BgIcons from './components/BgIcons.vue'
+import CursorGlow from './components/CursorGlow.vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AvailableSection from './components/AvailableSection.vue'
@@ -10,6 +12,10 @@ import FaqSection from './components/FaqSection.vue'
 import ServerSection from './components/ServerSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
+
+const mouse = useMousePosition()
+const orbX = computed(() => (mouse.x - 0.5) * 30)
+const orbY = computed(() => (mouse.y - 0.5) * 30)
 
 const progress = ref(0)
 let ticking = false
@@ -32,8 +38,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <div class="scroll-track"><div class="scroll-thumb" :style="{ width: progress + '%' }"></div></div>
+  <CursorGlow />
   <BgIcons />
-  <div class="bg-orbs" aria-hidden="true">
+  <div class="bg-orbs" aria-hidden="true" :style="{ transform: 'translate(' + orbX + 'px, ' + orbY + 'px)' }">
     <div class="bg-orb bg-orb--1"></div>
     <div class="bg-orb bg-orb--2"></div>
     <div class="bg-orb bg-orb--3"></div>
@@ -72,10 +79,11 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 .bg-orbs {
   position: fixed;
-  inset: 0;
+  inset: -60px;
   z-index: -1;
-  overflow: hidden;
   pointer-events: none;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
 }
 
 .bg-orb {
@@ -86,29 +94,29 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 }
 
 .bg-orb--1 {
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   top: -15%;
   left: -10%;
-  background: color-mix(in srgb, var(--accent-bright) 30%, transparent);
+  background: color-mix(in srgb, var(--accent-bright) 40%, transparent);
   animation: orbFloat1 20s ease-in-out infinite;
 }
 
 .bg-orb--2 {
-  width: 500px;
-  height: 500px;
-  top: 30%;
-  right: -12%;
-  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  width: 600px;
+  height: 600px;
+  top: 25%;
+  right: -15%;
+  background: color-mix(in srgb, var(--accent) 38%, transparent);
   animation: orbFloat2 24s ease-in-out infinite;
 }
 
 .bg-orb--3 {
-  width: 450px;
-  height: 450px;
+  width: 500px;
+  height: 500px;
   bottom: -15%;
-  left: 35%;
-  background: color-mix(in srgb, var(--accent-bright) 20%, transparent);
+  left: 30%;
+  background: color-mix(in srgb, var(--accent-bright) 30%, transparent);
   animation: orbFloat3 28s ease-in-out infinite;
 }
 
@@ -132,9 +140,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 @media (max-width: 720px) {
   .bg-orb { filter: blur(60px); }
-  .bg-orb--1 { width: 300px; height: 300px; }
-  .bg-orb--2 { width: 250px; height: 250px; }
-  .bg-orb--3 { width: 200px; height: 200px; }
+  .bg-orb--1 { width: 350px; height: 350px; }
+  .bg-orb--2 { width: 300px; height: 300px; }
+  .bg-orb--3 { width: 250px; height: 250px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

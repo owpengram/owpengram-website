@@ -1,7 +1,40 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 import { LINKS, SCREENSHOTS } from '../data.js'
 import IconSvg from './IconSvg.vue'
 import ScreenshotFrame from './ScreenshotFrame.vue'
+
+const el = ref(null)
+const tilt = ref({ rx: 0, ry: 0 })
+const maxTilt = 5
+
+function onMove(e) {
+  if (!el.value) return
+  const rect = el.value.getBoundingClientRect()
+  const x = (e.clientX - rect.left) / rect.width
+  const y = (e.clientY - rect.top) / rect.height
+  tilt.value = { rx: (y - 0.5) * -maxTilt, ry: (x - 0.5) * maxTilt }
+}
+
+function onLeave() {
+  tilt.value = { rx: 0, ry: 0 }
+}
+
+onMounted(() => {
+  const p = el.value
+  if (p) {
+    p.addEventListener('mousemove', onMove)
+    p.addEventListener('mouseleave', onLeave)
+  }
+})
+
+onUnmounted(() => {
+  const p = el.value
+  if (p) {
+    p.removeEventListener('mousemove', onMove)
+    p.removeEventListener('mouseleave', onLeave)
+  }
+})
 </script>
 
 <template>
@@ -26,7 +59,22 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
           </a>
         </div>
 
-        <ScreenshotFrame v-bind="SCREENSHOTS.serverDocker" />
+        <div
+          ref="el"
+          class="shot-wrap"
+          :style="{
+            perspective: '800px',
+          }"
+        >
+          <div
+            class="shot-inner"
+            :style="{
+              transform: 'rotateX(' + tilt.rx + 'deg) rotateY(' + tilt.ry + 'deg)',
+            }"
+          >
+            <ScreenshotFrame v-bind="SCREENSHOTS.serverDocker" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -44,6 +92,16 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
   grid-template-columns: 0.75fr 1.25fr;
   gap: 40px;
   align-items: center;
+}
+
+.shot-wrap {
+  perspective: 800px;
+}
+
+.shot-inner {
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .copy h2 {

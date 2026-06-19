@@ -54,12 +54,13 @@ import { PERSONAS } from '../data.js'
   border: 1px solid var(--panel-line);
   border-radius: var(--radius);
   padding: 24px;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .who-card:hover {
-  border-color: color-mix(in srgb, var(--accent-bright) 40%, var(--panel-line));
-  background: rgba(255, 255, 255, 0.05);
+  border-color: color-mix(in srgb, var(--accent-bright) 50%, var(--panel-line));
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 28px -12px color-mix(in srgb, var(--accent-bright) 25%, transparent);
 }
 
 .num {

@@ -62,6 +62,12 @@ function toggle(i) {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.faq-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  box-shadow: 0 0 24px -10px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .faq-q {

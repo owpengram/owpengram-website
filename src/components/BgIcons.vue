@@ -1,5 +1,8 @@
 <script setup>
 import { reactive, onMounted, onUnmounted } from 'vue'
+import { useMousePosition } from '../composables/useMousePosition.js'
+
+const mouse = useMousePosition()
 
 const iconDefs = [
   `<rect x="2.5" y="3.5" width="19" height="12" rx="2"/><path d="M8 20h8M12 15.5V20"/>`,
@@ -47,7 +50,7 @@ function initParticles() {
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
       size,
-      opacity: 0.12 + Math.random() * 0.08,
+      opacity: 0.18 + Math.random() * 0.12,
       rot: Math.random() * 360,
       rotSpeed: (Math.random() - 0.5) * 0.08,
       path: iconDefs[i % iconDefs.length],
@@ -129,7 +132,7 @@ onUnmounted(() => {
         width: p.size + 'px',
         height: p.size + 'px',
         opacity: p.opacity,
-        transform: 'translate(' + p.x + 'px, ' + p.y + 'px) rotate(' + p.rot + 'deg)',
+        transform: 'translate(' + (p.x + (mouse.x - 0.5) * p.size * 1.5) + 'px, ' + (p.y + (mouse.y - 0.5) * p.size * 1.5) + 'px) rotate(' + p.rot + 'deg)',
       }"
       viewBox="0 0 24 24"
       fill="none"

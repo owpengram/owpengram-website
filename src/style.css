@@ -1,6 +1,9 @@
 :root,
 [data-theme='light'] {
   color-scheme: light;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  color-scheme: light;
 
   --accent: #2563eb;
   --accent-bright: #38bdf8;
@@ -284,5 +287,15 @@ img { max-width: 100%; display: block; }
 
 @keyframes v-ripple-fade {
   to { transform: scale(3); opacity: 0; }
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--line-strong);
 }
 

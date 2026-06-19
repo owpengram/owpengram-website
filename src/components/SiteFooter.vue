@@ -3,82 +3,47 @@ import { LINKS, SITE } from '../data.js'
 import IconSvg from './IconSvg.vue'
 
 const year = new Date().getFullYear()
-const cols = [
-  {
-    head: 'Project',
-    links: [
-      { label: 'GitHub organization', href: LINKS.org },
-      { label: 'Server', href: LINKS.server },
-    ],
-  },
-  {
-    head: 'Clients',
-    links: [
-      { label: 'Windows desktop', href: LINKS.desktopRelease },
-      { label: 'Android', href: LINKS.androidRelease },
-    ],
-  },
-  {
-    head: 'Community',
-    links: [
-      { label: 'Telegram channel', href: LINKS.telegramChannel },
-      { label: 'Telegram chat', href: LINKS.telegramChat },
-      { label: 'Patreon', href: LINKS.patreon },
-      { label: 'Contact', href: '#contact' },
-      { label: 'GitHub', href: LINKS.org },
-    ],
-  },
-  {
-    head: 'On this page',
-    links: [
-      { label: 'What works today', href: '#available' },
-      { label: 'Product', href: '#product' },
-      { label: 'Multi-server', href: '#multiserver' },
-      { label: 'Support', href: '#support' },
-      { label: 'Contact', href: '#contact' },
-    ],
-  },
-]
 </script>
 
 <template>
   <footer class="foot panel">
     <div class="container foot-inner">
-      <div class="brand">
-        <div class="logo">
+      <div class="top">
+        <span class="f-logo">
           <img src="/logo.png" alt="OwpenGram" />
           <strong>{{ SITE.name }}</strong>
-        </div>
-        <p>{{ SITE.tagline }}</p>
-        <div class="social">
-          <a :href="`mailto:${LINKS.contactEmail}`" class="social-link">
-            {{ LINKS.contactEmail }}
+        </span>
+      </div>
+      <div class="foot-cols">
+        <div class="fcol">
+          <h4>Contact</h4>
+          <a :href="`mailto:${LINKS.contactEmail}`">
+            <IconSvg name="mail" /> Email
           </a>
-          <a :href="LINKS.patreon" target="_blank" rel="noopener" class="social-link social-link--patreon">
-            <IconSvg name="patreon" /> Support on Patreon
+          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener">
+            <IconSvg name="telegram" /> Telegram
           </a>
-          <a :href="LINKS.org" target="_blank" rel="noopener" class="social-link">
+          <a :href="LINKS.org" target="_blank" rel="noopener">
             <IconSvg name="github" /> GitHub
           </a>
-          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="social-link">
-            Telegram channel
+        </div>
+        <div class="fcol">
+          <h4>Products</h4>
+          <a :href="LINKS.desktopRelease" target="_blank" rel="noopener">
+            <IconSvg name="desktop" /> Windows client
           </a>
-          <a :href="LINKS.telegramChat" target="_blank" rel="noopener" class="social-link">
-            Telegram chat
+          <a :href="LINKS.androidRelease" target="_blank" rel="noopener">
+            <IconSvg name="phone" /> Android client
+          </a>
+          <a :href="LINKS.server" target="_blank" rel="noopener">
+            <IconSvg name="server" /> Server
           </a>
         </div>
-      </div>
-
-      <div class="cols">
-        <div v-for="c in cols" :key="c.head" class="col">
-          <h4>{{ c.head }}</h4>
-          <a
-            v-for="l in c.links"
-            :key="l.label"
-            :href="l.href"
-            :target="l.href.startsWith('#') ? '_self' : '_blank'"
-            rel="noopener"
-          >{{ l.label }}</a>
+        <div class="fcol">
+          <h4>Support us</h4>
+          <a :href="LINKS.patreon" target="_blank" rel="noopener">
+            <IconSvg name="patreon" /> Patreon
+          </a>
         </div>
       </div>
     </div>
@@ -95,84 +60,66 @@ const cols = [
   border-top: 1px solid var(--panel-line);
 }
 
-.foot-inner {
-  display: grid;
-  grid-template-columns: 1.15fr 2fr;
-  gap: 40px;
+.top {
+  margin-bottom: 18px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo img { width: 32px; height: 32px; }
-
-.logo strong {
-  color: var(--panel-ink);
-  font-size: 1.15rem;
-}
-
-.brand p {
-  margin: 12px 0 0;
-  max-width: 280px;
-  color: var(--panel-body);
-  font-size: 0.92rem;
-}
-
-.social {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.social-link {
+.f-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--accent-bright);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: opacity 0.15s ease;
+  gap: 10px;
 }
 
-.social-link:hover {
-  opacity: 0.85;
-}
+.f-logo img { width: 28px; height: 28px; }
 
-.social-link--patreon {
-  color: #ff7a82;
-}
-
-.social-link :deep(svg) {
-  width: 17px;
-  height: 17px;
-}
-
-.cols {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.col h4 {
+.f-logo strong {
   color: var(--panel-ink);
-  margin: 0 0 12px;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 
-.col a {
-  display: block;
+.foot-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+
+.fcol h4 {
+  color: var(--panel-ink);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
+  opacity: 0.6;
+}
+
+.fcol a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--panel-body);
-  padding: 5px 0;
-  font-size: 0.88rem;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
   transition: color 0.15s ease;
 }
 
-.col a:hover { color: var(--accent-bright); }
+.fcol a:hover {
+  color: var(--accent-bright);
+}
+
+.fcol :deep(svg) {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}
+
+@media (max-width: 660px) {
+  .foot-cols { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 420px) {
+  .foot-cols { grid-template-columns: 1fr; }
+}
 
 .bottom {
   display: flex;
@@ -187,11 +134,4 @@ const cols = [
   color: var(--panel-body);
 }
 
-@media (max-width: 820px) {
-  .foot-inner { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 520px) {
-  .cols { grid-template-columns: 1fr 1fr; }
-}
 </style>

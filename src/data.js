@@ -21,34 +21,17 @@ export const LINKS = {
 
 // ─── What works today — edit here when shipping new capabilities ─────────────
 
-export const AVAILABLE = {
-  clients: {
-    title: 'Clients',
-    note: 'Windows & Android · release builds',
-    items: [
-      { icon: '💬', text: 'Private chats' },
-      { icon: '👥', text: 'Groups' },
-      { icon: '📞', text: 'Voice & video calls (1-to-1, built-in TURN relay — works globally)' },
-      { icon: '🖼️', text: 'Media & files — photos, videos, documents' },
-      { icon: '📇', text: 'Contacts sync' },
-      { icon: '🌐', text: 'Windows & Android clients' },
-      { icon: '🔀', text: 'Multi-server — several accounts on different servers in one app' },
-    ],
-  },
-  server: {
-    title: 'Server',
-    note: 'Self-hosted · Docker',
-    items: [
-      { icon: '💬', text: 'Private chats' },
-      { icon: '👥', text: 'Groups' },
-      { icon: '📞', text: 'Voice & video calls (1-to-1, built-in TURN relay)' },
-      { icon: '🖼️', text: 'Media & files — photos, videos, documents' },
-      { icon: '📇', text: 'Contacts sync' },
-      { icon: '🐳', text: 'Docker-based deployment' },
-      { icon: '🔑', text: 'Per-server encryption keys' },
-    ],
-  },
-}
+export const AVAILABLE = [
+  { icon: '💬', text: 'Private chats' },
+  { icon: '👥', text: 'Groups' },
+  { icon: '📞', text: 'Voice & video calls (1-to-1)' },
+  { icon: '🖼️', text: 'Media & files — photos, videos, documents' },
+  { icon: '📇', text: 'Contacts sync' },
+  { icon: '🔀', text: 'Multi-server accounts in one app' },
+  { icon: '🐳', text: 'Docker-based server deployment' },
+  { icon: '🔑', text: 'Per-server encryption keys' },
+  { icon: '🌐', text: 'Windows & Android clients' },
+]
 
 // ─── Screenshots ─────────────────────────────────────────────────────────────
 
@@ -148,35 +131,6 @@ export const SCREENSHOTS = {
   },
 }
 
-export const STATS = [
-  { value: '2', label: 'Ready clients', detail: 'Windows desktop & Android' },
-  { value: '∞', label: 'Your servers', detail: 'Official, private or community nodes' },
-  { value: '100%', label: 'Open source', detail: 'Client, server & tooling on GitHub' },
-]
-
-export const PILLARS = [
-  {
-    icon: 'shield',
-    title: 'Privacy & control',
-    text: 'Run the server yourself. Your messages, your keys, your infrastructure.',
-  },
-  {
-    icon: 'spark',
-    title: 'Familiar UX',
-    text: 'The interface millions already know — without giving up ownership of your stack.',
-  },
-  {
-    icon: 'globe',
-    title: 'Always reachable',
-    text: 'Spin up a node on a VPS or home server when public networks are blocked.',
-  },
-  {
-    icon: 'unlock',
-    title: 'No censorship layer',
-    text: 'No single authority decides who can speak on infrastructure you control.',
-  },
-]
-
 export const SHOWCASE = [
   {
     id: 'messaging',
@@ -188,52 +142,14 @@ export const SHOWCASE = [
     phone: 'androidChat1',
   },
   {
-    id: 'multiserver',
-    eyebrow: 'Multi-server',
-    title: 'Several accounts, several networks',
-    text: 'Keep an official account and a self-hosted one side by side. Each account picks its server at sign-in.',
-    points: ['Per-account server selection', 'Isolated encryption keys', 'Switch in seconds'],
-    desktop: 'desktopMultiserver',
-    phone: 'androidMultiserver',
-  },
-  {
     id: 'calls',
     eyebrow: 'Real-time',
-    title: 'Voice & video calls on your own relay',
-    text: '1-to-1 calls connect through a built-in TURN relay you deploy — working globally, not only on LAN.',
-    points: ['Self-hosted TURN', 'Windows & Android', 'No Firebase dependency'],
+    title: 'Voice & video calls',
+    text: '1-to-1 calls on Windows and Android — works globally.',
+    points: ['Windows & Android', 'Voice & video', 'Works globally'],
     desktop: 'desktopCall',
     phone: 'androidCall',
   },
 ]
 
-export const PERSONAS = [
-  {
-    title: 'Sysadmins',
-    text: 'Deploy with Docker, point clients at your endpoint, hold your own keys.',
-  },
-  {
-    title: 'Everyday users',
-    text: 'Familiar, fast and free — privacy built in, not bolted on.',
-  },
-  {
-    title: 'Teams',
-    text: 'Internal comms on infrastructure you own and govern.',
-  },
-  {
-    title: 'High-risk work',
-    text: 'Infrastructure you control when blocking and censorship escalate.',
-  },
-]
 
-// ─── In progress & planned — edit here ───────────────────────────────────────
-
-export const PLANNED = [
-  { icon: '📞', text: 'Group calls' },
-  { icon: '🛠️', text: 'Server admin panel' },
-  { icon: '📢', text: 'Channels' },
-  { icon: '🔗', text: 'Custom prefixes and protocol per server' },
-  { icon: '🤖', text: 'Bot API' },
-  { icon: '⚡', text: 'Light server edition — no Docker, SQLite backend' },
-  { icon: '🌐', text: 'Clients for other platforms (Linux, macOS, iOS, web)' },
-]

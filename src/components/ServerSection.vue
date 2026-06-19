@@ -73,7 +73,7 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
   font-size: 0.9rem;
 }
 
-.copy :deep(svg) {
+.copy ul :deep(svg) {
   width: 17px;
   height: 17px;
   color: var(--accent);

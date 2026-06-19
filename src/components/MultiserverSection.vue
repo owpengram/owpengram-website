@@ -20,9 +20,14 @@ import ScreenshotPair from './ScreenshotPair.vue'
           <li><IconSvg name="check" /> Multiple accounts on one device</li>
           <li><IconSvg name="check" /> Move to self-hosting when you are ready</li>
         </ul>
-        <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-dark">
-          <IconSvg name="arrow" /> See client source
-        </a>
+        <div class="btn-group">
+          <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-dark">
+            <IconSvg name="desktop" /> Windows source
+          </a>
+          <a :href="LINKS.android" target="_blank" rel="noopener" class="btn btn-dark">
+            <IconSvg name="phone" /> Android source
+          </a>
+        </div>
       </div>
 
       <div v-reveal="90">
@@ -78,6 +83,12 @@ import ScreenshotPair from './ScreenshotPair.vue'
   height: 17px;
   color: var(--accent-bright);
   flex: none;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 @media (max-width: 900px) {

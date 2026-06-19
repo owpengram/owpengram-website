@@ -80,6 +80,14 @@ defineProps({ name: { type: String, required: true } })
       <rect x="3.5" y="4.5" width="17" height="11" rx="2" />
       <path d="M9 20h6M12 15.5V20" />
     </template>
+    <template v-else-if="name === 'mail'">
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M3 7l9 6.5L21 7" />
+    </template>
+    <template v-else-if="name === 'telegram'">
+      <path d="M21.5 3.5l-19 7.5 5.5 2.5 3 5 3-2 5.5 5z" />
+      <path d="M11 14l8.5-8.5" />
+    </template>
   </svg>
 </template>
 

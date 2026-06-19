@@ -1,5 +1,5 @@
 <script setup>
-import { LINKS, SCREENSHOTS, SITE, STATS } from '../data.js'
+import { LINKS, SITE } from '../data.js'
 import IconSvg from './IconSvg.vue'
 import ScreenshotPair from './ScreenshotPair.vue'
 </script>
@@ -12,15 +12,14 @@ import ScreenshotPair from './ScreenshotPair.vue'
     <div class="container hero-inner">
       <div class="copy">
         <h1 v-reveal="50">
-          Messaging you<br />
-          <span class="grad-text">actually own.</span>
+          {{ SITE.name }}
         </h1>
 
+        <p class="sub" v-reveal="70">Open source self-hosted MTProto-compatible messenger.</p>
+
         <p class="lead" v-reveal="100">
-          {{ SITE.name }} pairs a familiar messenger with a server you can deploy
-          yourself. Ready-made clients for <strong>Windows</strong> and
-          <strong>Android</strong> — connect to the official network or your
-          private node from one app.
+          Clients for <strong>Windows</strong> and <strong>Android</strong> — connect to the
+          official network or your own server. All open source.
         </p>
 
         <div class="cta" v-reveal="150">
@@ -34,24 +33,10 @@ import ScreenshotPair from './ScreenshotPair.vue'
             <IconSvg name="server" /> Deploy server
           </a>
         </div>
-
-        <p class="note" v-reveal="190">
-          Linux & macOS desktop builds are in development — source is on GitHub today.
-        </p>
       </div>
 
       <div class="visual" v-reveal="120">
         <ScreenshotPair desktop="desktopChatList" phone="androidChatList" />
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="stats" v-reveal="220">
-        <div v-for="s in STATS" :key="s.label" class="stat">
-          <strong>{{ s.value }}</strong>
-          <span class="stat-label">{{ s.label }}</span>
-          <small>{{ s.detail }}</small>
-        </div>
       </div>
     </div>
   </section>
@@ -60,7 +45,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
 <style scoped>
 .hero {
   position: relative;
-  padding: 128px 0 0;
+  padding: 128px 0 60px;
   overflow: hidden;
 }
 
@@ -95,8 +80,14 @@ import ScreenshotPair from './ScreenshotPair.vue'
 }
 
 h1 {
-  font-size: clamp(2.6rem, 5.8vw, 4.4rem);
-  max-width: 10ch;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+}
+
+.sub {
+  font-size: 1rem;
+  color: var(--accent-bright);
+  font-weight: 600;
+  margin: 12px 0 0;
 }
 
 .lead {
@@ -118,53 +109,6 @@ h1 {
   margin: 28px 0 14px;
 }
 
-.note {
-  font-size: 0.84rem;
-  color: var(--muted);
-  max-width: 420px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 52px;
-}
-
-.stat {
-  background: var(--surface);
-  padding: 26px 22px;
-  text-align: center;
-}
-
-.stat strong {
-  display: block;
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
-  line-height: 1;
-  color: var(--ink);
-  letter-spacing: -0.04em;
-}
-
-.stat-label {
-  display: block;
-  margin-top: 8px;
-  font-weight: 700;
-  color: var(--ink);
-  font-size: 0.92rem;
-}
-
-.stat small {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.45;
-}
-
 @media (max-width: 960px) {
   .hero-inner {
     grid-template-columns: 1fr;
@@ -182,6 +126,5 @@ h1 {
 
 @media (max-width: 720px) {
   .hero { padding-top: 108px; }
-  .stats { grid-template-columns: 1fr; }
 }
 </style>

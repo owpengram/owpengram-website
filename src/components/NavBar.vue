@@ -15,7 +15,6 @@ const nav = [
   { href: '#product', label: 'Product' },
   { href: '#multiserver', label: 'Multi-server' },
   { href: '#server', label: 'Server' },
-  { href: '#support', label: 'Support' },
 ]
 const close = () => (open.value = false)
 </script>

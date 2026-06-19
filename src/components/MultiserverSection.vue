@@ -16,9 +16,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
           installing another app.
         </p>
         <ul class="points">
-          <li><IconSvg name="check" /> Server selection at sign-in</li>
-          <li><IconSvg name="check" /> Multiple accounts on one device</li>
-          <li><IconSvg name="check" /> Move to self-hosting when you are ready</li>
+          <li>• Server selection at sign-in</li>
+          <li>• Multiple accounts on one device</li>
+          <li>• Move to self-hosting when you are ready</li>
         </ul>
         <div class="btn-group">
           <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-dark">
@@ -70,19 +70,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
 }
 
 .points li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-weight: 600;
   color: var(--panel-ink);
   font-size: 0.92rem;
-}
-
-.points :deep(svg) {
-  width: 17px;
-  height: 17px;
-  color: var(--accent-bright);
-  flex: none;
 }
 
 .btn-group {

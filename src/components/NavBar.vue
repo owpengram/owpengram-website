@@ -54,7 +54,6 @@ const close = () => (open.value = false)
       </nav>
 
       <div class="actions">
-        <ThemeToggle />
         <div class="drop-wrap">
           <button class="btn btn-primary nav-cta">
             Download
@@ -74,6 +73,7 @@ const close = () => (open.value = false)
         </button>
       </div>
     </div>
+    <ThemeToggle class="theme-fixed" />
   </header>
 </template>
 
@@ -218,6 +218,13 @@ const close = () => (open.value = false)
 }
 
 .mobile-dl { display: none; }
+
+.theme-fixed {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 55;
+}
 
 .burger {
   display: none;

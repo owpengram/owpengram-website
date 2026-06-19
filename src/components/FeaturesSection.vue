@@ -1,6 +1,5 @@
 <script setup>
 import { SHOWCASE } from '../data.js'
-import IconSvg from './IconSvg.vue'
 import ScreenshotPair from './ScreenshotPair.vue'
 </script>
 
@@ -29,9 +28,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
             <h3>{{ row.title }}</h3>
             <p>{{ row.text }}</p>
             <ul>
-              <li v-for="point in row.points" :key="point">
-                <IconSvg name="check" /> {{ point }}
-              </li>
+              <li v-for="point in row.points" :key="point">• {{ point }}</li>
             </ul>
           </div>
           <ScreenshotPair :desktop="row.desktop" :phone="row.phone" />
@@ -92,19 +89,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
 }
 
 .copy li {
-  display: flex;
-  align-items: center;
-  gap: 9px;
   font-weight: 600;
   color: var(--ink);
   font-size: 0.9rem;
-}
-
-.copy :deep(svg) {
-  width: 17px;
-  height: 17px;
-  color: var(--accent);
-  flex: none;
 }
 
 @media (max-width: 980px) {

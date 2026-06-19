@@ -17,9 +17,9 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
             in the open.
           </p>
           <ul>
-            <li><IconSvg name="check" /> Docker-based deployment</li>
-            <li><IconSvg name="check" /> Compatible with Windows & Android clients</li>
-            <li><IconSvg name="check" /> Full source on GitHub</li>
+            <li>• Docker-based deployment</li>
+            <li>• Compatible with Windows & Android clients</li>
+            <li>• Full source on GitHub</li>
           </ul>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-primary">
             <IconSvg name="server" /> Server repository
@@ -65,18 +65,9 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
 }
 
 .copy li {
-  display: flex;
-  align-items: center;
-  gap: 9px;
   font-weight: 600;
   color: var(--ink);
   font-size: 0.9rem;
-}
-
-.copy ul :deep(svg) {
-  width: 17px;
-  height: 17px;
-  color: var(--accent);
 }
 
 @media (max-width: 900px) {

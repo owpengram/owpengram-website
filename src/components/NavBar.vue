@@ -49,10 +49,10 @@ watch(open, (v) => {
           >
             <IconSvg name="patreon" /> Patreon
           </a>
-          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="ext" @click="close">
+          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="ext ext--telegram" @click="close">
             <IconSvg name="telegram" /> Telegram
           </a>
-          <a :href="LINKS.org" target="_blank" rel="noopener" class="ext" @click="close">
+          <a :href="LINKS.org" target="_blank" rel="noopener" class="ext ext--github" @click="close">
             <IconSvg name="github" /> GitHub
           </a>
         </div>
@@ -154,6 +154,16 @@ watch(open, (v) => {
 .ext--patreon:hover {
   border-color: color-mix(in srgb, #ff424d 55%, var(--line));
   color: #ff424d !important;
+}
+
+.ext--telegram:hover {
+  border-color: color-mix(in srgb, #229ed9 55%, var(--line));
+  color: #229ed9 !important;
+}
+
+.ext--github:hover {
+  border-color: color-mix(in srgb, #2ea043 55%, var(--line));
+  color: #2ea043 !important;
 }
 
 .ext :deep(svg) { width: 16px; height: 16px; }

@@ -87,7 +87,6 @@ watch(open, (v) => {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  overflow: hidden;
   transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   border-bottom: 1px solid transparent;
 }
@@ -180,12 +179,20 @@ watch(open, (v) => {
   position: relative;
 }
 
+.drop-wrap::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
 .drop {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 12px);
   right: 0;
-  margin-top: 6px;
   min-width: 160px;
   background: var(--bg-elevated);
   border: 1px solid var(--line);

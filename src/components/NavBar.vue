@@ -29,6 +29,11 @@ const close = () => (open.value = false)
 
       <nav class="links" :class="{ open }">
         <a v-for="l in nav" :key="l.href" :href="l.href" @click="close">{{ l.label }}</a>
+        <div class="mobile-dl">
+          <strong>Download</strong>
+          <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="desktop" /> Windows</a>
+          <a :href="LINKS.androidRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="phone" /> Android</a>
+        </div>
         <div class="ext-links">
           <a
             :href="LINKS.patreon"
@@ -39,6 +44,9 @@ const close = () => (open.value = false)
           >
             <IconSvg name="patreon" /> Patreon
           </a>
+          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="ext" @click="close">
+            <IconSvg name="telegram" /> Telegram
+          </a>
           <a :href="LINKS.org" target="_blank" rel="noopener" class="ext" @click="close">
             <IconSvg name="github" /> GitHub
           </a>
@@ -47,14 +55,20 @@ const close = () => (open.value = false)
 
       <div class="actions">
         <ThemeToggle />
-        <a
-          :href="LINKS.desktopRelease"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary nav-cta"
-        >
-          Download
-        </a>
+        <div class="drop-wrap">
+          <button class="btn btn-primary nav-cta">
+            Download
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="chev"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="drop">
+            <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close">
+              <IconSvg name="desktop" /> Windows
+            </a>
+            <a :href="LINKS.androidRelease" target="_blank" rel="noopener" @click="close">
+              <IconSvg name="phone" /> Android
+            </a>
+          </div>
+        </div>
         <button class="burger" :class="{ open }" @click="open = !open" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -149,7 +163,61 @@ const close = () => (open.value = false)
   padding: 10px 16px;
   font-size: 0.86rem;
   border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+
+.chev { width: 16px; height: 16px; }
+
+.drop-wrap {
+  position: relative;
+}
+
+.drop {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  min-width: 160px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  z-index: 60;
+}
+
+.drop-wrap:hover .drop,
+.drop-wrap:focus-within .drop {
+  display: block;
+}
+
+.drop a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: background 0.15s;
+}
+
+.drop a:hover {
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.drop :deep(svg) {
+  width: 17px;
+  height: 17px;
+  color: var(--body);
+}
+
+.mobile-dl { display: none; }
 
 .burger {
   display: none;
@@ -205,6 +273,37 @@ const close = () => (open.value = false)
   .links a {
     padding: 12px 6px;
     border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-dl {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 0 4px;
+  }
+
+  .mobile-dl strong {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--body);
+    padding: 0 6px 6px;
+  }
+
+  .mobile-dl a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 6px;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-dl :deep(svg) {
+    width: 18px;
+    height: 18px;
   }
 
   .ext-links {

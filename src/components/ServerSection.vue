@@ -36,6 +36,7 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
 .server {
   background: var(--surface-2);
   border-block: 1px solid var(--line);
+  scroll-margin-top: 80px;
 }
 
 .layout {

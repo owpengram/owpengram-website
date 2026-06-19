@@ -39,6 +39,8 @@ import ScreenshotPair from './ScreenshotPair.vue'
 </template>
 
 <style scoped>
+section { scroll-margin-top: 80px; }
+
 .showcase-list {
   display: grid;
   gap: 80px;

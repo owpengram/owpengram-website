@@ -74,6 +74,7 @@ async function submit(event) {
             >
               {{ status === 'sending' ? 'Sending…' : 'Send' }}
             </button>
+            <a :href="mailto" class="btn btn-ghost card-mailto">Email</a>
           </div>
 
           <textarea
@@ -178,6 +179,12 @@ h2 {
   white-space: nowrap;
 }
 
+.card-mailto {
+  font-size: 0.86rem;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+}
+
 textarea {
   width: 100%;
   font: inherit;
@@ -236,7 +243,9 @@ textarea:disabled {
 }
 
 @media (max-width: 820px) {
-  .contact-card {
+section { scroll-margin-top: 80px; }
+
+.contact-card {
     grid-template-columns: 1fr;
     padding: 32px;
   }

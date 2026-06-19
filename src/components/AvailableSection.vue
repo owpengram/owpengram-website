@@ -27,6 +27,7 @@ import { AVAILABLE } from '../data.js'
 .available {
   background: var(--surface-2);
   border-block: 1px solid var(--line);
+  scroll-margin-top: 80px;
 }
 
 .list {

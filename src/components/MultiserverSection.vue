@@ -40,6 +40,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
 <style scoped>
 .multiserver {
   border-block: 1px solid var(--panel-line);
+  scroll-margin-top: 80px;
 }
 
 .inner {

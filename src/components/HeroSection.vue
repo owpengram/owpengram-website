@@ -47,6 +47,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
   position: relative;
   padding: 128px 0 60px;
   overflow: hidden;
+  scroll-margin-top: 80px;
 }
 
 .glow {

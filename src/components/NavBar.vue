@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { LINKS } from '../data.js'
 import IconSvg from './IconSvg.vue'
 import ThemeToggle from './ThemeToggle.vue'
@@ -17,10 +17,14 @@ const nav = [
   { href: '#server', label: 'Server' },
 ]
 const close = () => (open.value = false)
+
+watch(open, (v) => {
+  document.body.style.overflow = v ? 'hidden' : ''
+})
 </script>
 
 <template>
-  <header class="nav" :class="{ 'nav--solid': scrolled }">
+  <header class="nav" :class="{ 'nav--solid': scrolled, 'menu-open': open }">
     <div class="container nav-inner">
       <a href="#top" class="brand" @click="close">
         <img src="/logo.png" alt="OwpenGram" />
@@ -249,11 +253,16 @@ const close = () => (open.value = false)
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
+  .nav-inner { min-width: 0; }
+
   .burger { display: block; }
-  .nav-cta { display: none; }
+  .drop-wrap { display: none; }
+
+  .menu-open .theme-fixed { display: none; }
 
   .links {
+    display: none;
     position: absolute;
     top: 72px;
     left: 0;
@@ -264,17 +273,11 @@ const close = () => (open.value = false)
     background: var(--bg-elevated);
     border-bottom: 1px solid var(--line);
     padding: 8px 16px 18px;
-    transform: translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.2s ease;
     margin-left: 0;
   }
 
   .links.open {
-    transform: none;
-    opacity: 1;
-    pointer-events: auto;
+    display: flex;
   }
 
   .links a {

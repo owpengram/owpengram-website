@@ -131,6 +131,43 @@ export const SCREENSHOTS = {
   },
 }
 
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+
+export const FAQ = [
+  {
+    q: 'What is OwpenGram?',
+    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows and Android clients, plus a Docker-based server you can deploy on your own hardware.',
+  },
+  {
+    q: 'Is it compatible with Telegram?',
+    a: 'Yes. OwpenGram uses the MTProto protocol, so you can connect to the official Telegram network, your own OwpenGram server, or any compatible third-party node — all from the same app.',
+  },
+  {
+    q: 'What platforms are supported?',
+    a: 'Currently we ship native clients for Windows and Android. The server runs on anything that supports Docker — Linux, macOS, or Windows.',
+  },
+  {
+    q: 'Can I run my own server?',
+    a: 'Absolutely. The server is distributed as a Docker Compose stack. Clone the repository, run the build script, and you will have your own private messaging server on your hardware.',
+  },
+  {
+    q: 'Is it really free and open source?',
+    a: 'Yes. All OwpenGram code is published on GitHub under permissive licenses. You can audit, modify, and redistribute it. There are no paid tiers or hidden features.',
+  },
+  {
+    q: 'How is this different from Telegram?',
+    a: 'Telegram is a centralized service. OwpenGram gives you the same protocol and a compatible client, but you control the server. You can run it privately, modify it, and stay independent of any third party.',
+  },
+  {
+    q: 'Can I use multiple servers at once?',
+    a: 'Yes. The OwpenGram clients let you add multiple accounts, each connected to a different server — official Telegram, your own instance, or a friend\'s node — all in one app.',
+  },
+  {
+    q: 'How do I get help or report a bug?',
+    a: 'Join our Telegram chat or channel. For bug reports, open an issue on the relevant GitHub repository. You can also email us directly.',
+  },
+]
+
 export const SHOWCASE = [
   {
     id: 'messaging',

@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection.vue'
 import AvailableSection from './components/AvailableSection.vue'
 import FeaturesSection from './components/FeaturesSection.vue'
 import MultiserverSection from './components/MultiserverSection.vue'
+import FaqSection from './components/FaqSection.vue'
 import ServerSection from './components/ServerSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
@@ -17,6 +18,7 @@ import SiteFooter from './components/SiteFooter.vue'
     <FeaturesSection />
     <MultiserverSection />
     <ServerSection />
+    <FaqSection />
     <ContactSection />
   </main>
   <SiteFooter />

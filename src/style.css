@@ -259,3 +259,17 @@ img { max-width: 100%; display: block; }
   .section { padding: 76px 0; }
   .section-head { margin-bottom: 40px; }
 }
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  .section { padding: 56px 0; }
+
+  .section-head h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .section-head p { font-size: 0.95rem; }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+}

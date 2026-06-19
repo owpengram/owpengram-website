@@ -119,6 +119,7 @@ const year = new Date().getFullYear()
 
 @media (max-width: 420px) {
   .foot-cols { grid-template-columns: 1fr; }
+  .foot { padding: 40px 0 20px; }
 }
 
 .bottom {

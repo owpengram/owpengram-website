@@ -108,4 +108,9 @@ section { scroll-margin-top: 80px; }
 @media (max-width: 560px) {
   .showcase-list { gap: 56px; }
 }
+
+@media (max-width: 480px) {
+  .copy h3 { font-size: clamp(1.2rem, 5.5vw, 1.45rem); }
+  .copy p { font-size: 0.95rem; }
+}
 </style>

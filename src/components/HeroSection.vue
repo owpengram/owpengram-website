@@ -128,4 +128,11 @@ h1 {
 @media (max-width: 720px) {
   .hero { padding-top: 108px; }
 }
+
+@media (max-width: 480px) {
+  .hero { padding: 96px 0 40px; }
+  .cta { flex-direction: column; }
+  .cta .btn { width: 100%; justify-content: center; }
+  .lead { font-size: 0.96rem; }
+}
 </style>

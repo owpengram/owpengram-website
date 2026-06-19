@@ -86,6 +86,7 @@ watch(open, (v) => {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
+  overflow: hidden;
   transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   border-bottom: 1px solid transparent;
 }
@@ -326,5 +327,9 @@ watch(open, (v) => {
     justify-content: center;
     width: 100%;
   }
+}
+
+@media (max-width: 480px) {
+  .brand span { font-size: 0.95rem; }
 }
 </style>

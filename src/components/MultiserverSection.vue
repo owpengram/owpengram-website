@@ -88,4 +88,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
     gap: 36px;
   }
 }
+
+@media (max-width: 480px) {
+  .copy h2 { font-size: clamp(1.4rem, 7vw, 1.9rem); }
+  .copy p { font-size: 0.95rem; }
+}
 </style>

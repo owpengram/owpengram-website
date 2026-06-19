@@ -58,15 +58,23 @@ async function submit(event) {
         </div>
 
         <form class="card-form" @submit="submit">
+          <input
+            class="email-input"
+            v-model="email"
+            type="email"
+            placeholder="Your email"
+            autocomplete="email"
+            required
+            :disabled="status === 'sending'"
+          />
+          <textarea
+            v-model="message"
+            placeholder="Message"
+            rows="2"
+            required
+            :disabled="status === 'sending'"
+          />
           <div class="row">
-            <input
-              v-model="email"
-              type="email"
-              placeholder="Your email"
-              autocomplete="email"
-              required
-              :disabled="status === 'sending'"
-            />
             <button
               type="submit"
               class="btn btn-primary"
@@ -76,13 +84,6 @@ async function submit(event) {
             </button>
             <a :href="mailto" class="btn btn-ghost card-mailto">Email</a>
           </div>
-
-          <textarea
-            v-model="message"
-            placeholder="Message (optional)"
-            rows="2"
-            :disabled="status === 'sending'"
-          />
 
           <input
             v-model="honeypot"
@@ -144,16 +145,23 @@ h2 {
 
 .card-form {
   display: grid;
+  grid-template-columns: 1fr auto;
   gap: 10px;
+  grid-template-areas:
+    "email btns"
+    "msg   msg";
 }
+
+.email-input { grid-area: email; }
+.card-form textarea { grid-area: msg; }
+.card-form .row { grid-area: btns; }
 
 .row {
   display: flex;
   gap: 10px;
 }
 
-.row input {
-  flex: 1;
+.email-input {
   font: inherit;
   color: var(--panel-ink);
   background: rgba(255, 255, 255, 0.06);
@@ -163,13 +171,13 @@ h2 {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.row input:focus {
+.email-input:focus {
   outline: none;
   border-color: var(--accent-bright);
   box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.15);
 }
 
-.row input:disabled {
+.email-input:disabled {
   opacity: 0.65;
   cursor: not-allowed;
 }
@@ -249,5 +257,20 @@ section { scroll-margin-top: 80px; }
     grid-template-columns: 1fr;
     padding: 32px;
   }
+}
+
+@media (max-width: 480px) {
+  .contact-card { padding: 24px 20px; }
+
+  .card-form {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "email"
+      "msg"
+      "btns";
+  }
+
+  .card-form .row { width: 100%; }
+  .row .btn { flex: 1; justify-content: center; }
 }
 </style>

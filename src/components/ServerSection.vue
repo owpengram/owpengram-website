@@ -74,4 +74,9 @@ import ScreenshotFrame from './ScreenshotFrame.vue'
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 480px) {
+  .copy h2 { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+  .copy p { font-size: 0.95rem; }
+}
 </style>

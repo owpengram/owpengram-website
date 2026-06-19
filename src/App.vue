@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useMousePosition } from './composables/useMousePosition.js'
 import BgIcons from './components/BgIcons.vue'
 import CursorGlow from './components/CursorGlow.vue'
+import ScrollTopBtn from './components/ScrollTopBtn.vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import AvailableSection from './components/AvailableSection.vue'
@@ -55,6 +56,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <FaqSection />
     <ContactSection />
   </main>
+  <ScrollTopBtn />
   <SiteFooter />
 </template>
 

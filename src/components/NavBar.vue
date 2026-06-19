@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle.vue'
 
 const scrolled = ref(false)
 const open = ref(false)
+const active = ref('')
 const onScroll = () => (scrolled.value = window.scrollY > 16)
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
@@ -14,14 +15,37 @@ const nav = [
   { href: '#available', label: 'Status' },
   { href: '#product', label: 'Product' },
   { href: '#multiserver', label: 'Multi-server' },
+  { href: '#server', label: 'Self-host' },
   { href: '#faq', label: 'FAQ' },
-  { href: '#server', label: 'Server' },
 ]
 const close = () => (open.value = false)
 
 watch(open, (v) => {
   document.body.style.overflow = v ? 'hidden' : ''
 })
+
+let observer = null
+
+function initObserver() {
+  const ids = nav.map(l => l.href.slice(1))
+  const els = ids.map(id => document.getElementById(id)).filter(Boolean)
+  if (!els.length) return
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          active.value = '#' + entry.target.id
+        }
+      }
+    },
+    { threshold: 0.3, rootMargin: '0px 0px -30% 0px' }
+  )
+  els.forEach(el => observer.observe(el))
+}
+
+onMounted(initObserver)
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
@@ -33,7 +57,7 @@ watch(open, (v) => {
       </a>
 
       <nav class="links" :class="{ open }">
-        <a v-for="l in nav" :key="l.href" :href="l.href" @click="close">{{ l.label }}</a>
+        <a v-for="l in nav" :key="l.href" :href="l.href" :class="{ active: active === l.href }" @click="close">{{ l.label }}</a>
         <div class="mobile-dl">
           <strong>Download</strong>
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="desktop" /> Windows</a>
@@ -133,6 +157,7 @@ watch(open, (v) => {
 }
 
 .links a:hover { color: var(--accent); }
+.links a.active { color: var(--accent); }
 
 .ext-links {
   display: flex;

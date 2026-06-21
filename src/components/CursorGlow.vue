@@ -7,7 +7,7 @@ const mouse = useMousePosition()
   <div
     class="cursor-glow"
     :style="{
-      transform: 'translate(' + mouse.rawX + 'px, ' + mouse.rawY + 'px)',
+      transform: 'translate(' + (mouse.rawX - 150) + 'px, ' + (mouse.rawY - 150) + 'px)',
     }"
     aria-hidden="true"
   />

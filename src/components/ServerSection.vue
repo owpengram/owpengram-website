@@ -43,14 +43,15 @@ onUnmounted(() => {
       <div class="layout" v-reveal>
         <div class="copy">
           <span class="eyebrow">Self-host</span>
-          <h2>Your server, your Docker stack</h2>
+          <h2>Your server, one binary</h2>
           <p>
-            Deploy OwpenGram server with Docker Compose. Chats, media, groups
-            and calls — on hardware you control, with build scripts and tooling
-            in the open.
+            A single Go binary runs the whole server — chats, media, groups,
+            channels, bots, calls. Docker Compose brings up PostgreSQL and
+            Redis in one command; everything else is source and tooling in
+            the open.
           </p>
           <ul>
-            <li>• Docker-based deployment</li>
+            <li>• Single Go binary — build and run in minutes</li>
             <li>• Compatible with Windows & Android clients</li>
             <li>• Full source on GitHub</li>
           </ul>

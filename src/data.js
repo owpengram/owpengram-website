@@ -22,13 +22,14 @@ export const LINKS = {
 // ─── What works today — edit here when shipping new capabilities ─────────────
 
 export const AVAILABLE = [
-  { icon: '💬', text: 'Private chats' },
-  { icon: '👥', text: 'Groups' },
+  { icon: '💬', text: 'Private chats, groups, supergroups & channels' },
   { icon: '📞', text: 'Voice & video calls (1-to-1)' },
-  { icon: '🖼️', text: 'Media & files — photos, videos, documents' },
-  { icon: '📇', text: 'Contacts sync' },
+  { icon: '🖼️', text: 'Media & files — photos, videos, documents, stickers, reactions' },
+  { icon: '✉️', text: 'Email login & email-only sign-up — no phone number needed' },
+  { icon: '🤖', text: 'Bots and mini apps' },
+  { icon: '📇', text: 'Contacts sync, chat folders, public links' },
   { icon: '🔀', text: 'Multi-server accounts in one app' },
-  { icon: '🐳', text: 'Docker-based server deployment' },
+  { icon: '🖥️', text: 'Self-hosted Go server — one binary, your database' },
   { icon: '🔑', text: 'Per-server encryption keys' },
   { icon: '🌐', text: 'Windows & Android clients' },
 ]
@@ -136,7 +137,7 @@ export const SCREENSHOTS = {
 export const FAQ = [
   {
     q: 'What is OwpenGram?',
-    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows and Android clients, plus a Docker-based server you can deploy on your own hardware.',
+    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows and Android clients, plus a self-hosted Go server you run on your own hardware.',
   },
   {
     q: 'Is it compatible with Telegram?',
@@ -144,11 +145,15 @@ export const FAQ = [
   },
   {
     q: 'What platforms are supported?',
-    a: 'Currently we ship native clients for Windows and Android. The server runs on anything that supports Docker — Linux, macOS, or Windows.',
+    a: 'Currently we ship native clients for Windows and Android. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
   },
   {
     q: 'Can I run my own server?',
-    a: 'Absolutely. The server is distributed as a Docker Compose stack. Clone the repository, run the build script, and you will have your own private messaging server on your hardware.',
+    a: 'Absolutely. Clone the repository, start PostgreSQL and Redis with one Docker Compose command, then build and run the server binary — you will have your own private messaging server on your hardware in a few minutes.',
+  },
+  {
+    q: 'Do I need a phone number to sign up?',
+    a: 'Not necessarily. Self-hosted servers can enable email-only sign-up: you register and log in with just an email address, no phone number at all. Regular phone-number sign-up works too.',
   },
   {
     q: 'Is it really free and open source?',

@@ -46,15 +46,11 @@ function toggle(i) {
 }
 
 .list {
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
-}
-
-@media (max-width: 720px) {
-  .list { grid-template-columns: 1fr; }
 }
 
 .faq-item {

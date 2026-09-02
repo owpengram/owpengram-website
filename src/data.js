@@ -15,7 +15,7 @@ export const LINKS = {
   desktopRelease: 'https://github.com/owpengram/owpengram-desktop-client/releases/latest',
   telegramChannel: 'https://t.me/owpengram',
   telegramChat: 'https://t.me/+nO84bf4m2-9lYzky',
-  patreon: 'https://www.patreon.com/cw/onysd',
+  patreon: 'https://www.patreon.com/cw/owpengram',
   contactEmail: 'owpengram@gmail.com',
 }
 

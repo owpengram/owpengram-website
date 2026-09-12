@@ -45,7 +45,7 @@ async function submit(event) {
 </script>
 
 <template>
-  <section class="section" id="contact">
+  <section class="section contact" id="contact">
     <div class="container">
       <div class="contact-card panel" v-reveal>
         <div class="card-copy">
@@ -108,6 +108,15 @@ async function submit(event) {
 </template>
 
 <style scoped>
+/* Opaque, so the page keeps alternating between solid and see-through bands
+   instead of ending on two transparent sections in a row. */
+.contact {
+  background: var(--surface-2);
+  /* No borders of its own: the support band draws the line above, the footer
+     draws the one below. */
+  scroll-margin-top: 80px;
+}
+
 .contact-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -251,9 +260,7 @@ textarea:disabled {
 }
 
 @media (max-width: 820px) {
-section { scroll-margin-top: 80px; }
-
-.contact-card {
+  .contact-card {
     grid-template-columns: 1fr;
     padding: 32px;
   }

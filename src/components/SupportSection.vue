@@ -44,7 +44,8 @@ import IconSvg from './IconSvg.vue'
    element instead of two separate sections. */
 .support {
   background: var(--grad-soft);
-  border-block: 1px solid var(--line);
+  /* Bottom only -- the FAQ above already draws the line at this boundary. */
+  border-bottom: 1px solid var(--line);
   scroll-margin-top: 80px;
 }
 

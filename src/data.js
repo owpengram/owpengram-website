@@ -22,22 +22,25 @@ export const LINKS = {
 // ─── What works today — edit here when shipping new capabilities ─────────────
 
 export const AVAILABLE = [
-  { icon: '💬', text: 'Private chats, groups, supergroups & channels' },
-  { icon: '📞', text: 'Voice & video calls (1-to-1)' },
+  { icon: '💬', text: 'Private chats, groups, supergroups, channels & forum topics' },
+  { icon: '📞', text: 'Voice & video calls — 1-to-1 and group, with screen sharing' },
+  { icon: '📡', text: 'Live streaming into channels — RTMP ingest from OBS' },
   { icon: '🖼️', text: 'Media & files — photos, videos, documents, stickers, reactions' },
-  { icon: '🪣', text: 'Media on local disk or S3/MinIO object storage' },
+  { icon: '💾', text: 'Media on local disk or S3/MinIO object storage' },
   { icon: '✉️', text: 'Email login & email-only sign-up — no phone number needed' },
+  { icon: '🔐', text: 'Passkey sign-in and a self-hosted Log in with Telegram provider' },
   { icon: '🤖', text: 'Bots, mini apps and a Bot API gateway' },
   { icon: '🌐', text: 'Message translation and AI-assisted compose' },
   { icon: '📇', text: 'Contacts sync, chat folders, public links' },
+  { icon: '🏷️', text: 'Collectible usernames and account verification' },
+  { icon: '📢', text: 'Broadcasts — announce to every user, or a picked list' },
   { icon: '🔀', text: 'Multi-server accounts in one app' },
   { icon: '🔎', text: 'Add a server by typing its address — the client fetches the rest' },
+  { icon: '🔑', text: 'Per-server encryption keys' },
   { icon: '🖥️', text: 'Self-hosted Go server — one command to install' },
   { icon: '🧙', text: 'First-run setup wizard right in the browser' },
   { icon: '👥', text: 'Admin panel with named operators and scoped permissions' },
-  { icon: '🔑', text: 'Per-server encryption keys' },
   { icon: '🗄️', text: 'Storage management — usage breakdown and retention rules' },
-  { icon: '⬆️', text: 'One-click server update, with a dry run before it applies' },
   { icon: '💻', text: 'Windows, Linux & Android clients' },
 ]
 
@@ -172,7 +175,7 @@ export const FAQ = [
   },
   {
     q: 'Is it really free and open source?',
-    a: 'Yes. All OwpenGram code is published on GitHub under permissive licenses. You can audit, modify, and redistribute it. There are no paid tiers or hidden features.',
+    a: 'Yes. All OwpenGram code is published on GitHub — the server under Apache-2.0, the clients under the GPL they inherit from the apps they are forked from. You can audit, modify, and redistribute it. There are no paid tiers or hidden features.',
   },
   {
     q: 'How is this different from Telegram?',
@@ -201,9 +204,9 @@ export const SHOWCASE = [
   {
     id: 'calls',
     eyebrow: 'Real-time',
-    title: 'Voice & video calls',
-    text: '1-to-1 calls on desktop and Android — works globally.',
-    points: ['Desktop & Android', 'Voice & video', 'Works globally'],
+    title: 'Voice, video and group calls',
+    text: 'One-to-one and group calls on desktop and Android, with screen sharing — and RTMP live streams into a channel.',
+    points: ['1-to-1 & group calls', 'Screen sharing', 'Live streams'],
     desktop: 'desktopCall',
     phone: 'androidCall',
   },

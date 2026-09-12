@@ -10,6 +10,7 @@ import AvailableSection from './components/AvailableSection.vue'
 import FeaturesSection from './components/FeaturesSection.vue'
 import MultiserverSection from './components/MultiserverSection.vue'
 import FaqSection from './components/FaqSection.vue'
+import SupportSection from './components/SupportSection.vue'
 import ServerSection from './components/ServerSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
@@ -54,6 +55,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <MultiserverSection />
     <ServerSection />
     <FaqSection />
+    <SupportSection />
     <ContactSection />
   </main>
   <ScrollTopBtn />

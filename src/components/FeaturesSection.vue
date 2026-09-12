@@ -10,7 +10,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
         <span class="eyebrow">Product</span>
         <h2>Real software — not a slide deck</h2>
         <p>
-          Screens from the current Windows and Android builds. Same flows, same
+          Screens from the current desktop and Android builds. Same flows, same
           polish — running against servers you choose.
         </p>
       </div>

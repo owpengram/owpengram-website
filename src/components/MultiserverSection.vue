@@ -16,13 +16,13 @@ import ScreenshotPair from './ScreenshotPair.vue'
           installing another app.
         </p>
         <ul class="points">
-          <li>• Server selection at sign-in</li>
-          <li>• Multiple accounts on one device</li>
+          <li>• Adding a server takes an address — nothing else to fill in</li>
+          <li>• Multiple accounts on one device, kept apart per server</li>
           <li>• Move to self-hosting when you are ready</li>
         </ul>
         <div class="btn-group">
           <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-dark">
-            <IconSvg name="desktop" /> Windows source
+            <IconSvg name="desktop" /> Desktop source
           </a>
           <a :href="LINKS.android" target="_blank" rel="noopener" class="btn btn-dark">
             <IconSvg name="phone" /> Android source

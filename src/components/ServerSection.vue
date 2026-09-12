@@ -43,16 +43,19 @@ onUnmounted(() => {
       <div class="layout" v-reveal>
         <div class="copy">
           <span class="eyebrow">Self-host</span>
-          <h2>Your server, one binary</h2>
+          <h2>Your server, one command</h2>
           <p>
             A single Go binary runs the whole server — chats, media, groups,
-            channels, bots, calls. Docker Compose brings up PostgreSQL and
-            Redis in one command; everything else is source and tooling in
-            the open.
+            channels, bots, calls. Run the launcher and it installs whatever is
+            missing, brings up the database, builds everything and opens a setup
+            wizard in your browser. From then on you run it from the panel:
+            accounts, content, storage and health on one screen.
           </p>
           <ul>
-            <li>• Single Go binary — build and run in minutes</li>
-            <li>• Compatible with Windows & Android clients</li>
+            <li>• One command to install — Linux and Windows</li>
+            <li>• Browser setup wizard on first run</li>
+            <li>• Admin panel with named operators and scoped permissions</li>
+            <li>• Media on local disk or S3/MinIO, with retention rules</li>
             <li>• Full source on GitHub</li>
           </ul>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-primary">
@@ -73,7 +76,7 @@ onUnmounted(() => {
               transform: 'rotateX(' + tilt.rx + 'deg) rotateY(' + tilt.ry + 'deg)',
             }"
           >
-            <ScreenshotFrame v-bind="SCREENSHOTS.serverDocker" />
+            <ScreenshotFrame v-bind="SCREENSHOTS.serverAdminPanel" />
           </div>
         </div>
       </div>

@@ -18,13 +18,14 @@ import ScreenshotPair from './ScreenshotPair.vue'
         <p class="sub" v-reveal="70">Open source self-hosted MTProto-compatible messenger.</p>
 
         <p class="lead" v-reveal="100">
-          Clients for <strong>Windows</strong> and <strong>Android</strong> — connect to the
-          official network or your own server. All open source.
+          Clients for <strong>Windows</strong>, <strong>Linux</strong> and
+          <strong>Android</strong> — connect to the official network or your own
+          server. All open source.
         </p>
 
         <div class="cta" v-reveal="150">
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
-            <IconSvg name="desktop" /> Windows
+            <IconSvg name="desktop" /> Windows &amp; Linux
           </a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
             <IconSvg name="phone" /> Android

@@ -25,13 +25,20 @@ export const AVAILABLE = [
   { icon: '💬', text: 'Private chats, groups, supergroups & channels' },
   { icon: '📞', text: 'Voice & video calls (1-to-1)' },
   { icon: '🖼️', text: 'Media & files — photos, videos, documents, stickers, reactions' },
+  { icon: '🪣', text: 'Media on local disk or S3/MinIO object storage' },
   { icon: '✉️', text: 'Email login & email-only sign-up — no phone number needed' },
-  { icon: '🤖', text: 'Bots and mini apps' },
+  { icon: '🤖', text: 'Bots, mini apps and a Bot API gateway' },
+  { icon: '🌐', text: 'Message translation and AI-assisted compose' },
   { icon: '📇', text: 'Contacts sync, chat folders, public links' },
   { icon: '🔀', text: 'Multi-server accounts in one app' },
-  { icon: '🖥️', text: 'Self-hosted Go server — one binary, your database' },
+  { icon: '🔎', text: 'Add a server by typing its address — the client fetches the rest' },
+  { icon: '🖥️', text: 'Self-hosted Go server — one command to install' },
+  { icon: '🧙', text: 'First-run setup wizard right in the browser' },
+  { icon: '👥', text: 'Admin panel with named operators and scoped permissions' },
   { icon: '🔑', text: 'Per-server encryption keys' },
-  { icon: '🌐', text: 'Windows & Android clients' },
+  { icon: '🗄️', text: 'Storage management — usage breakdown and retention rules' },
+  { icon: '⬆️', text: 'One-click server update, with a dry run before it applies' },
+  { icon: '💻', text: 'Windows, Linux & Android clients' },
 ]
 
 // ─── Screenshots ─────────────────────────────────────────────────────────────
@@ -123,11 +130,11 @@ export const SCREENSHOTS = {
     aspect: '591 / 1280',
     variant: 'phone',
   },
-  serverDocker: {
-    src: `${S}/server_docker_and_build_script.png`,
-    alt: 'OwpenGram server — Docker deployment',
-    caption: 'Self-hosted server',
-    aspect: '1618 / 884',
+  serverAdminPanel: {
+    src: `${S}/server_admin_panel.png`,
+    alt: 'OwpenGram server — admin panel overview with accounts, content and server health',
+    caption: 'Admin panel',
+    aspect: '1920 / 927',
     variant: 'wide',
   },
 }
@@ -137,19 +144,27 @@ export const SCREENSHOTS = {
 export const FAQ = [
   {
     q: 'What is OwpenGram?',
-    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows and Android clients, plus a self-hosted Go server you run on your own hardware.',
+    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows, Linux and Android clients, plus a self-hosted Go server you run on your own hardware.',
   },
   {
     q: 'Is it compatible with Telegram?',
-    a: 'Yes. OwpenGram uses the MTProto protocol, so you can connect to the official Telegram network, your own OwpenGram server, or any compatible third-party node — all from the same app.',
+    a: 'Yes. OwpenGram uses the MTProto protocol, so you can connect to the official Telegram network, your own OwpenGram server, or any compatible third-party node — all from the same app. The server speaks API layers 225 through 229 and admits each client on the exact layer it announces, so an older build keeps working after the server moves forward.',
   },
   {
     q: 'What platforms are supported?',
-    a: 'Currently we ship native clients for Windows and Android. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
+    a: 'Native clients for Windows, Linux and Android; macOS and a web client are planned. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
+  },
+  {
+    q: 'How do I install the Linux client?',
+    a: 'Two files in the desktop Releases tab, both from the same portable build. The .deb package installs OwpenGram as a normal app on Ubuntu 18.04+ and Debian 10+. The other is the OwpenGram binary itself, not an installer: make it executable and run it on any modern distro, since everything it needs is bundled. An install-linux.sh script in the repo adds the menu entry and icons under your home directory if you want them.',
   },
   {
     q: 'Can I run my own server?',
-    a: 'Absolutely. Clone the repository, start PostgreSQL and Redis with one Docker Compose command, then build and run the server binary — you will have your own private messaging server on your hardware in a few minutes.',
+    a: 'Yes, and it takes one command. Clone the repository and run owpengram-server.sh, or owpengram-server.bat on Windows. The launcher installs whatever is missing — Go, Python, Docker, OpenSSL — brings up the database, builds and starts everything, then hands you a browser setup wizard for the server name, public address and your admin account. Nothing has to be edited by hand.',
+  },
+  {
+    q: 'How do I connect the app to my server?',
+    a: 'Type its address. On the server-selection screen choose Add server and enter host:port — the client asks the server for its public key, data-centre id, name and icon, and fills in the rest by itself. No key files to copy around. Operators can also hand out a link that pre-fills the address.',
   },
   {
     q: 'Do I need a phone number to sign up?',
@@ -165,7 +180,7 @@ export const FAQ = [
   },
   {
     q: 'Can I use multiple servers at once?',
-    a: 'Yes. The OwpenGram clients let you add multiple accounts, each connected to a different server — official Telegram, your own instance, or a friend\'s node — all in one app.',
+    a: 'Yes. The OwpenGram clients let you add multiple accounts, each connected to a different server — official Telegram, your own instance, or a friend\'s node — all in one app, up to 50 accounts in total. Data for each account is scoped to the server it came from, so two servers never bleed into each other.',
   },
   {
     q: 'How do I get help or report a bug?',
@@ -178,7 +193,7 @@ export const SHOWCASE = [
     id: 'messaging',
     eyebrow: 'Messaging',
     title: 'Chats, groups and media — already shipping',
-    text: 'Full conversations on Windows and Android with the same flows you expect from a modern messenger.',
+    text: 'Full conversations on Windows, Linux and Android with the same flows you expect from a modern messenger.',
     points: ['Private chats & groups', 'Photos, video & files', 'Contacts sync'],
     desktop: 'desktopChat1',
     phone: 'androidChat1',
@@ -187,8 +202,8 @@ export const SHOWCASE = [
     id: 'calls',
     eyebrow: 'Real-time',
     title: 'Voice & video calls',
-    text: '1-to-1 calls on Windows and Android — works globally.',
-    points: ['Windows & Android', 'Voice & video', 'Works globally'],
+    text: '1-to-1 calls on desktop and Android — works globally.',
+    points: ['Desktop & Android', 'Voice & video', 'Works globally'],
     desktop: 'desktopCall',
     phone: 'androidCall',
   },

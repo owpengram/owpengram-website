@@ -60,7 +60,7 @@ onUnmounted(() => observer?.disconnect())
         <a v-for="l in nav" :key="l.href" :href="l.href" :class="{ active: active === l.href }" @click="close">{{ l.label }}</a>
         <div class="mobile-dl">
           <strong>Download</strong>
-          <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="desktop" /> Windows &amp; Linux</a>
+          <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="desktop" /> Desktop</a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener" @click="close"><IconSvg name="phone" /> Android</a>
         </div>
         <div class="ext-links">
@@ -90,7 +90,7 @@ onUnmounted(() => observer?.disconnect())
           </button>
           <div class="drop">
             <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close">
-              <IconSvg name="desktop" /> Windows &amp; Linux
+              <IconSvg name="desktop" /> Desktop
             </a>
             <a :href="LINKS.androidRelease" target="_blank" rel="noopener" @click="close">
               <IconSvg name="phone" /> Android

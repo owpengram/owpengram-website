@@ -130,7 +130,7 @@ h2 {
 }
 
 .card-mail {
-  color: var(--accent-bright);
+  color: var(--panel-accent);
   font-weight: 600;
 }
 
@@ -139,7 +139,7 @@ h2 {
 }
 
 .card-copy a[href*="t.me"] {
-  color: var(--accent-bright);
+  color: var(--panel-accent);
   font-weight: 600;
 }
 
@@ -164,7 +164,7 @@ h2 {
 .email-input {
   font: inherit;
   color: var(--panel-ink);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--panel-field);
   border: 1px solid var(--panel-line);
   border-radius: var(--radius-sm);
   padding: 11px 14px;
@@ -173,7 +173,7 @@ h2 {
 
 .email-input:focus {
   outline: none;
-  border-color: var(--accent-bright);
+  border-color: var(--panel-accent);
   box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.15);
 }
 
@@ -197,7 +197,7 @@ textarea {
   width: 100%;
   font: inherit;
   color: var(--panel-ink);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--panel-field);
   border: 1px solid var(--panel-line);
   border-radius: var(--radius-sm);
   padding: 11px 14px;
@@ -207,7 +207,7 @@ textarea {
 
 textarea:focus {
   outline: none;
-  border-color: var(--accent-bright);
+  border-color: var(--panel-accent);
   box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.15);
 }
 
@@ -238,7 +238,7 @@ textarea:disabled {
 }
 
 .feedback--ok {
-  color: var(--accent-bright);
+  color: var(--panel-accent);
 }
 
 .feedback--err {

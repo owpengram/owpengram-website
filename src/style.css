@@ -28,10 +28,18 @@
   --shot-border: rgba(5, 5, 8, 0.08);
   --shot-shadow: 0 28px 70px -36px rgba(5, 5, 8, 0.35);
 
-  --panel: #050508;
-  --panel-ink: #f8fafc;
-  --panel-body: #94a3b8;
-  --panel-line: rgba(255, 255, 255, 0.08);
+  --panel: #ffffff;
+  --panel-ink: #050508;
+  --panel-body: #3f4b5c;
+  --panel-line: rgba(5, 5, 8, 0.1);
+  /* Translucent fill for controls that sit ON a panel (inputs, chips,
+     .btn-dark). Tinted with the panel's own ink, so it darkens a light panel
+     and lightens a dark one. */
+  --panel-field: rgba(5, 5, 8, 0.04);
+  --panel-field-hover: rgba(5, 5, 8, 0.08);
+  /* Links/labels on a panel: --accent-bright is sky blue, which washes out on
+     a light panel, so light mode uses the deeper accent instead. */
+  --panel-accent: #2563eb;
 
   --radius: 18px;
   --radius-sm: 10px;
@@ -69,6 +77,9 @@
   --panel-ink: #f1f5f9;
   --panel-body: #8b97a8;
   --panel-line: rgba(255, 255, 255, 0.07);
+  --panel-field: rgba(255, 255, 255, 0.06);
+  --panel-field-hover: rgba(255, 255, 255, 0.1);
+  --panel-accent: #7dd3fc;
 }
 
 * { box-sizing: border-box; }
@@ -148,9 +159,9 @@ img { max-width: 100%; display: block; }
 }
 
 .eyebrow--panel {
-  color: var(--accent-bright);
+  color: var(--panel-accent);
   border-color: var(--panel-line);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--panel-field);
 }
 
 .grad-text {
@@ -204,13 +215,13 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-dark {
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  background: var(--panel-field);
+  color: var(--panel-ink);
   border: 1px solid var(--panel-line);
 }
 
 .btn-dark:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--panel-field-hover);
 }
 
 .btn svg {

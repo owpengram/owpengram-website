@@ -30,7 +30,7 @@ const year = new Date().getFullYear()
         <div class="fcol">
           <h4>Products</h4>
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener">
-            <IconSvg name="desktop" /> Windows client
+            <IconSvg name="desktop" /> Desktop client
           </a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener">
             <IconSvg name="phone" /> Android client
@@ -104,7 +104,7 @@ const year = new Date().getFullYear()
 }
 
 .fcol a:hover {
-  color: var(--accent-bright);
+  color: var(--panel-accent);
 }
 
 .fcol :deep(svg) {

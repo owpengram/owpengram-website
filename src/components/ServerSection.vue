@@ -85,9 +85,11 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+/* Deliberately transparent -- the animated orbs and background icons behind
+   the page show through here. The neighbouring sections (the multi-server
+   panel above, the FAQ below) carry their own backgrounds and edges, so this
+   needs no border of its own to read as a separate section. */
 .server {
-  background: var(--surface-2);
-  border-block: 1px solid var(--line);
   scroll-margin-top: 80px;
 }
 

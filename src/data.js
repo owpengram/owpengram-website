@@ -194,22 +194,17 @@ export const FAQ = [
 export const SHOWCASE = [
   {
     id: 'messaging',
-    eyebrow: 'Messaging',
-    title: 'Chats, groups and media — already shipping',
-    text: 'Full conversations on Windows, Linux and Android with the same flows you expect from a modern messenger.',
-    points: ['Private chats & groups', 'Photos, video & files', 'Contacts sync'],
-    desktop: 'desktopChat1',
-    phone: 'androidChat1',
-  },
-  {
-    id: 'calls',
-    eyebrow: 'Real-time',
-    title: 'Voice, video and group calls',
-    text: 'One-to-one and group calls on desktop and Android, with screen sharing — and RTMP live streams into a channel.',
-    points: ['1-to-1 & group calls', 'Screen sharing', 'Live streams'],
-    desktop: 'desktopCall',
-    phone: 'androidCall',
+    eyebrow: 'Product',
+    title: 'Everything a modern messenger does',
+    text: 'Private chats, groups, supergroups, channels and forum topics — with media, replies, reactions, folders, bots and translation. Voice and video calls too, one-to-one or group, with screen sharing and live streams. The same app on Windows, Linux and Android.',
+    points: [
+      'Chats, groups, channels & topics',
+      'Media, files, stickers & reactions',
+      'Voice, video & group calls',
+    ],
+    pairs: [
+      { desktop: 'desktopChat1', phone: 'androidChat1' },
+      { desktop: 'desktopCall', phone: 'androidCall' },
+    ],
   },
 ]
-
-

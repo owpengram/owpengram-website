@@ -1,20 +1,11 @@
 <script setup>
 import { SHOWCASE } from '../data.js'
-import ScreenshotPair from './ScreenshotPair.vue'
+import ScreenshotCarousel from './ScreenshotCarousel.vue'
 </script>
 
 <template>
   <section class="section" id="product">
     <div class="container">
-      <div class="section-head" v-reveal>
-        <span class="eyebrow">Product</span>
-        <h2>Real software — not a slide deck</h2>
-        <p>
-          Screens from the current desktop and Android builds. Same flows, same
-          polish — running against servers you choose.
-        </p>
-      </div>
-
       <div class="showcase-list">
         <article
           v-for="(row, i) in SHOWCASE"
@@ -25,13 +16,13 @@ import ScreenshotPair from './ScreenshotPair.vue'
         >
           <div class="copy">
             <span class="row-eyebrow">{{ row.eyebrow }}</span>
-            <h3>{{ row.title }}</h3>
+            <h2>{{ row.title }}</h2>
             <p>{{ row.text }}</p>
             <ul>
               <li v-for="point in row.points" :key="point">• {{ point }}</li>
             </ul>
           </div>
-          <ScreenshotPair :desktop="row.desktop" :phone="row.phone" />
+          <ScreenshotCarousel :pairs="row.pairs" />
         </article>
       </div>
     </div>
@@ -61,8 +52,9 @@ section { scroll-margin-top: 80px; }
   order: 2;
 }
 
-.copy h3 {
-  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+
+.copy h2 {
+  font-size: clamp(1.6rem, 2.9vw, 2.2rem);
   margin-bottom: 12px;
 }
 
@@ -110,7 +102,7 @@ section { scroll-margin-top: 80px; }
 }
 
 @media (max-width: 480px) {
-  .copy h3 { font-size: clamp(1.2rem, 5.5vw, 1.45rem); }
+  .copy h2 { font-size: clamp(1.3rem, 6vw, 1.6rem); }
   .copy p { font-size: 0.95rem; }
 }
 </style>

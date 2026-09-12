@@ -5,10 +5,10 @@ import ScreenshotPair from './ScreenshotPair.vue'
 </script>
 
 <template>
-  <section class="section panel multiserver" id="multiserver">
+  <section class="section multiserver" id="multiserver">
     <div class="container inner">
       <div class="copy" v-reveal>
-        <span class="eyebrow eyebrow--panel">Multi-server</span>
+        <span class="eyebrow">Multi-server</span>
         <h2>Pick a network per account</h2>
         <p>
           Sign in to the official Telegram network, your OwpenGram server, or any
@@ -21,10 +21,10 @@ import ScreenshotPair from './ScreenshotPair.vue'
           <li>• Move to self-hosting when you are ready</li>
         </ul>
         <div class="btn-group">
-          <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-dark">
+          <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-ghost">
             <IconSvg name="desktop" /> Desktop source
           </a>
-          <a :href="LINKS.android" target="_blank" rel="noopener" class="btn btn-dark">
+          <a :href="LINKS.android" target="_blank" rel="noopener" class="btn btn-ghost">
             <IconSvg name="phone" /> Android source
           </a>
         </div>
@@ -39,7 +39,8 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
 <style scoped>
 .multiserver {
-  border-block: 1px solid var(--panel-line);
+  background: var(--surface-2);
+  border-block: 1px solid var(--line);
   scroll-margin-top: 80px;
 }
 
@@ -52,11 +53,10 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
 .copy h2 {
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-  color: var(--panel-ink);
 }
 
 .copy p {
-  color: var(--panel-body);
+  color: var(--body);
   font-size: 1.05rem;
   line-height: 1.75;
   margin-bottom: 20px;
@@ -72,7 +72,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
 .points li {
   font-weight: 600;
-  color: var(--panel-ink);
+  color: var(--ink);
   font-size: 0.92rem;
 }
 

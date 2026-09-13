@@ -23,7 +23,7 @@ const year = new Date().getFullYear()
       <div class="foot-cols">
         <div class="fcol">
           <h4>Download</h4>
-          <a href="#download">All downloads</a>
+          <a href="#download"><IconSvg name="download" /> All downloads</a>
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener">
             <IconSvg name="desktop" /> Windows &amp; Linux
           </a>
@@ -39,33 +39,35 @@ const year = new Date().getFullYear()
              a long page without scrolling back up to the navbar. -->
         <div class="fcol">
           <h4>Learn</h4>
-          <a href="#available">What works today</a>
-          <a href="#security">Security &amp; privacy</a>
-          <a href="#compare">How it compares</a>
-          <a href="#faq">FAQ</a>
+          <a href="#available"><IconSvg name="check" /> What works today</a>
+          <a href="#security"><IconSvg name="shield" /> Security &amp; privacy</a>
+          <a href="#compare"><IconSvg name="compare" /> How it compares</a>
+          <a href="#faq"><IconSvg name="help" /> FAQ</a>
         </div>
 
         <div class="fcol">
           <h4>Community</h4>
           <a :href="LINKS.telegramChannel" target="_blank" rel="noopener">
-            <IconSvg name="telegram" /> Channel
+            <IconSvg name="channel" /> Channel
           </a>
           <a :href="LINKS.telegramChat" target="_blank" rel="noopener">
-            <IconSvg name="telegram" /> Chat
+            <IconSvg name="chat" /> Chat
           </a>
           <a :href="LINKS.org" target="_blank" rel="noopener">
             <IconSvg name="github" /> GitHub
           </a>
-          <a :href="`${LINKS.org}/owpengram-site/issues`" target="_blank" rel="noopener">
-            Report a bug
+          <!-- The server repo, not the site repo: the site is not published,
+               and issues are currently disabled on both client repos. -->
+          <a :href="`${LINKS.server}/issues`" target="_blank" rel="noopener">
+            <IconSvg name="bug" /> Report a bug
           </a>
         </div>
 
         <div class="fcol">
           <h4>Work with us</h4>
-          <a href="#services">Setup &amp; support</a>
-          <a :href="`mailto:${LINKS.contactEmail}`">
-            <IconSvg name="mail" /> {{ LINKS.contactEmail }}
+          <a href="#services"><IconSvg name="sliders" /> Setup &amp; support</a>
+          <a :href="`mailto:${LINKS.contactEmail}`" :title="LINKS.contactEmail">
+            <IconSvg name="mail" /> Email
           </a>
           <a :href="LINKS.patreon" target="_blank" rel="noopener">
             <IconSvg name="patreon" /> Patreon
@@ -100,7 +102,7 @@ const year = new Date().getFullYear()
 
 .foot-inner {
   display: grid;
-  grid-template-columns: minmax(220px, 1fr) 2.4fr;
+  grid-template-columns: minmax(200px, 0.85fr) 2.6fr;
   gap: 48px;
   align-items: start;
 }
@@ -157,7 +159,12 @@ const year = new Date().getFullYear()
   font-weight: 500;
   line-height: 1.4;
   transition: color 0.15s ease;
-  overflow-wrap: anywhere;
+}
+
+/* Safety net. Every entry carries an icon today; without one, its label would
+   start 24px left of its neighbours and the column would read as crooked. */
+.fcol a:not(:has(svg)) {
+  padding-left: 24px;
 }
 
 .fcol a:hover {

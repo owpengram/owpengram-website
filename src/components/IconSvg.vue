@@ -184,6 +184,30 @@ defineProps({ name: { type: String, required: true } })
       <path d="M12 12h9" />
       <path d="M17.5 12v3M20.5 12v2" />
     </template>
+    <template v-else-if="name === 'channel'">
+      <path d="M4 10v4a1.6 1.6 0 0 0 1.6 1.6h2.2l6.2 4V4.4l-6.2 4H5.6A1.6 1.6 0 0 0 4 10z" />
+      <path d="M17.8 9.2a4 4 0 0 1 0 5.6" />
+    </template>
+    <template v-else-if="name === 'compare'">
+      <rect x="4" y="9.5" width="6" height="10.5" rx="1.3" />
+      <rect x="14" y="4" width="6" height="16" rx="1.3" />
+    </template>
+    <template v-else-if="name === 'help'">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.7 9.5a2.4 2.4 0 0 1 4.7.8c0 1.6-2.4 1.9-2.4 3.3" />
+      <path d="M12 17.1h.01" />
+    </template>
+    <template v-else-if="name === 'bug'">
+      <rect x="8" y="8" width="8" height="11" rx="4" />
+      <path d="M9.2 7.4L7.8 5.6M14.8 7.4l1.4-1.8" />
+      <path d="M8 11.5H4.9M8 15.5H4.9M16 11.5h3.1M16 15.5h3.1" />
+    </template>
+    <template v-else-if="name === 'sliders'">
+      <path d="M4 7.5h8M18.5 7.5H20" />
+      <circle cx="15.2" cy="7.5" r="2.2" />
+      <path d="M4 16.5h3.3M12.5 16.5H20" />
+      <circle cx="9.8" cy="16.5" r="2.2" />
+    </template>
     <template v-else-if="name === 'code'">
       <path d="M8.5 7.5L3.5 12l5 4.5" />
       <path d="M15.5 7.5L20.5 12l-5 4.5" />

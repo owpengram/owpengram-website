@@ -88,6 +88,35 @@ defineProps({ name: { type: String, required: true } })
       <path d="M21.5 3.5l-19 7.5 5.5 2.5 3 5 3-2 5.5 5z" />
       <path d="M11 14l8.5-8.5" />
     </template>
+    <template v-else-if="name === 'chat'">
+      <path d="M20 13.5a3 3 0 0 1-3 3H9l-4 3.5v-3.5H7a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3z" />
+      <path d="M8.5 8h7M8.5 11.5h4.5" />
+    </template>
+    <template v-else-if="name === 'call'">
+      <rect x="2.5" y="6" width="12.5" height="12" rx="2.6" />
+      <path d="M15 11l6-3.5v9L15 13z" />
+    </template>
+    <template v-else-if="name === 'network'">
+      <circle cx="12" cy="5" r="2.4" />
+      <circle cx="5" cy="18.5" r="2.4" />
+      <circle cx="19" cy="18.5" r="2.4" />
+      <path d="M12 7.4v4.2M12 11.6L6.4 16.6M12 11.6l5.6 5" />
+    </template>
+    <template v-else-if="name === 'lock'">
+      <rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2" />
+      <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
+      <path d="M12 14.5v2" />
+    </template>
+    <template v-else-if="name === 'key'">
+      <circle cx="8" cy="12" r="4" />
+      <path d="M12 12h9" />
+      <path d="M17.5 12v3M20.5 12v2" />
+    </template>
+    <template v-else-if="name === 'code'">
+      <path d="M8.5 7.5L3.5 12l5 4.5" />
+      <path d="M15.5 7.5L20.5 12l-5 4.5" />
+      <path d="M13.5 4.5l-3 15" />
+    </template>
   </svg>
 </template>
 

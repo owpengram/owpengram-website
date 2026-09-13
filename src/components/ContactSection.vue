@@ -58,7 +58,9 @@ async function submit(event) {
         </div>
 
         <form class="card-form" @submit="submit">
+          <label class="visually-hidden" for="contact-email">Your email</label>
           <input
+            id="contact-email"
             class="email-input"
             v-model="email"
             type="email"
@@ -67,7 +69,9 @@ async function submit(event) {
             required
             :disabled="status === 'sending'"
           />
+          <label class="visually-hidden" for="contact-message">Message</label>
           <textarea
+            id="contact-message"
             v-model="message"
             placeholder="Message"
             rows="2"

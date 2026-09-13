@@ -19,31 +19,6 @@ export const LINKS = {
   contactEmail: 'owpengram@gmail.com',
 }
 
-// ─── What works today — edit here when shipping new capabilities ─────────────
-
-export const AVAILABLE = [
-  { icon: '💬', text: 'Private chats, groups, supergroups, channels & forum topics' },
-  { icon: '📞', text: 'Voice & video calls — 1-to-1 and group, with screen sharing' },
-  { icon: '📡', text: 'Live streaming into channels — RTMP ingest from OBS' },
-  { icon: '🖼️', text: 'Media & files — photos, videos, documents, stickers, reactions' },
-  { icon: '💾', text: 'Media on local disk or S3/MinIO object storage' },
-  { icon: '✉️', text: 'Email login & email-only sign-up — no phone number needed' },
-  { icon: '🔐', text: 'Passkey sign-in and a self-hosted Log in with Telegram provider' },
-  { icon: '🤖', text: 'Bots, mini apps and a Bot API gateway' },
-  { icon: '🌐', text: 'Message translation and AI-assisted compose' },
-  { icon: '📇', text: 'Contacts sync, chat folders, public links' },
-  { icon: '🏷️', text: 'Collectible usernames and account verification' },
-  { icon: '📢', text: 'Broadcasts — announce to every user, or a picked list' },
-  { icon: '🚀', text: 'A public OwpenGram server, ready in every client — nothing to set up' },
-  { icon: '🔀', text: 'Multi-server accounts in one app' },
-  { icon: '🔎', text: 'Add a server by typing its address — the client fetches the rest' },
-  { icon: '🔑', text: 'Per-server encryption keys' },
-  { icon: '🖥️', text: 'Self-hosted Go server — one command to install, then a browser wizard' },
-  { icon: '👥', text: 'Admin panel with named operators and scoped permissions' },
-  { icon: '🗄️', text: 'Storage management — usage breakdown and retention rules' },
-  { icon: '💻', text: 'Windows, Linux & Android clients' },
-]
-
 // ─── Screenshots ─────────────────────────────────────────────────────────────
 
 const S = '/screenshots'
@@ -288,3 +263,158 @@ export const SERVICES = {
     text: 'Branded clients, or feature work on the server and the apps. Keeping a branded fork current on new upstream releases starts at $300 a month.',
   },
 };
+
+// ─── Capabilities, grouped ───────────────────────────────────────────────────
+// The single source of truth for "does the product do X". Deliberately one
+// list and not two: a flat duplicate of this used to live above it, and two
+// feature lists always drift apart.
+
+export const CAPABILITY_GROUPS = [
+  {
+    icon: 'chat',
+    title: 'Messaging',
+    text: 'Everything you expect from a modern messenger, on every client.',
+    items: [
+      'Private chats, groups, supergroups, channels and forum topics',
+      'Photos, video, documents, stickers, reactions and replies',
+      'Chat folders, contact sync, public links',
+      'Message translation and AI-assisted compose',
+      'Collectible usernames and account verification',
+    ],
+  },
+  {
+    icon: 'call',
+    title: 'Voice, video and live',
+    text: 'Calls and broadcasts run on the server you choose, not a third party.',
+    items: [
+      'One-to-one voice and video calls',
+      'Group calls with screen sharing',
+      'Live streaming into channels, over RTMP from OBS',
+      'Bots, mini apps and a Bot API gateway',
+    ],
+  },
+  {
+    icon: 'network',
+    title: 'Accounts and networks',
+    text: 'One app, as many networks as you need — kept strictly apart.',
+    items: [
+      'A public OwpenGram server, already in every client',
+      'Up to 50 accounts, each on its own server',
+      'Add a server by typing its address — the client fetches the rest',
+      'Per-server encryption keys and per-server data',
+      'Email login, email-only sign-up, and passkeys',
+      'A self-hosted "Log in with Telegram" provider',
+    ],
+  },
+  {
+    icon: 'server',
+    title: 'Run it yourself',
+    text: 'One command to install, then a browser panel for everything after.',
+    items: [
+      'A single Go binary — Linux, Windows or macOS',
+      'Browser setup wizard on first run',
+      'Admin panel with named operators and scoped permissions',
+      'Media on local disk or S3/MinIO, with retention rules',
+      'Broadcasts to every user or a picked list',
+    ],
+  },
+]
+
+// ─── Security ────────────────────────────────────────────────────────────────
+// Every claim here is checkable in the repositories. Keep it that way: if a
+// line cannot be pointed at a file, it does not belong on this list.
+
+export const SECURITY = [
+  {
+    icon: 'lock',
+    title: 'MTProto 2.0 on the wire',
+    text: 'Every client-to-server connection is encrypted with MTProto 2.0 — the same transport the official apps use, because the clients are forks of them.',
+  },
+  {
+    icon: 'shield',
+    title: 'Secret chats stay end-to-end',
+    text: 'Secret chats are encrypted between the two devices. The server passes the ciphertext along and cannot read it, whether that server is ours or yours.',
+  },
+  {
+    icon: 'call',
+    title: 'Calls key themselves',
+    text: 'One-to-one voice and video agree their key with a Diffie-Hellman exchange between the two devices, and verify it with the usual emoji fingerprint.',
+  },
+  {
+    icon: 'server',
+    title: 'Your data sits on your hardware',
+    text: 'Messages, media and accounts live in your PostgreSQL and your storage — local disk or an S3 bucket you own. No copy goes anywhere else.',
+  },
+  {
+    icon: 'key',
+    title: 'A key per server',
+    text: 'Each server has its own RSA identity, which the client fetches when you add it. Accounts are scoped to the server they came from, so two servers never share state.',
+  },
+  {
+    icon: 'code',
+    title: 'Auditable, all of it',
+    text: 'Apache-2.0 for the server, GPL for the clients, every line on GitHub. Nothing is withheld for a paid build, so there is no closed part left to trust.',
+  },
+]
+
+// ─── How it compares ─────────────────────────────────────────────────────────
+// Written to be fair rather than flattering: Matrix and Rocket.Chat are good
+// software aimed at a different problem, and the note under the table says so.
+// If a cell is arguable, it is marked partial with the reason, never a bare no.
+
+export const COMPARE = {
+  columns: ['OwpenGram', 'Telegram', 'Matrix + Element', 'Rocket.Chat'],
+  rows: [
+    {
+      label: 'Run the server yourself',
+      values: ['yes', 'no', 'yes', 'yes'],
+    },
+    {
+      label: 'Reach the official Telegram network from the same app',
+      values: ['yes', 'yes', 'no', 'no'],
+    },
+    {
+      label: 'Interface of the official Telegram apps',
+      values: ['yes', 'yes', 'no', 'no'],
+      note: 'The OwpenGram clients are forks of Telegram Desktop and Telegram for Android.',
+    },
+    {
+      label: 'Accounts on several different servers, side by side',
+      values: ['yes', 'no', 'partial', 'partial'],
+      note: 'Element and the Rocket.Chat desktop app can hold several workspaces; support varies by client.',
+    },
+    {
+      label: 'Group calls with screen sharing',
+      values: ['yes', 'yes', 'yes', 'yes'],
+    },
+    {
+      label: 'Live streaming into channels over RTMP',
+      values: ['yes', 'yes', 'no', 'no'],
+    },
+    {
+      label: 'Telegram Bot API',
+      values: ['yes', 'yes', 'no', 'no'],
+      note: 'Matrix and Rocket.Chat have their own bot interfaces, not this one.',
+    },
+    {
+      label: 'Sign up without a phone number',
+      values: ['yes', 'no', 'yes', 'yes'],
+    },
+    {
+      label: 'Open source, server included',
+      values: ['yes', 'no', 'yes', 'partial'],
+      note: 'Telegram publishes its clients but not its server. Rocket.Chat keeps part of its feature set for paid editions.',
+    },
+  ],
+}
+
+// ─── Release facts ───────────────────────────────────────────────────────────
+// Fallback for the strip under the hero when GitHub cannot be reached. Update
+// when a release goes out; the live numbers overwrite these when the API
+// answers.
+
+export const RELEASE = {
+  tag: 'O7',
+  date: '2026-09-12',
+  repos: ['owpengram-server', 'owpengram-desktop-client', 'owpengram-android-client'],
+}

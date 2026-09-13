@@ -1,5 +1,6 @@
 <script setup>
-import { AVAILABLE } from '../data.js'
+import { CAPABILITY_GROUPS } from '../data.js'
+import IconSvg from './IconSvg.vue'
 </script>
 
 <template>
@@ -7,18 +8,34 @@ import { AVAILABLE } from '../data.js'
     <div class="container">
       <div class="section-head" v-reveal>
         <span class="eyebrow">What works today</span>
-        <h2>Current features</h2>
+        <h2>Shipped, not planned</h2>
         <p>
-          What the server and clients can do right now.
+          Everything below is in the current release and runs on the public
+          server right now. Nothing on this page is a roadmap item.
         </p>
       </div>
 
-      <ul class="list">
-        <li v-for="(item, i) in AVAILABLE" :key="item.text" v-reveal="i * 40">
-          <span class="icon" aria-hidden="true">{{ item.icon }}</span>
-          <span>{{ item.text }}</span>
-        </li>
-      </ul>
+      <div class="groups">
+        <article
+          v-for="(group, i) in CAPABILITY_GROUPS"
+          :key="group.title"
+          class="group card"
+          v-reveal="i * 60"
+        >
+          <header>
+            <span class="badge"><IconSvg :name="group.icon" /></span>
+            <div>
+              <h3>{{ group.title }}</h3>
+              <p>{{ group.text }}</p>
+            </div>
+          </header>
+          <ul>
+            <li v-for="item in group.items" :key="item">
+              <IconSvg name="check" /><span>{{ item }}</span>
+            </li>
+          </ul>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -26,46 +43,89 @@ import { AVAILABLE } from '../data.js'
 <style scoped>
 .available {
   background: var(--surface-2);
-  border-block: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   scroll-margin-top: 80px;
 }
 
-.list {
+.groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.group { padding: 30px; }
+
+header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Tinted tile rather than a bare glyph: at this size a 22px stroke icon on
+   its own reads as an afterthought next to the heading. */
+.badge {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  color: var(--accent-icon);
+}
+
+.badge :deep(svg) { width: 23px; height: 23px; }
+
+h3 {
+  font-size: 1.18rem;
+  margin: 0 0 5px;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 11px;
 }
 
 li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 14px 16px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  font-size: 0.94rem;
-  line-height: 1.55;
-  color: var(--body);
-}
-
-.icon {
-  flex: none;
-  width: 1.5rem;
-  text-align: center;
-  font-size: 1.05rem;
-  line-height: 1.4;
-}
-
-li span:last-child {
+  display: grid;
+  grid-template-columns: 17px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 0.93rem;
+  line-height: 1.5;
   color: var(--ink);
-  font-weight: 500;
 }
 
-@media (max-width: 720px) {
-  .list { grid-template-columns: 1fr; }
+li :deep(svg) {
+  width: 17px;
+  height: 17px;
+  margin-top: 3px;
+  color: var(--accent-icon);
+}
+
+@media (max-width: 900px) {
+  .groups { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .group { padding: 22px; }
+  .badge { width: 40px; height: 40px; border-radius: 11px; }
+  .badge :deep(svg) { width: 20px; height: 20px; }
+  header { gap: 13px; }
 }
 </style>

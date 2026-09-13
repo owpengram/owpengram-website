@@ -66,7 +66,7 @@ import { PERSONAS } from '../data.js'
 .num {
   font-weight: 800;
   font-size: 0.82rem;
-  color: var(--accent-bright);
+  color: var(--accent-icon);
 }
 
 .who-card h3 {

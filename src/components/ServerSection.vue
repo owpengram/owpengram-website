@@ -8,8 +8,12 @@ const el = ref(null)
 const tilt = ref({ rx: 0, ry: 0 })
 const maxTilt = 5
 
+const reduced =
+  typeof matchMedia !== 'undefined' &&
+  matchMedia('(prefers-reduced-motion: reduce)').matches
+
 function onMove(e) {
-  if (!el.value) return
+  if (!el.value || reduced) return
   const rect = el.value.getBoundingClientRect()
   const x = (e.clientX - rect.left) / rect.width
   const y = (e.clientY - rect.top) / rect.height

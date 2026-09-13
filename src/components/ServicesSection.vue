@@ -123,7 +123,7 @@ import IconSvg from './IconSvg.vue'
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--accent-icon);
   margin-bottom: 8px;
 }
 
@@ -183,7 +183,7 @@ import IconSvg from './IconSvg.vue'
   width: 18px;
   height: 18px;
   margin-top: 3px;
-  color: var(--accent-bright);
+  color: var(--accent-icon);
 }
 
 .note {

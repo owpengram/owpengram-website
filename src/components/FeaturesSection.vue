@@ -70,7 +70,7 @@ section { scroll-margin-top: 80px; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--accent-icon);
   margin-bottom: 10px;
 }
 

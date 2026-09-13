@@ -11,14 +11,16 @@ const onScroll = () => (scrolled.value = window.scrollY > 16)
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
+// Order here must match the order of the sections on the page: the active item
+// is driven by an IntersectionObserver, so a mismatch makes the highlight jump
+// backwards as you scroll. #product is deliberately absent -- it sits directly
+// under #available and a visitor scrolls into it either way.
 const nav = [
-  { href: '#available', label: 'Status' },
-  { href: '#product', label: 'Product' },
+  { href: '#available', label: 'Features' },
   { href: '#multiserver', label: 'Multi-server' },
   { href: '#server', label: 'Self-host' },
-  // Order here must match the order of the sections on the page: the active
-  // item is driven by an IntersectionObserver, so a mismatch makes the
-  // highlight jump backwards as you scroll.
+  { href: '#security', label: 'Security' },
+  { href: '#compare', label: 'Compare' },
   { href: '#faq', label: 'FAQ' },
   { href: '#services', label: 'Services' },
 ]
@@ -77,15 +79,33 @@ onUnmounted(() => observer?.disconnect())
             target="_blank"
             rel="noopener"
             class="ext ext--patreon"
+            title="Patreon"
+            aria-label="Patreon"
             @click="close"
           >
-            <IconSvg name="patreon" /> Patreon
+            <IconSvg name="patreon" /><span class="ext-label">Patreon</span>
           </a>
-          <a :href="LINKS.telegramChannel" target="_blank" rel="noopener" class="ext ext--telegram" @click="close">
-            <IconSvg name="telegram" /> Telegram
+          <a
+            :href="LINKS.telegramChannel"
+            target="_blank"
+            rel="noopener"
+            class="ext ext--telegram"
+            title="Telegram"
+            aria-label="Telegram"
+            @click="close"
+          >
+            <IconSvg name="telegram" /><span class="ext-label">Telegram</span>
           </a>
-          <a :href="LINKS.org" target="_blank" rel="noopener" class="ext ext--github" @click="close">
-            <IconSvg name="github" /> GitHub
+          <a
+            :href="LINKS.org"
+            target="_blank"
+            rel="noopener"
+            class="ext ext--github"
+            title="GitHub"
+            aria-label="GitHub"
+            @click="close"
+          >
+            <IconSvg name="github" /><span class="ext-label">GitHub</span>
           </a>
         </div>
       </nav>
@@ -139,6 +159,7 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .brand {
+  flex: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -153,14 +174,21 @@ onUnmounted(() => observer?.disconnect())
 .links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   margin-left: auto;
+}
+
+@media (max-width: 1240px) {
+  .links { gap: 16px; }
+  .links a { font-size: 0.86rem; }
 }
 
 .links a {
   color: var(--body);
   font-weight: 600;
   font-size: 0.9rem;
+  /* Seven items now: a wrapped "Multi-server" turned the bar two rows tall. */
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
@@ -176,13 +204,18 @@ onUnmounted(() => observer?.disconnect())
 .ext {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
   color: var(--ink) !important;
   border: 1px solid var(--line);
-  padding: 8px 12px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
   background: var(--surface);
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
+
+.ext-label { display: none; }
 
 .ext--patreon:hover {
   border-color: color-mix(in srgb, #ff424d 55%, var(--line));
@@ -446,10 +479,13 @@ onUnmounted(() => observer?.disconnect())
     justify-content: center;
     gap: 6px;
     width: 100%;
+    height: auto;
     padding: 11px 6px;
     font-size: 0.82rem;
     font-weight: 600;
   }
+
+  .ext-label { display: inline; }
 
   .ext :deep(svg) { width: 15px; height: 15px; }
 }

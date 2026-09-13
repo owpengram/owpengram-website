@@ -14,6 +14,12 @@ const mouse = useMousePosition()
 </template>
 
 <style scoped>
+/* A blob that chases the pointer is exactly the kind of motion the reduced
+   motion setting is asking us not to draw. */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow { display: none; }
+}
+
 .cursor-glow {
   position: fixed;
   width: 300px;

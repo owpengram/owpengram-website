@@ -154,7 +154,7 @@ const cards = [
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: var(--accent-bright);
+  color: var(--accent-icon);
   font-weight: 700;
   font-size: 0.78rem;
   white-space: nowrap;

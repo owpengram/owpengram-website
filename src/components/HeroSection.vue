@@ -11,16 +11,18 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
     <div class="container hero-inner">
       <div class="copy">
+        <!-- The brand name is already in the navbar and the tab title; spending
+             the h1 on it again says nothing. The headline is the promise, and
+             the sentence under it is what the product actually is. -->
         <h1 v-reveal="50">
-          {{ SITE.name }}
+          Your messenger.<br />Your server.<br /><span class="grad-text">Your rules.</span>
         </h1>
 
-        <p class="sub" v-reveal="70">Open source self-hosted MTProto-compatible messenger.</p>
-
         <p class="lead" v-reveal="100">
-          Clients for <strong>Windows</strong>, <strong>Linux</strong> and
-          <strong>Android</strong> — connect to the official network or your own
-          server. All open source.
+          <strong>{{ SITE.name }}</strong> is an open-source messenger that speaks
+          the MTProto protocol. Clients for <strong>Windows</strong>,
+          <strong>Linux</strong> and <strong>Android</strong> connect to the
+          official network, to our public server, or to one you run yourself.
         </p>
 
         <div class="cta" v-reveal="150">
@@ -82,22 +84,19 @@ import ScreenshotPair from './ScreenshotPair.vue'
 }
 
 h1 {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-}
-
-.sub {
-  font-size: 1rem;
-  color: var(--accent-bright);
-  font-weight: 600;
-  margin: 12px 0 0;
+  font-size: clamp(2.3rem, 4.6vw, 3.6rem);
+  line-height: 1.04;
+  margin-bottom: 18px;
 }
 
 .lead {
-  font-size: 1.08rem;
+  font-size: 1.06rem;
   color: var(--body);
-  max-width: 480px;
+  max-width: 500px;
   line-height: 1.75;
 }
+
+.lead strong:first-child { color: var(--ink); }
 
 .lead strong {
   color: var(--ink);

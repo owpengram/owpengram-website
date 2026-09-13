@@ -2,9 +2,20 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050508" />
+
+    <title>OwpenGram — open-source self-hosted messenger</title>
+    <meta
+      name="description"
+      content="OwpenGram is an open-source, self-hosted messenger that speaks the MTProto protocol. Windows, Linux and Android clients, a server you run yourself in one command, and multiple accounts on different servers in one app."
+    />
+    <link rel="canonical" href="https://owpengram.org/" />
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="theme-color" content="#08080e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
+
     <script>
       (function () {
         var t = localStorage.getItem('owpengram-theme')
@@ -12,27 +23,92 @@
         document.documentElement.dataset.theme = t
       })()
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Self-hosted so the page makes no third-party request at all: no Google
+         Fonts lookup, nothing for a visitor to be tracked by, one less origin
+         to block the first paint. Variable font, both subsets = 49 KB. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/plus-jakarta-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <title>OwpenGram</title>
-    <meta
-      name="description"
-      content="OwpenGram is an open-source, multi-server messenger with Windows and Android clients and a self-hosted server you control."
-    />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="OwpenGram" />
+    <meta property="og:site_name" content="OwpenGram" />
+    <meta property="og:url" content="https://owpengram.org/" />
+    <meta property="og:title" content="OwpenGram — open-source self-hosted messenger" />
     <meta
       property="og:description"
-      content="Windows, Linux & Android clients. Self-hosted server in one command. Multi-network accounts. Open source."
+      content="Windows, Linux and Android clients. A server you run yourself in one command. Multiple accounts on different servers in one app. All open source."
     />
-    <meta property="og:image" content="/logo-1024.png" />
+    <meta property="og:image" content="https://owpengram.org/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="OwpenGram — your messenger, your server, your rules. The desktop client next to the wordmark."
+    />
+    <meta property="og:locale" content="en_US" />
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="OwpenGram — open-source self-hosted messenger" />
+    <meta
+      name="twitter:description"
+      content="Windows, Linux and Android clients. A server you run yourself in one command. All open source."
+    />
+    <meta name="twitter:image" content="https://owpengram.org/og-card.png" />
+
+    <!-- Static half of the structured data. The FAQ half is emitted at runtime
+         from src/data.js so the two can never drift apart. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://owpengram.org/#org",
+            "name": "OwpenGram",
+            "url": "https://owpengram.org/",
+            "logo": "https://owpengram.org/logo-1024.png",
+            "sameAs": [
+              "https://github.com/owpengram",
+              "https://t.me/owpengram",
+              "https://www.patreon.com/cw/owpengram"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://owpengram.org/#website",
+            "url": "https://owpengram.org/",
+            "name": "OwpenGram",
+            "publisher": { "@id": "https://owpengram.org/#org" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://owpengram.org/#app",
+            "name": "OwpenGram",
+            "applicationCategory": "CommunicationApplication",
+            "operatingSystem": "Windows, Linux, Android",
+            "url": "https://owpengram.org/",
+            "downloadUrl": "https://github.com/owpengram",
+            "license": "https://www.apache.org/licenses/LICENSE-2.0",
+            "isAccessibleForFree": true,
+            "publisher": { "@id": "https://owpengram.org/#org" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "An open-source, self-hosted messenger that speaks the MTProto protocol, with Windows, Linux and Android clients and a server you run yourself."
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

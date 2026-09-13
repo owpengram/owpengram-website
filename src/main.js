@@ -3,6 +3,7 @@ import App from './App.vue'
 import './style.css'
 import { initTheme } from './composables/useTheme.js'
 import ripple from './directives/ripple.js'
+import { FAQ } from './data.js'
 
 initTheme()
 
@@ -35,5 +36,21 @@ app.directive('reveal', {
     observer.observe(el)
   },
 })
+
+// FAQPage structured data, generated from the same array the section renders
+// so the two can never disagree. The static half (Organization, WebSite,
+// SoftwareApplication) lives in index.html.
+const faqSchema = document.createElement('script')
+faqSchema.type = 'application/ld+json'
+faqSchema.textContent = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+})
+document.head.appendChild(faqSchema)
 
 app.mount('#app')

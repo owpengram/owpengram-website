@@ -6,12 +6,15 @@ import CursorGlow from './components/CursorGlow.vue'
 import ScrollTopBtn from './components/ScrollTopBtn.vue'
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
+import ReleaseStrip from './components/ReleaseStrip.vue'
 import AvailableSection from './components/AvailableSection.vue'
 import FeaturesSection from './components/FeaturesSection.vue'
 import MultiserverSection from './components/MultiserverSection.vue'
 import FaqSection from './components/FaqSection.vue'
 import ServicesSection from './components/ServicesSection.vue'
 import ServerSection from './components/ServerSection.vue'
+import SecuritySection from './components/SecuritySection.vue'
+import CompareSection from './components/CompareSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 
@@ -48,12 +51,17 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <div class="bg-orb bg-orb--3"></div>
   </div>
   <NavBar />
-  <main>
+  <!-- id is the skip link's target; it is the first thing a keyboard or
+       screen-reader visitor reaches. -->
+  <main id="main">
     <HeroSection />
+    <ReleaseStrip />
     <AvailableSection />
     <FeaturesSection />
     <MultiserverSection />
     <ServerSection />
+    <SecuritySection />
+    <CompareSection />
     <FaqSection />
     <ServicesSection />
     <ContactSection />

@@ -212,3 +212,79 @@ export const SHOWCASE = [
     ],
   },
 ]
+
+// ─── Paid services ───────────────────────────────────────────────────
+// Only time is for sale here, never features. Everything the software can do
+// stays in the free build -- see the note rendered under the packages.
+
+export const SERVICES = {
+  setup: {
+    name: 'Setup',
+    price: '$550',
+    unit: 'one-time',
+    lead: 'A production-ready server on infrastructure you own.',
+    items: [
+      'Install, domain, TLS and firewall',
+      'Server identity and public address configured',
+      'Operator accounts with scoped permissions',
+      'Media retention policies',
+      'Backups, with a restore that gets tested',
+      'A handover document written for your install, plus a walkthrough call',
+      '14 days of support for setup questions',
+    ],
+    note: 'Chats, groups, channels, calls, bots and live streams work out of the box. Those are defaults, not extras.',
+  },
+
+  addons: [
+    {
+      name: 'Email sign-in and sign-up',
+      price: '$150',
+      text: 'SMTP wired up, and delivery verified end to end.',
+    },
+    {
+      name: 'Real phone codes',
+      price: '$350',
+      text: 'A bridge to your SMS provider, so the login code stops being the development one.',
+    },
+    {
+      name: 'Server migration',
+      price: '$350',
+      text: 'Database, media, RSA key and identity moved across without your users noticing.',
+    },
+  ],
+
+  support: [
+    {
+      name: 'Office hours',
+      price: '$99',
+      unit: '/mo',
+      text: 'Email or Telegram, answered within a business day. Updates applied on request.',
+    },
+    {
+      name: 'Priority',
+      price: '$349',
+      unit: '/mo',
+      text: 'Two business hours to first response, 9:00\u201319:00 Mon\u2013Fri. Proactive updates and monitoring.',
+      featured: true,
+    },
+    {
+      name: 'Critical',
+      price: 'from $900',
+      unit: '/mo',
+      text: 'Adds out-of-hours escalation for outages, and a named contact.',
+    },
+  ],
+
+  // The Patreon ask lives inside the services block rather than in a section
+  // of its own: two requests for money back to back read badly, and side by
+  // side they become a fork -- hire me, or support the work.
+  patreon: {
+    title: 'Not looking to hire anyone?',
+    text: 'OwpenGram is free and always will be, built in personal time. If it is useful to you, a pledge buys more of it.',
+  },
+
+  custom: {
+    price: 'from $2500',
+    text: 'Branded clients, or feature work on the server and the apps. Keeping a branded fork current on new upstream releases starts at $300 a month.',
+  },
+};

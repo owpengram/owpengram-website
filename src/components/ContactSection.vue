@@ -112,8 +112,9 @@ async function submit(event) {
    instead of ending on two transparent sections in a row. */
 .contact {
   background: var(--surface-2);
-  /* No borders of its own: the support band draws the line above, the footer
-     draws the one below. */
+  /* Top border only: the support band that used to draw this line moved into
+     the services section, and the footer still draws the one below. */
+  border-top: 1px solid var(--line);
   scroll-margin-top: 80px;
 }
 

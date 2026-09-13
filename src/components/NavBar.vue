@@ -16,7 +16,11 @@ const nav = [
   { href: '#product', label: 'Product' },
   { href: '#multiserver', label: 'Multi-server' },
   { href: '#server', label: 'Self-host' },
+  // Order here must match the order of the sections on the page: the active
+  // item is driven by an IntersectionObserver, so a mismatch makes the
+  // highlight jump backwards as you scroll.
   { href: '#faq', label: 'FAQ' },
+  { href: '#services', label: 'Services' },
 ]
 const close = () => (open.value = false)
 

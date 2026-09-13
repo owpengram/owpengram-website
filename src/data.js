@@ -34,11 +34,11 @@ export const AVAILABLE = [
   { icon: '📇', text: 'Contacts sync, chat folders, public links' },
   { icon: '🏷️', text: 'Collectible usernames and account verification' },
   { icon: '📢', text: 'Broadcasts — announce to every user, or a picked list' },
+  { icon: '🚀', text: 'A public OwpenGram server, ready in every client — nothing to set up' },
   { icon: '🔀', text: 'Multi-server accounts in one app' },
   { icon: '🔎', text: 'Add a server by typing its address — the client fetches the rest' },
   { icon: '🔑', text: 'Per-server encryption keys' },
-  { icon: '🖥️', text: 'Self-hosted Go server — one command to install' },
-  { icon: '🧙', text: 'First-run setup wizard right in the browser' },
+  { icon: '🖥️', text: 'Self-hosted Go server — one command to install, then a browser wizard' },
   { icon: '👥', text: 'Admin panel with named operators and scoped permissions' },
   { icon: '🗄️', text: 'Storage management — usage breakdown and retention rules' },
   { icon: '💻', text: 'Windows, Linux & Android clients' },
@@ -160,6 +160,10 @@ export const FAQ = [
   {
     q: 'How do I install the Linux client?',
     a: 'Two files in the desktop Releases tab, both from the same portable build. The .deb package installs OwpenGram as a normal app on Ubuntu 18.04+ and Debian 10+. The other is the OwpenGram binary itself, not an installer: make it executable and run it on any modern distro, since everything it needs is bundled. An install-linux.sh script in the repo adds the menu entry and icons under your home directory if you want them.',
+  },
+  {
+    q: 'Can I try it without setting up a server?',
+    a: 'Yes — that is the fastest way in. We run a public OwpenGram server, and it is already built into both clients: install the app, pick OwpenGram on the server-selection screen, and sign in. No address to type, no key to paste, no Docker. When you want your own server later, you add it in the same app and keep both accounts side by side.',
   },
   {
     q: 'Can I run my own server?',

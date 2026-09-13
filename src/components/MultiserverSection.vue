@@ -11,14 +11,14 @@ import ScreenshotPair from './ScreenshotPair.vue'
         <span class="eyebrow">Multi-server</span>
         <h2>Pick a network per account</h2>
         <p>
-          Sign in to the official Telegram network, your OwpenGram server, or any
-          compatible node. Accounts stay isolated — switch between them without
-          installing another app.
+          Sign in to the official Telegram network, our public OwpenGram server,
+          your own, or any compatible node. Accounts stay isolated — switch
+          between them without installing another app.
         </p>
         <ul class="points">
-          <li>• Adding a server takes an address — nothing else to fill in</li>
+          <li>• Our public server is already in the list — nothing to set up</li>
+          <li>• Adding your own takes an address — nothing else to fill in</li>
           <li>• Multiple accounts on one device, kept apart per server</li>
-          <li>• Move to self-hosting when you are ready</li>
         </ul>
         <div class="btn-group">
           <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-ghost">

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { FAQ } from '../data.js'
 
 const open = ref(null)
@@ -7,6 +7,17 @@ const open = ref(null)
 function toggle(i) {
   open.value = open.value === i ? null : i
 }
+
+// Two independent columns rather than one grid with two tracks: in a shared
+// grid, opening an answer on the left grows that row and leaves a hole next to
+// it. Splitting the list means each side scrolls its own content.
+// The original index travels with the item so `open` stays a single global
+// value and only one answer is ever expanded.
+const columns = computed(() => {
+  const indexed = FAQ.map((item, i) => ({ item, i }))
+  const half = Math.ceil(indexed.length / 2)
+  return [indexed.slice(0, half), indexed.slice(half)]
+})
 </script>
 
 <template>
@@ -18,19 +29,21 @@ function toggle(i) {
       </div>
 
       <div class="list">
-        <div
-          v-for="(item, i) in FAQ"
-          :key="i"
-          class="faq-item"
-          :class="{ active: open === i }"
-          v-reveal="i * 60"
-        >
-          <button class="faq-q" @click="toggle(i)" :aria-expanded="open === i">
-            <span>{{ item.q }}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><path d="M6 9l6 6 6-6" /></svg>
-          </button>
-          <div class="faq-a">
-            <p>{{ item.a }}</p>
+        <div v-for="(col, c) in columns" :key="c" class="col">
+          <div
+            v-for="entry in col"
+            :key="entry.i"
+            class="faq-item"
+            :class="{ active: open === entry.i }"
+            v-reveal="entry.i * 40"
+          >
+            <button class="faq-q" @click="toggle(entry.i)" :aria-expanded="open === entry.i">
+              <span>{{ entry.item.q }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <div class="faq-a">
+              <p>{{ entry.item.a }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -46,11 +59,22 @@ function toggle(i) {
 }
 
 .list {
-  max-width: 700px;
+  max-width: 1060px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 10px 18px;
+}
+
+.col {
+  display: grid;
+  align-content: start;
   gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .list { grid-template-columns: 1fr; max-width: 700px; }
 }
 
 .faq-item {

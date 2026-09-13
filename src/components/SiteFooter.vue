@@ -23,6 +23,7 @@ const year = new Date().getFullYear()
       <div class="foot-cols">
         <div class="fcol">
           <h4>Download</h4>
+          <a href="#download">All downloads</a>
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener">
             <IconSvg name="desktop" /> Windows &amp; Linux
           </a>
@@ -54,6 +55,9 @@ const year = new Date().getFullYear()
           </a>
           <a :href="LINKS.org" target="_blank" rel="noopener">
             <IconSvg name="github" /> GitHub
+          </a>
+          <a :href="`${LINKS.org}/owpengram-site/issues`" target="_blank" rel="noopener">
+            Report a bug
           </a>
         </div>
 

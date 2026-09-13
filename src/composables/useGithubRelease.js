@@ -1,12 +1,24 @@
 import { ref, onMounted } from 'vue'
 import { LINKS, RELEASE } from '../data.js'
 
-// Two unauthenticated calls, cached for an hour. GitHub allows 60 per hour per
-// IP, and that budget is per visitor, so this is nowhere near it -- but a
-// visitor who reloads a lot should not spend it either.
-const CACHE_KEY = 'owpengram-gh-v1'
+// Four unauthenticated calls, cached together for an hour. GitHub allows 60 an
+// hour per IP and that budget is per visitor, so this is nowhere near it -- but
+// someone who reloads a lot should not spend it either.
+const CACHE_KEY = 'owpengram-gh-v2'
 const TTL = 60 * 60 * 1000
-const API = 'https://api.github.com/repos/owpengram/owpengram-server'
+const OWNER = 'https://api.github.com/repos/owpengram'
+const SERVER = `${OWNER}/owpengram-server`
+const CLIENT_REPOS = ['owpengram-desktop-client', 'owpengram-android-client']
+
+// Module-level so several components share one fetch instead of one each.
+const state = {
+  tag: ref(RELEASE.tag),
+  releasedAt: ref(RELEASE.date),
+  lastCommitAt: ref(null),
+  /** { 'owpengram-desktop-client': { 'OwpenGram.exe': { size, url } } } */
+  assets: ref({}),
+}
+let started = false
 
 function readCache() {
   try {
@@ -24,8 +36,51 @@ function writeCache(data) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), data }))
   } catch {
-    /* private mode, quota, disabled storage -- the strip just goes back to
-       the static fallback next load. */
+    /* private mode, quota, disabled storage -- next load just refetches. */
+  }
+}
+
+function apply(data) {
+  if (data.tag) state.tag.value = data.tag
+  if (data.releasedAt) state.releasedAt.value = data.releasedAt
+  if (data.lastCommitAt) state.lastCommitAt.value = data.lastCommitAt
+  if (data.assets) state.assets.value = data.assets
+}
+
+const json = (url) => fetch(url).then((r) => (r.ok ? r.json() : null)).catch(() => null)
+
+async function load() {
+  const cached = readCache()
+  if (cached) {
+    apply(cached)
+    return
+  }
+
+  const [release, repo, ...clients] = await Promise.all([
+    json(`${SERVER}/releases/latest`),
+    json(SERVER),
+    ...CLIENT_REPOS.map((r) => json(`${OWNER}/${r}/releases/latest`)),
+  ])
+
+  const assets = {}
+  CLIENT_REPOS.forEach((repoName, i) => {
+    const list = clients[i]?.assets
+    if (!Array.isArray(list)) return
+    assets[repoName] = Object.fromEntries(
+      list.map((a) => [a.name, { size: a.size, url: a.browser_download_url }]),
+    )
+  })
+
+  const data = {
+    tag: release?.tag_name,
+    releasedAt: release?.published_at,
+    lastCommitAt: repo?.pushed_at,
+    assets,
+  }
+
+  if (data.tag || data.lastCommitAt || Object.keys(assets).length) {
+    apply(data)
+    writeCache(data)
   }
 }
 
@@ -51,47 +106,24 @@ export function formatDay(iso) {
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
+/** Bytes to the "218 MB" a download button should show. */
+export function formatSize(bytes) {
+  if (!bytes) return ''
+  const mb = bytes / 1048576
+  return mb >= 1000 ? `${(mb / 1024).toFixed(1)} GB` : `${Math.round(mb)} MB`
+}
+
 export function useGithubRelease() {
-  // Seeded from data.js so the strip renders complete on the first frame and
-  // never flashes a skeleton; live values replace these when they arrive.
-  const tag = ref(RELEASE.tag)
-  const releasedAt = ref(RELEASE.date)
-  const lastCommitAt = ref(null)
-  const live = ref(false)
-
-  function apply(data) {
-    if (data.tag) tag.value = data.tag
-    if (data.releasedAt) releasedAt.value = data.releasedAt
-    if (data.lastCommitAt) lastCommitAt.value = data.lastCommitAt
-    live.value = true
-  }
-
-  onMounted(async () => {
-    const cached = readCache()
-    if (cached) {
-      apply(cached)
-      return
-    }
-
-    try {
-      const [release, repo] = await Promise.all([
-        fetch(`${API}/releases/latest`).then((r) => (r.ok ? r.json() : null)),
-        fetch(API).then((r) => (r.ok ? r.json() : null)),
-      ])
-
-      const data = {
-        tag: release?.tag_name,
-        releasedAt: release?.published_at,
-        lastCommitAt: repo?.pushed_at,
-      }
-      if (data.tag || data.lastCommitAt) {
-        apply(data)
-        writeCache(data)
-      }
-    } catch {
-      /* Offline, rate-limited, blocked -- the seeded values stand. */
-    }
+  // Seeded from data.js so everything renders complete on the first frame and
+  // never flashes a skeleton; live values replace the seeds when they arrive.
+  onMounted(() => {
+    if (started) return
+    started = true
+    load()
   })
 
-  return { tag, releasedAt, lastCommitAt, live, releasesUrl: `${LINKS.server}/releases` }
+  return {
+    ...state,
+    releasesUrl: `${LINKS.server}/releases`,
+  }
 }

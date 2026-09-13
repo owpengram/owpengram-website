@@ -14,7 +14,6 @@ defineProps({ name: { type: String, required: true } })
     />
   </svg>
 
-  <!-- GitHub mark (filled) -->
   <svg
     v-else-if="name === 'github'"
     viewBox="0 0 24 24"
@@ -26,7 +25,80 @@ defineProps({ name: { type: String, required: true } })
     />
   </svg>
 
-  <!-- Stroke icon set -->
+  <!-- Platform marks are filled: that is how they read as logos rather than
+       as another line icon in the set. -->
+  <svg
+    v-else-if="name === 'windows'"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M3 5.5l7.4-1.02v7.02H3zM11.5 4.33L21 3v8.5h-9.5zM3 12.6h7.4v6.92L3 18.5zM11.5 12.6H21V21l-9.5-1.3z" />
+  </svg>
+
+  <svg
+    v-else-if="name === 'linux'"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    fill-rule="evenodd"
+    aria-hidden="true"
+  >
+    <!-- Tux, cut to what survives at 20px: silhouette, with the face patch and
+         belly as negative space and the eyes and beak as islands inside it. -->
+    <path
+      d="M12 2.2c-2.4 0-4 1.8-4 4.2v1.4c0 .8-.3 1.5-.9 2.2-1.7 2-2.6 4-2.6 6 0 1.6.5 2.9 1.4 3.8-.5.7-.8 1.3-.8 1.9 0 .8.7 1.3 1.8 1.3 1 0 1.9-.3 2.5-.8.8.2 1.7.3 2.6.3s1.8-.1 2.6-.3c.6.5 1.5.8 2.5.8 1.1 0 1.8-.5 1.8-1.3 0-.6-.3-1.2-.8-1.9.9-.9 1.4-2.2 1.4-3.8 0-2-.9-4-2.6-6-.6-.7-.9-1.4-.9-2.2V6.4c0-2.4-1.6-4.2-4-4.2z
+         M12 3.9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z
+         M12 11.6a3.4 4.2 0 1 0 0 8.4 3.4 4.2 0 1 0 0-8.4z
+         M10.75 5.35a.52.52 0 1 0 0 1.04.52.52 0 1 0 0-1.04z
+         M13.25 5.35a.52.52 0 1 0 0 1.04.52.52 0 1 0 0-1.04z
+         M12 7.15l.85.52-.85.5-.85-.5z"
+    />
+  </svg>
+
+  <svg
+    v-else-if="name === 'ubuntu'"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <!-- Circle of friends: a ring broken at three points, a dot in each break. -->
+    <path
+      d="M17.30 6.70A7.5 7.5 0 0 1 17.30 17.30M13.94 19.24A7.5 7.5 0 0 1 4.76 13.94M4.76 10.06A7.5 7.5 0 0 1 13.94 4.76"
+      stroke="currentColor"
+      stroke-width="1.9"
+      stroke-linecap="round"
+    />
+    <circle cx="15.75" cy="5.50" r="2.1" fill="currentColor" />
+    <circle cx="15.75" cy="18.50" r="2.1" fill="currentColor" />
+    <circle cx="4.50" cy="12" r="2.1" fill="currentColor" />
+  </svg>
+
+  <svg
+    v-else-if="name === 'android'"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M6.6 11.2a5.4 5.4 0 0 1 10.8 0v.35H6.6zM9.8 7.9a.72.72 0 1 0 0 1.44.72.72 0 0 0 0-1.44zm4.4 0a.72.72 0 1 0 0 1.44.72.72 0 0 0 0-1.44z"
+    />
+    <path
+      d="M6.6 12.7h10.8v5.6a1.5 1.5 0 0 1-1.5 1.5H8.1a1.5 1.5 0 0 1-1.5-1.5z"
+    />
+    <rect x="3" y="12.7" width="2.5" height="6" rx="1.25" />
+    <rect x="18.5" y="12.7" width="2.5" height="6" rx="1.25" />
+    <rect x="8.6" y="19.4" width="2.5" height="4.2" rx="1.25" />
+    <rect x="12.9" y="19.4" width="2.5" height="4.2" rx="1.25" />
+    <path
+      d="M8.5 3.6l1.35 2.1M15.5 3.6l-1.35 2.1"
+      stroke="currentColor"
+      stroke-width="1.3"
+      stroke-linecap="round"
+      fill="none"
+    />
+  </svg>
+
   <svg
     v-else
     viewBox="0 0 24 24"

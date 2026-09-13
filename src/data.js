@@ -418,3 +418,58 @@ export const RELEASE = {
   date: '2026-09-12',
   repos: ['owpengram-server', 'owpengram-desktop-client', 'owpengram-android-client'],
 }
+
+// ─── Downloads ───────────────────────────────────────────────────────────────
+// Shape borrowed from ubuntu.com's download page: name the file and print its
+// size next to the button. `asset` matches the file name on the GitHub release,
+// which is where the live size comes from -- `size` here is only the fallback
+// for when the API cannot be reached.
+
+export const DOWNLOADS = [
+  {
+    id: 'desktop',
+    icon: 'desktop',
+    title: 'Desktop',
+    repo: 'owpengram-desktop-client',
+    files: [
+      { asset: 'OwpenGram.exe', label: 'Windows', icon: 'windows', size: 228_500_000 },
+      { asset: 'OwpenGram', label: 'Linux', icon: 'linux', size: 267_200_000 },
+      { asset: 'OwpenGram.deb', label: 'Ubuntu / Debian', icon: 'ubuntu', size: 80_500_000 },
+    ],
+  },
+  {
+    id: 'mobile',
+    icon: 'phone',
+    title: 'Mobile',
+    repo: 'owpengram-android-client',
+    files: [
+      { asset: 'OwpenGram.apk', label: 'Android', icon: 'android', size: 73_300_000 },
+    ],
+  },
+]
+
+// Not a download: the server is cloned and launched, so it gets the commands
+// for each host instead of a button.
+export const SERVER_INSTALL = {
+  title: 'Server',
+  blocks: [
+    {
+      label: 'Linux',
+      icon: 'linux',
+      commands: [
+        'git clone https://github.com/owpengram/owpengram-server',
+        'cd owpengram-server',
+        './owpengram-server.sh',
+      ],
+    },
+    {
+      label: 'Windows',
+      icon: 'windows',
+      commands: [
+        'git clone https://github.com/owpengram/owpengram-server',
+        'cd owpengram-server',
+        'owpengram-server.bat',
+      ],
+    },
+  ],
+}

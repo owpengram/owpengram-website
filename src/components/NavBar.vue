@@ -20,6 +20,8 @@ const nav = [
   { href: '#multiserver', label: 'Multi-server' },
   { href: '#server', label: 'Self-host' },
   { href: '#security', label: 'Security' },
+  // #download is deliberately absent: the Download button to the right of this
+  // row already points at it, and two Download controls in one bar is noise.
   { href: '#compare', label: 'Compare' },
   { href: '#faq', label: 'FAQ' },
   { href: '#services', label: 'Services' },
@@ -111,26 +113,13 @@ onUnmounted(() => observer?.disconnect())
       </nav>
 
       <div class="actions">
-        <div class="drop-wrap">
-          <button class="btn btn-primary nav-cta">
-            Download
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="chev"><path d="M6 9l6 6 6-6" /></svg>
-          </button>
-          <div class="drop">
-            <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" @click="close">
-              <IconSvg name="desktop" /> Desktop
-            </a>
-            <a :href="LINKS.androidRelease" target="_blank" rel="noopener" @click="close">
-              <IconSvg name="phone" /> Android
-            </a>
-          </div>
-        </div>
+        <a href="#download" class="btn btn-primary nav-cta" @click="close">Download</a>
+        <ThemeToggle />
         <button class="burger" :class="{ open }" @click="open = !open" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <ThemeToggle class="theme-fixed" />
   </header>
 </template>
 
@@ -241,79 +230,12 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .nav-cta {
-  padding: 10px 16px;
+  padding: 10px 18px;
   font-size: 0.86rem;
   border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.chev { width: 16px; height: 16px; }
-
-.drop-wrap {
-  position: relative;
-}
-
-.drop-wrap::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 12px;
-}
-
-.drop {
-  display: none;
-  position: absolute;
-  top: calc(100% + 12px);
-  right: 0;
-  min-width: 160px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 6px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-  z-index: 60;
-}
-
-.drop-wrap:hover .drop,
-.drop-wrap:focus-within .drop {
-  display: block;
-}
-
-.drop a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 0.88rem;
-  transition: background 0.15s;
-}
-
-.drop a:hover {
-  background: var(--surface);
-  color: var(--accent);
-}
-
-.drop :deep(svg) {
-  width: 17px;
-  height: 17px;
-  color: var(--body);
 }
 
 .mobile-dl { display: none; }
-
-.theme-fixed {
-  position: fixed;
-  top: 18px;
-  right: 20px;
-  z-index: 55;
-}
 
 .burger {
   display: none;
@@ -322,10 +244,6 @@ onUnmounted(() => observer?.disconnect())
   width: 40px;
   height: 40px;
   cursor: pointer;
-  /* Above .theme-fixed: both live in the header and the toggle is fixed, so
-     without this it paints over the burger and swallows the tap. */
-  position: relative;
-  z-index: 60;
 }
 
 .burger span {
@@ -350,15 +268,8 @@ onUnmounted(() => observer?.disconnect())
   .nav-inner { min-width: 0; }
 
   .burger { display: block; }
-  .drop-wrap { display: none; }
-
-  /* The toggle is fixed to the top-right corner, which is exactly where the
-     burger appears once the desktop nav collapses. Park it to the left of the
-     burger instead of on top of it. */
-  .theme-fixed {
-    top: 16px;
-    right: 64px;
-  }
+  /* The sheet carries its own Download block, so the bar's button goes. */
+  .nav-cta { display: none; }
 
   /* An open sheet needs an opaque header above it, otherwise the brand row
      floats over the hero while the sheet below is solid. */

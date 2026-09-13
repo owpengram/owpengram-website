@@ -26,6 +26,10 @@ const close = () => (open.value = false)
 
 watch(open, (v) => {
   document.body.style.overflow = v ? 'hidden' : ''
+  // Lets anything fixed outside this component get out of the way of the
+  // sheet -- the scroll-to-top button sits at z-index 900 and would otherwise
+  // float over it.
+  document.body.classList.toggle('nav-open', v)
 })
 
 let observer = null
@@ -285,6 +289,10 @@ onUnmounted(() => observer?.disconnect())
   width: 40px;
   height: 40px;
   cursor: pointer;
+  /* Above .theme-fixed: both live in the header and the toggle is fixed, so
+     without this it paints over the burger and swallows the tap. */
+  position: relative;
+  z-index: 60;
 }
 
 .burger span {
@@ -301,79 +309,163 @@ onUnmounted(() => observer?.disconnect())
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+/* ── mobile ───────────────────────────────────────────────────────────────
+   The collapsed nav is a full-height sheet, not a dropdown: a partial panel
+   let the page show through under it, which is what made the old one look
+   unfinished. Everything below is scoped to the collapsed layout only. */
 @media (max-width: 1100px) {
   .nav-inner { min-width: 0; }
 
   .burger { display: block; }
   .drop-wrap { display: none; }
 
-  .menu-open .theme-fixed { display: none; }
+  /* The toggle is fixed to the top-right corner, which is exactly where the
+     burger appears once the desktop nav collapses. Park it to the left of the
+     burger instead of on top of it. */
+  .theme-fixed {
+    top: 16px;
+    right: 64px;
+  }
 
+  /* An open sheet needs an opaque header above it, otherwise the brand row
+     floats over the hero while the sheet below is solid. */
+  .nav.menu-open {
+    background: var(--bg-elevated);
+    border-bottom-color: var(--line);
+    backdrop-filter: none;
+  }
+
+  /* Kept in the tree when closed so it can animate; visibility keeps it out
+     of the tab order meanwhile. */
   .links {
-    display: none;
-    position: absolute;
+    position: fixed;
     top: 72px;
     left: 0;
     right: 0;
+    bottom: 0;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--bg-elevated);
-    border-bottom: 1px solid var(--line);
-    padding: 8px 16px 18px;
     margin-left: 0;
+    padding: 10px 20px calc(28px + env(safe-area-inset-bottom));
+    background: var(--bg-elevated);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
   }
 
   .links.open {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
   }
 
-  .links a {
-    padding: 12px 6px;
-    border-bottom: 1px solid var(--line);
+  /* Section links: hairline between items only, never a trailing rule under
+     the last one -- that stray line was half of why it read as unfinished. */
+  .links > a {
+    position: relative;
+    padding: 15px 2px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .links > a + a {
+    border-top: 1px solid var(--line);
+  }
+
+  .links > a.active {
+    color: var(--accent);
+  }
+
+  /* Marker for the current section, in the gutter so the label stays aligned
+     with everything else. */
+  .links > a.active::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+    background: var(--accent);
   }
 
   .mobile-dl {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 12px 0 4px;
+    display: grid;
+    gap: 8px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
   }
 
   .mobile-dl strong {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--body);
-    padding: 0 6px 6px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    padding: 0;
   }
 
   .mobile-dl a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 6px;
+    gap: 12px;
+    padding: 13px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
     color: var(--ink);
     font-weight: 600;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--line);
+    font-size: 0.94rem;
   }
 
   .mobile-dl :deep(svg) {
     width: 18px;
     height: 18px;
+    color: var(--accent);
   }
 
+  /* Three across: these are secondary to the sections above, so they get one
+     row rather than three full-width bars competing with the download links. */
   .ext-links {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: auto;
+    padding-top: 24px;
   }
 
   .ext {
     justify-content: center;
+    gap: 6px;
     width: 100%;
+    padding: 11px 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
   }
+
+  .ext :deep(svg) { width: 15px; height: 15px; }
+}
+
+/* Tablets get the same sheet, but a full-width one would stretch six links
+   across 1000px. Centre the content instead of padding it out. */
+@media (min-width: 640px) and (max-width: 1100px) {
+  .links {
+    padding-left: max(20px, calc((100% - 620px) / 2));
+    padding-right: max(20px, calc((100% - 620px) / 2));
+  }
+}
+
+@media (max-width: 360px) {
+  /* The labels are the first thing to give: icons still identify them. */
+  .ext { font-size: 0.74rem; gap: 4px; padding: 11px 2px; }
 }
 
 @media (max-width: 480px) {

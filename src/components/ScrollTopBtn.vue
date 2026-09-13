@@ -48,6 +48,13 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   transition: opacity 0.25s ease, transform 0.25s ease, background 0.15s ease;
 }
 
+/* The mobile nav sheet owns the whole screen while it is open. */
+body.nav-open .scroll-top {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+}
+
 .scroll-top.visible {
   opacity: 1;
   transform: translateY(0);

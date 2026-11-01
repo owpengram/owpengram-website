@@ -16,6 +16,15 @@
     <meta name="theme-color" content="#08080e" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
 
+    <!-- Paint the page's own background and keep the skip link off-screen from the
+         first byte, so nothing flashes unstyled while the stylesheet and the app
+         bundle are still on their way. The real rules live in src/style.css. -->
+    <style>
+      html { background: #08080e; color-scheme: dark; }
+      html[data-theme='light'] { background: #f7f9fc; color-scheme: light; }
+      .skip-link { position: fixed; top: 10px; left: 10px; transform: translateY(-160%); }
+    </style>
+
     <script>
       (function () {
         var t = localStorage.getItem('owpengram-theme')

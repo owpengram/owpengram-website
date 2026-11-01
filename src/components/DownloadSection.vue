@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { DOWNLOADS, SERVER_INSTALL } from '../data.js'
+import { DOWNLOADS, SERVER_INSTALL, LINKS } from '../data.js'
 import { useGithubRelease, formatSize, formatDay } from '../composables/useGithubRelease.js'
 import IconSvg from './IconSvg.vue'
 
@@ -60,6 +60,28 @@ function resolve(platform, file) {
           </div>
         </article>
 
+        <!-- Nothing to download: the web client is opened, not installed. -->
+        <article class="card plat plat--wide" v-reveal="100">
+          <header>
+            <IconSvg name="globe" />
+            <h3>Web</h3>
+          </header>
+          <p class="web-text">
+            Runs in any modern browser. Every OwpenGram server serves its own
+            copy at its own address; ours is open to everyone.
+          </p>
+          <div class="web-actions">
+            <a :href="LINKS.webApp" target="_blank" rel="noopener" class="btn btn-primary dl">
+              <IconSvg name="globe" class="dl-mark" />
+              <span class="dl-label">Open web.owpengram.org</span>
+            </a>
+            <a :href="LINKS.web" target="_blank" rel="noopener" class="btn btn-ghost dl">
+              <IconSvg name="github" class="dl-mark" />
+              <span class="dl-label">Source on GitHub</span>
+            </a>
+          </div>
+        </article>
+
         <!-- Full width, because it holds two command blocks side by side: the
              server is cloned and launched rather than downloaded. -->
         <article class="card plat plat--server" v-reveal="140">
@@ -115,9 +137,21 @@ function resolve(platform, file) {
   min-height: min-content;
 }
 
-.plat--server {
+.plat--server,
+.plat--wide {
   grid-column: 1 / -1;
   aspect-ratio: auto;
+}
+
+.web-text {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.web-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 header {
@@ -227,5 +261,6 @@ h3 {
   .grid { grid-template-columns: 1fr; max-width: 440px; }
   .plat { aspect-ratio: auto; padding: 24px; }
   .blocks { grid-template-columns: 1fr; }
+  .web-actions { grid-template-columns: 1fr; }
 }
 </style>

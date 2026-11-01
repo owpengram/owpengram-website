@@ -21,8 +21,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
         <p class="lead" v-reveal="100">
           <strong>{{ SITE.name }}</strong> is an open-source messenger that speaks
           the MTProto protocol. Clients for <strong>Windows</strong>,
-          <strong>Linux</strong> and <strong>Android</strong> connect to the
-          official network, to our public server, or to one you run yourself.
+          <strong>Linux</strong>, <strong>Android</strong> and the
+          <strong>web</strong> connect to the official network, to our public
+          server, or to one you run yourself.
         </p>
 
         <div class="cta" v-reveal="150">
@@ -31,6 +32,9 @@ import ScreenshotPair from './ScreenshotPair.vue'
           </a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
             <IconSvg name="phone" /> Android
+          </a>
+          <a :href="LINKS.webApp" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
+            <IconSvg name="globe" /> Web
           </a>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-ghost" v-ripple>
             <IconSvg name="server" /> Server

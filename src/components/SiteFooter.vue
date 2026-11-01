@@ -30,6 +30,9 @@ const year = new Date().getFullYear()
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener">
             <IconSvg name="phone" /> Android
           </a>
+          <a :href="LINKS.webApp" target="_blank" rel="noopener">
+            <IconSvg name="globe" /> Web
+          </a>
           <a :href="LINKS.server" target="_blank" rel="noopener">
             <IconSvg name="server" /> Server
           </a>

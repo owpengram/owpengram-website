@@ -11,6 +11,9 @@ export const LINKS = {
   server: 'https://github.com/owpengram/owpengram-server',
   android: 'https://github.com/owpengram/owpengram-android-client',
   desktop: 'https://github.com/owpengram/owpengram-desktop-client',
+  web: 'https://github.com/owpengram/owpengram-web-client',
+  // Our public server's own copy of the web client: nothing to install.
+  webApp: 'https://web.owpengram.org',
   androidRelease: 'https://github.com/owpengram/owpengram-android-client/releases/latest',
   desktopRelease: 'https://github.com/owpengram/owpengram-desktop-client/releases/latest',
   telegramChannel: 'https://t.me/owpengram',
@@ -130,7 +133,11 @@ export const FAQ = [
   },
   {
     q: 'What platforms are supported?',
-    a: 'Native clients for Windows, Linux and Android; macOS and a web client are planned. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
+    a: 'Native clients for Windows, Linux and Android, and a web client that runs in any browser (ours is at web.owpengram.org); macOS is planned. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
+  },
+  {
+    q: 'Is there a web version?',
+    a: 'Yes. The OwpenGram web client runs in any modern browser with nothing to install. Our public server’s copy is at web.owpengram.org, and every OwpenGram server carries its own copy and serves it at its own address. Unlike the desktop and Android apps it talks to one server: the one it was opened from. The source is in the owpengram-web-client repository.',
   },
   {
     q: 'Can I try it without setting up a server?',

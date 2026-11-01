@@ -14,6 +14,8 @@ export const LINKS = {
   web: 'https://github.com/owpengram/owpengram-web-client',
   // Our public server's own copy of the web client: nothing to install.
   webApp: 'https://web.owpengram.org',
+  giftPacks: 'https://github.com/owpengram/owpengram-giftpacks',
+  giftPacksRelease: 'https://github.com/owpengram/owpengram-giftpacks/releases/latest',
   androidRelease: 'https://github.com/owpengram/owpengram-android-client/releases/latest',
   desktopRelease: 'https://github.com/owpengram/owpengram-desktop-client/releases/latest',
   telegramChannel: 'https://t.me/owpengram',
@@ -447,6 +449,21 @@ export const DOWNLOADS = [
     files: [
       { asset: 'OwpenGram.apk', label: 'Android', icon: 'android', size: 73_300_000 },
     ],
+  },
+]
+
+// Gift packs an operator imports in the admin panel (StarGift Catalog -> Import
+// Pack). `file` is the asset name on the gift-packs repo's latest release.
+export const GIFT_PACKS = [
+  {
+    name: 'Grind Pack',
+    file: 'grind-pack.zip',
+    text: 'Desk gear and coffee: twelve gifts that between them use every Star Gift mechanic, from limited supply to upgrades into collectibles.',
+  },
+  {
+    name: 'Energy Pack',
+    file: 'energy-pack.zip',
+    text: 'One strictly limited, craftable energy can with a fifty-strong pool of collectible flavours.',
   },
 ]
 

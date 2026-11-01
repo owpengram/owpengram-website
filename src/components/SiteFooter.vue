@@ -36,6 +36,7 @@ const year = new Date().getFullYear()
           <a :href="LINKS.server" target="_blank" rel="noopener">
             <IconSvg name="server" /> Server
           </a>
+          <a href="#content"><IconSvg name="spark" /> Gift packs</a>
         </div>
 
         <!-- Internal anchors, so the sections are reachable from the bottom of

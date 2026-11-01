@@ -16,6 +16,7 @@ import ServerSection from './components/ServerSection.vue'
 import SecuritySection from './components/SecuritySection.vue'
 import CompareSection from './components/CompareSection.vue'
 import DownloadSection from './components/DownloadSection.vue'
+import ContentSection from './components/ContentSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 
@@ -64,6 +65,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <SecuritySection />
     <CompareSection />
     <DownloadSection />
+    <ContentSection />
     <FaqSection />
     <ServicesSection />
     <ContactSection />

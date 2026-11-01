@@ -25,7 +25,7 @@ const year = new Date().getFullYear()
           <h4>Download</h4>
           <a href="#download"><IconSvg name="download" /> All downloads</a>
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener">
-            <IconSvg name="desktop" /> Windows &amp; Linux
+            <IconSvg name="desktop" /> Windows
           </a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener">
             <IconSvg name="phone" /> Android

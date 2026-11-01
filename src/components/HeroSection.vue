@@ -27,7 +27,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
 
         <div class="cta" v-reveal="150">
           <a :href="LINKS.desktopRelease" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
-            <IconSvg name="desktop" /> Windows &amp; Linux
+            <IconSvg name="desktop" /> Windows
           </a>
           <a :href="LINKS.androidRelease" target="_blank" rel="noopener" class="btn btn-primary" v-ripple>
             <IconSvg name="phone" /> Android

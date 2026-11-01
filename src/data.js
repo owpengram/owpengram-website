@@ -133,10 +133,6 @@ export const FAQ = [
     a: 'Native clients for Windows, Linux and Android; macOS and a web client are planned. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
   },
   {
-    q: 'How do I install the Linux client?',
-    a: 'Two files in the desktop Releases tab, both from the same portable build. The .deb package installs OwpenGram as a normal app on Ubuntu 18.04+ and Debian 10+. The other is the OwpenGram binary itself, not an installer: make it executable and run it on any modern distro, since everything it needs is bundled. An install-linux.sh script in the repo adds the menu entry and icons under your home directory if you want them.',
-  },
-  {
     q: 'Can I try it without setting up a server?',
     a: 'Yes — that is the fastest way in. We run a public OwpenGram server, and it is already built into both clients: install the app, pick OwpenGram on the server-selection screen, and sign in. No address to type, no key to paste, no Docker. When you want your own server later, you add it in the same app and keep both accounts side by side.',
   },
@@ -414,8 +410,8 @@ export const COMPARE = {
 // answers.
 
 export const RELEASE = {
-  tag: 'O7',
-  date: '2026-09-12',
+  tag: 'O8',
+  date: '2026-11-01',
   repos: ['owpengram-server', 'owpengram-desktop-client', 'owpengram-android-client'],
 }
 
@@ -433,8 +429,7 @@ export const DOWNLOADS = [
     repo: 'owpengram-desktop-client',
     files: [
       { asset: 'OwpenGram.exe', label: 'Windows', icon: 'windows', size: 228_500_000 },
-      { asset: 'OwpenGram', label: 'Linux', icon: 'linux', size: 267_200_000 },
-      { asset: 'OwpenGram.deb', label: 'Ubuntu / Debian', icon: 'ubuntu', size: 80_500_000 },
+      // Linux (OwpenGram, OwpenGram.deb) is back once the current release ships a Linux build
     ],
   },
   {

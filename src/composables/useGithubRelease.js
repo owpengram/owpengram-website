@@ -4,7 +4,7 @@ import { LINKS, RELEASE } from '../data.js'
 // Four unauthenticated calls, cached together for an hour. GitHub allows 60 an
 // hour per IP and that budget is per visitor, so this is nowhere near it -- but
 // someone who reloads a lot should not spend it either.
-const CACHE_KEY = 'owpengram-gh-v2'
+const CACHE_KEY = 'owpengram-gh-v3'
 const TTL = 60 * 60 * 1000
 const OWNER = 'https://api.github.com/repos/owpengram'
 const SERVER = `${OWNER}/owpengram-server`

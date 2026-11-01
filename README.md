@@ -33,3 +33,9 @@ npm run preview  # preview the production build locally
 - **Links** (GitHub org/repos) and the **domain** live in `src/data.js`.
 - **Screenshots** are placeholders (`ScreenshotFrame.vue`). Drop real images
   into `public/` and pass `src="/your-image.png"` to replace a placeholder.
+
+## License
+
+The site source is licensed under the [Apache License 2.0](LICENSE).
+The bundled Plus Jakarta Sans font is under the SIL Open Font License
+(see `public/fonts/OFL.txt`).

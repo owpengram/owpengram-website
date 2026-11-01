@@ -1,12 +1,18 @@
 <script setup>
 import { computed } from 'vue'
-import { DOWNLOADS, SERVER_INSTALL, LINKS } from '../data.js'
+import { DOWNLOADS, SERVER_INSTALL, SERVER_ARCHIVES, LINKS } from '../data.js'
 import { useGithubRelease, formatSize, formatDay } from '../composables/useGithubRelease.js'
 import IconSvg from './IconSvg.vue'
 
 const { tag, releasedAt, assets } = useGithubRelease()
 
 const released = computed(() => formatDay(releasedAt.value))
+
+const SERVER_RELEASE = 'https://github.com/owpengram/owpengram-server/releases/latest'
+
+function archiveUrl(archive) {
+  return `${SERVER_RELEASE}/download/owpengram-server-${tag.value}-${archive.file}`
+}
 
 /** Live asset if GitHub answered, otherwise the fallback size from data.js. */
 function resolve(platform, file) {
@@ -82,14 +88,35 @@ function resolve(platform, file) {
           </div>
         </article>
 
-        <!-- Full width, because it holds two command blocks side by side: the
-             server is cloned and launched rather than downloaded. -->
+        <!-- Full width: the ready-to-run archives first, then building it from
+             a clone of the repository. -->
         <article class="card plat plat--server" v-reveal="140">
           <header>
             <IconSvg name="server" />
             <h3>{{ SERVER_INSTALL.title }}</h3>
           </header>
 
+          <h4 class="sub">Ready-to-run archive</h4>
+          <p class="web-text">
+            Unpack, run <code>start.sh</code> (<code>start.bat</code> on Windows) and
+            finish the setup in the browser. The server, admin panel and a
+            built-in PostgreSQL are all inside.
+            <a :href="SERVER_RELEASE" target="_blank" rel="noopener">Release notes</a>
+          </p>
+          <div class="archives">
+            <a
+              v-for="archive in SERVER_ARCHIVES"
+              :key="archive.file"
+              :href="archiveUrl(archive)"
+              class="btn btn-primary dl"
+              :aria-label="`Download the server for ${archive.label}`"
+            >
+              <IconSvg :name="archive.icon" class="dl-mark" />
+              <span class="dl-label">{{ archive.label }}</span>
+            </a>
+          </div>
+
+          <h4 class="sub">From source</h4>
           <div class="blocks">
             <div v-for="block in SERVER_INSTALL.blocks" :key="block.label" class="block">
               <span class="block-head">
@@ -129,7 +156,6 @@ function resolve(platform, file) {
   display: flex;
   flex-direction: column;
   padding: 30px;
-  aspect-ratio: 1 / 1;
   /* Grid items default to min-width:auto, so an un-wrappable command would
      widen its column and push the page sideways. min-height keeps the square
      from clipping if the copy ever outgrows it. */
@@ -152,6 +178,24 @@ function resolve(platform, file) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+}
+
+.web-text a { color: var(--accent-icon); }
+
+.sub {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archives {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 26px;
 }
 
 header {
@@ -262,5 +306,6 @@ h3 {
   .plat { aspect-ratio: auto; padding: 24px; }
   .blocks { grid-template-columns: 1fr; }
   .web-actions { grid-template-columns: 1fr; }
+  .archives { grid-template-columns: 1fr; }
 }
 </style>

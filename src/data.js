@@ -450,8 +450,19 @@ export const DOWNLOADS = [
   },
 ]
 
-// Not a download: the server is cloned and launched, so it gets the commands
-// for each host instead of a button.
+// Ready-to-run server archives on the server repo's latest release. The file
+// name carries the release ("owpengram-server-O8-linux-amd64.tar.gz"), so the
+// link is built from the live tag.
+export const SERVER_ARCHIVES = [
+  { label: 'Linux x64', icon: 'linux', file: 'linux-amd64.tar.gz' },
+  { label: 'Linux ARM64', icon: 'linux', file: 'linux-arm64.tar.gz' },
+  { label: 'Windows x64', icon: 'windows', file: 'windows-amd64.zip' },
+  { label: 'Windows ARM64', icon: 'windows', file: 'windows-arm64.zip' },
+  { label: 'macOS Intel', icon: 'desktop', file: 'darwin-amd64.tar.gz' },
+  { label: 'macOS Apple Silicon', icon: 'desktop', file: 'darwin-arm64.tar.gz' },
+]
+
+// The other way in: clone the repository and let the launcher build it.
 export const SERVER_INSTALL = {
   title: 'Server',
   blocks: [

@@ -2,7 +2,6 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { LINKS } from '../data.js'
 import IconSvg from './IconSvg.vue'
-import ThemeToggle from './ThemeToggle.vue'
 
 const scrolled = ref(false)
 const open = ref(false)
@@ -114,7 +113,6 @@ onUnmounted(() => observer?.disconnect())
 
       <div class="actions">
         <a href="#download" class="btn btn-primary nav-cta" @click="close">Download</a>
-        <ThemeToggle />
         <button class="burger" :class="{ open }" @click="open = !open" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>

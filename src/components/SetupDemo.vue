@@ -26,12 +26,12 @@
 </template>
 
 <style scoped>
-/* Dark in both themes, like a real terminal. */
+/* Darker than the page, like a real terminal. */
 .term {
   min-width: 0;
   border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #070c16;
+  background: #050508;
   box-shadow: var(--shot-shadow);
   overflow: hidden;
 }
@@ -42,7 +42,7 @@
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: #0d1526;
+  background: #0e0e14;
 }
 
 .dots {
@@ -60,7 +60,7 @@
 .name {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #6f82a3;
+  color: #7b8798;
 }
 
 .out {
@@ -69,15 +69,15 @@
   font-family: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
   font-size: 0.86rem;
   line-height: 1.75;
-  color: #c9d5e6;
+  color: #c6d0dc;
   overflow-x: auto;
 }
 
-.out b { color: #eef3fa; font-weight: 600; }
-.prompt { color: #38bdf8; }
-.t { color: #5d6f8f; }
+.out b { color: #f8fafc; font-weight: 600; }
+.prompt { color: #7db4ff; }
+.t { color: #5f6a7a; }
 .ok { color: #4ade80; font-weight: 700; }
-.link { color: #38bdf8; }
+.link { color: #7db4ff; }
 
 .cursor {
   display: inline-block;
@@ -85,7 +85,7 @@
   height: 1.1em;
   margin-left: 6px;
   vertical-align: -0.2em;
-  background: #c9d5e6;
+  background: #c6d0dc;
   animation: blink 1.1s steps(1) infinite;
 }
 

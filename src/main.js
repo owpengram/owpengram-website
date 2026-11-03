@@ -1,11 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './style.css'
-import { initTheme } from './composables/useTheme.js'
 import ripple from './directives/ripple.js'
 import { FAQ } from './data.js'
-
-initTheme()
 
 const app = createApp(App)
 app.directive('ripple', ripple)

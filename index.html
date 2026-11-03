@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>OwpenGram — open-source self-hosted messenger</title>
+    <title>OwpenGram</title>
     <meta
       name="description"
       content="OwpenGram is an open-source, self-hosted messenger that speaks the MTProto protocol. Windows, Linux and Android clients, a server you run yourself in one command, and multiple accounts on different servers in one app."
@@ -13,25 +13,15 @@
 
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
-    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f7f9fc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#08080e" />
 
     <!-- Paint the page's own background and keep the skip link off-screen from the
          first byte, so nothing flashes unstyled while the stylesheet and the app
          bundle are still on their way. The real rules live in src/style.css. -->
     <style>
-      html { background: #0b1220; color-scheme: dark; }
-      html[data-theme='light'] { background: #f7f9fc; color-scheme: light; }
+      html { background: #08080e; color-scheme: dark; }
       .skip-link { position: fixed; top: 10px; left: 10px; transform: translateY(-160%); }
     </style>
-
-    <script>
-      (function () {
-        var t = localStorage.getItem('owpengram-theme')
-        if (!t) t = 'dark'
-        document.documentElement.dataset.theme = t
-      })()
-    </script>
 
     <!-- Self-hosted so the page makes no third-party request at all: no Google
          Fonts lookup, nothing for a visitor to be tracked by, one less origin

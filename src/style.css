@@ -24,56 +24,46 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-:root,
-[data-theme='light'] {
-  color-scheme: light;
+/* One dark theme; there is no light variant and no switch. */
+:root {
+  color-scheme: dark;
   scrollbar-width: thin;
   scrollbar-color: var(--line) transparent;
-  color-scheme: light;
 
-  --accent: #2563eb;
-  --accent-bright: #38bdf8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
-  /* Accent for small type and icons sitting on a light surface: sky blue is
-     illegible there, so light mode drops to the deeper accent. Dark mode keeps
-     the bright one, where it is the legible choice. */
-  --accent-icon: #2563eb;
-  --grad: linear-gradient(135deg, #38bdf8 0%, #2563eb 55%, #1e40af 100%);
-  --grad-soft: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(37, 99, 235, 0.1));
-  /* Gradient for TEXT. The button gradient starts at sky blue, which large
-     headline type cannot carry on a near-white page, so light mode starts a
-     couple of stops deeper. */
-  --grad-ink: linear-gradient(120deg, #2563eb 0%, #1d4ed8 55%, #1e3a8a 100%);
+  --accent: #5b9dff;
+  --accent-bright: #7db4ff;
+  --accent-soft: rgba(91, 157, 255, 0.14);
+  --accent-icon: #7db4ff;
+  --grad: linear-gradient(135deg, #7db4ff 0%, #5b9dff 50%, #2563eb 100%);
+  --grad-soft: linear-gradient(135deg, rgba(125, 180, 255, 0.1), rgba(91, 157, 255, 0.12));
+  --grad-ink: linear-gradient(120deg, #7db4ff 0%, #5b9dff 55%, #3b82f6 100%);
 
-  --bg: #f7f9fc;
-  --bg-elevated: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #f1f5f9;
-  --line: #e2e8f0;
-  --line-strong: #cbd5e1;
+  --bg: #08080e;
+  --bg-elevated: #0e0e14;
+  --surface: #12121a;
+  --surface-2: #181822;
+  --line: #222228;
+  --line-strong: #2e2e36;
 
-  --ink: #050508;
-  --body: #3f4b5c;
-  --muted: #64748b;
+  --ink: #f8fafc;
+  --body: #a8b4c4;
+  --muted: #7b8798;
 
-  --hero-glow: rgba(37, 99, 235, 0.14);
-  --hero-grid: rgba(5, 5, 8, 0.04);
-  --shot-bg: #0b0f14;
-  --shot-border: rgba(5, 5, 8, 0.08);
-  --shot-shadow: 0 28px 70px -36px rgba(5, 5, 8, 0.35);
+  --hero-glow: rgba(91, 157, 255, 0.25);
+  --hero-grid: rgba(255, 255, 255, 0.04);
+  --shot-bg: #000000;
+  --shot-border: rgba(255, 255, 255, 0.08);
+  --shot-shadow: 0 32px 80px -40px rgba(0, 0, 0, 0.75);
 
-  --panel: #ffffff;
-  --panel-ink: #050508;
-  --panel-body: #3f4b5c;
-  --panel-line: rgba(5, 5, 8, 0.1);
+  --panel: #0c0c14;
+  --panel-ink: #f1f5f9;
+  --panel-body: #8b97a8;
+  --panel-line: rgba(255, 255, 255, 0.07);
   /* Translucent fill for controls that sit ON a panel (inputs, chips,
-     .btn-dark). Tinted with the panel's own ink, so it darkens a light panel
-     and lightens a dark one. */
-  --panel-field: rgba(5, 5, 8, 0.04);
-  --panel-field-hover: rgba(5, 5, 8, 0.08);
-  /* Links/labels on a panel: --accent-bright is sky blue, which washes out on
-     a light panel, so light mode uses the deeper accent instead. */
-  --panel-accent: #2563eb;
+     .btn-dark). */
+  --panel-field: rgba(255, 255, 255, 0.06);
+  --panel-field-hover: rgba(255, 255, 255, 0.1);
+  --panel-accent: #7db4ff;
 
   --radius: 18px;
   --radius-sm: 10px;
@@ -81,57 +71,27 @@
   --container: 1200px;
 }
 
-[data-theme='dark'] {
-  color-scheme: dark;
-
-  --accent: #60a5fa;
-  --accent-bright: #38bdf8;
-  --accent-soft: rgba(96, 165, 250, 0.14);
-  --accent-icon: #38bdf8;
-  --grad: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #2563eb 100%);
-  --grad-soft: linear-gradient(135deg, rgba(125, 211, 252, 0.1), rgba(59, 130, 246, 0.12));
-  --grad-ink: linear-gradient(120deg, #38bdf8 0%, #60a5fa 55%, #3b82f6 100%);
-
-  --bg: #0b1220;
-  --bg-elevated: #0f1a2e;
-  --surface: #111c30;
-  --surface-2: #16223a;
-  --line: #1f2c44;
-  --line-strong: #2a3a57;
-
-  --ink: #eef3fa;
-  --body: #a3b3cc;
-  --muted: #6f82a3;
-
-  --hero-glow: rgba(59, 130, 246, 0.25);
-  --hero-grid: rgba(255, 255, 255, 0.04);
-  --shot-bg: #070c16;
-  --shot-border: rgba(255, 255, 255, 0.08);
-  --shot-shadow: 0 32px 80px -40px rgba(0, 0, 0, 0.75);
-
-  --panel: #0d1628;
-  --panel-ink: #f1f5f9;
-  --panel-body: #93a4bf;
-  --panel-line: rgba(255, 255, 255, 0.07);
-  --panel-field: rgba(255, 255, 255, 0.06);
-  --panel-field-hover: rgba(255, 255, 255, 0.1);
-  --panel-accent: #38bdf8;
-}
-
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* The page colour lives on html, not body. index.html already paints html for
+   the first frame, and once html has a background, a body background stops
+   being the canvas and paints over everything at z-index -1 -- the floating
+   icons and orbs behind the page. */
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  transition: background 0.25s ease;
+}
 
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif;
   color: var(--body);
-  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   line-height: 1.65;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: color 0.25s ease;
 }
 
 h1, h2, h3, h4 {

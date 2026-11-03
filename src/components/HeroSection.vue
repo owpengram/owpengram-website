@@ -43,7 +43,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
       </div>
 
       <div class="visual" v-reveal="120">
-        <ScreenshotPair desktop="desktopChatList" phone="androidChatList" />
+        <ScreenshotPair desktop="desktopChat" phone="androidChats" />
       </div>
     </div>
   </section>

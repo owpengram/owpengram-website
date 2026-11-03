@@ -15,11 +15,6 @@ import ScreenshotPair from './ScreenshotPair.vue'
           your own, or any compatible node. Accounts stay isolated — switch
           between them without installing another app.
         </p>
-        <ul class="points">
-          <li>• Our public server is already in the list — nothing to set up</li>
-          <li>• Adding your own takes an address — nothing else to fill in</li>
-          <li>• Multiple accounts on one device, kept apart per server</li>
-        </ul>
         <div class="btn-group">
           <a :href="LINKS.desktop" target="_blank" rel="noopener" class="btn btn-ghost">
             <IconSvg name="desktop" /> Desktop source
@@ -31,7 +26,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
       </div>
 
       <div v-reveal="90">
-        <ScreenshotPair desktop="desktopChooseServer" phone="androidChooseServer" />
+        <ScreenshotPair desktop="desktopServers" phone="androidServers" />
       </div>
     </div>
   </section>
@@ -59,21 +54,7 @@ import ScreenshotPair from './ScreenshotPair.vue'
   color: var(--body);
   font-size: 1.05rem;
   line-height: 1.75;
-  margin-bottom: 20px;
-}
-
-.points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px;
-  display: grid;
-  gap: 10px;
-}
-
-.points li {
-  font-weight: 600;
-  color: var(--ink);
-  font-size: 0.92rem;
+  margin-bottom: 28px;
 }
 
 .btn-group {

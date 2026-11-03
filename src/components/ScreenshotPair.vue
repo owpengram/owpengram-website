@@ -5,7 +5,9 @@ import { SCREENSHOTS } from '../data.js'
 
 defineProps({
   desktop: { type: String, required: true },
-  phone: { type: String, required: true },
+  // Optional: a slide can be one wide shot (the web client, a call window)
+  // with no phone beside it.
+  phone: { type: String, default: '' },
 })
 
 const el = ref(null)
@@ -51,12 +53,13 @@ onUnmounted(() => {
   >
     <div
       class="pair-inner"
+      :class="{ single: !phone }"
       :style="{
         transform: 'rotateX(' + tilt.rx + 'deg) rotateY(' + tilt.ry + 'deg)',
       }"
     >
       <ScreenshotFrame v-bind="SCREENSHOTS[desktop]" />
-      <ScreenshotFrame v-bind="SCREENSHOTS[phone]" />
+      <ScreenshotFrame v-if="phone" v-bind="SCREENSHOTS[phone]" />
     </div>
   </div>
 </template>
@@ -69,12 +72,16 @@ onUnmounted(() => {
 
 .pair-inner {
   display: grid;
-  grid-template-columns: 1.15fr 0.55fr;
+  grid-template-columns: 1.45fr 0.5fr;
   gap: 16px;
   align-items: end;
   transition: transform 0.15s ease-out;
   transform-style: preserve-3d;
   will-change: transform;
+}
+
+.pair-inner.single {
+  grid-template-columns: 1fr;
 }
 
 @media (max-width: 720px) {

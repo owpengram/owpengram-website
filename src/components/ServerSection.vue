@@ -1,44 +1,7 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { LINKS, SCREENSHOTS } from '../data.js'
+import { LINKS } from '../data.js'
 import IconSvg from './IconSvg.vue'
-import ScreenshotFrame from './ScreenshotFrame.vue'
-
-const el = ref(null)
-const tilt = ref({ rx: 0, ry: 0 })
-const maxTilt = 5
-
-const reduced =
-  typeof matchMedia !== 'undefined' &&
-  matchMedia('(prefers-reduced-motion: reduce)').matches
-
-function onMove(e) {
-  if (!el.value || reduced) return
-  const rect = el.value.getBoundingClientRect()
-  const x = (e.clientX - rect.left) / rect.width
-  const y = (e.clientY - rect.top) / rect.height
-  tilt.value = { rx: (y - 0.5) * -maxTilt, ry: (x - 0.5) * maxTilt }
-}
-
-function onLeave() {
-  tilt.value = { rx: 0, ry: 0 }
-}
-
-onMounted(() => {
-  const p = el.value
-  if (p) {
-    p.addEventListener('mousemove', onMove)
-    p.addEventListener('mouseleave', onLeave)
-  }
-})
-
-onUnmounted(() => {
-  const p = el.value
-  if (p) {
-    p.removeEventListener('mousemove', onMove)
-    p.removeEventListener('mouseleave', onLeave)
-  }
-})
+import SetupDemo from './SetupDemo.vue'
 </script>
 
 <template>
@@ -50,39 +13,18 @@ onUnmounted(() => {
           <h2>Your server, one command</h2>
           <p>
             A single Go binary runs the whole server — chats, media, groups,
-            channels, bots, calls. Run the launcher and it installs whatever is
-            missing, brings up the database, builds everything and opens a setup
-            wizard in your browser. From then on you run it from the panel:
-            accounts, content, storage and health on one screen.
+            channels, bots, calls. Download the archive for your system, run
+            one script and open the address it prints: a setup wizard in your
+            browser asks where to keep data, and the server starts. From then on
+            you run it from the panel: accounts, content, storage and health on
+            one screen.
           </p>
-          <ul>
-            <li>• One command to install — Linux and Windows</li>
-            <li>• Browser setup wizard on first run</li>
-            <li>• Admin panel with named operators and scoped permissions</li>
-            <li>• Media on local disk or S3/MinIO, with retention rules</li>
-            <li>• Full source on GitHub</li>
-          </ul>
           <a :href="LINKS.server" target="_blank" rel="noopener" class="btn btn-primary">
             <IconSvg name="server" /> Server repository
           </a>
         </div>
 
-        <div
-          ref="el"
-          class="shot-wrap"
-          :style="{
-            perspective: '800px',
-          }"
-        >
-          <div
-            class="shot-inner"
-            :style="{
-              transform: 'rotateX(' + tilt.rx + 'deg) rotateY(' + tilt.ry + 'deg)',
-            }"
-          >
-            <ScreenshotFrame v-bind="SCREENSHOTS.serverAdminPanel" />
-          </div>
-        </div>
+        <SetupDemo />
       </div>
     </div>
   </section>
@@ -104,15 +46,6 @@ onUnmounted(() => {
   align-items: center;
 }
 
-.shot-wrap {
-  perspective: 800px;
-}
-
-.shot-inner {
-  transition: transform 0.15s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
 
 .copy h2 {
   font-size: clamp(1.8rem, 3.2vw, 2.4rem);
@@ -122,21 +55,7 @@ onUnmounted(() => {
 .copy p {
   color: var(--body);
   line-height: 1.75;
-  margin-bottom: 18px;
-}
-
-.copy ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 22px;
-  display: grid;
-  gap: 8px;
-}
-
-.copy li {
-  font-weight: 600;
-  color: var(--ink);
-  font-size: 0.9rem;
+  margin-bottom: 28px;
 }
 
 @media (max-width: 900px) {

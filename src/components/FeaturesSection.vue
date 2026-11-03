@@ -1,6 +1,7 @@
 <script setup>
 import { SHOWCASE } from '../data.js'
 import ScreenshotCarousel from './ScreenshotCarousel.vue'
+import GiftShowcase from './GiftShowcase.vue'
 </script>
 
 <template>
@@ -18,11 +19,9 @@ import ScreenshotCarousel from './ScreenshotCarousel.vue'
             <span class="row-eyebrow">{{ row.eyebrow }}</span>
             <h2>{{ row.title }}</h2>
             <p>{{ row.text }}</p>
-            <ul>
-              <li v-for="point in row.points" :key="point">• {{ point }}</li>
-            </ul>
           </div>
-          <ScreenshotCarousel :pairs="row.pairs" />
+          <GiftShowcase v-if="row.gifts" />
+          <ScreenshotCarousel v-else :pairs="row.pairs" />
         </article>
       </div>
     </div>
@@ -72,20 +71,6 @@ section { scroll-margin-top: 80px; }
   text-transform: uppercase;
   color: var(--accent-icon);
   margin-bottom: 10px;
-}
-
-.copy ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 8px;
-}
-
-.copy li {
-  font-weight: 600;
-  color: var(--ink);
-  font-size: 0.9rem;
 }
 
 @media (max-width: 980px) {

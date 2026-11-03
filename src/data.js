@@ -29,96 +29,47 @@ export const LINKS = {
 const S = '/screenshots'
 
 export const SCREENSHOTS = {
-  desktopChatList: {
-    src: `${S}/desktop_chat_list.png`,
-    alt: 'OwpenGram Windows client — chat list',
+  desktopChat: {
+    src: `${S}/desktop_chat.webp`,
+    alt: 'OwpenGram Windows client — chat list and a conversation',
     caption: 'Windows',
-    aspect: '827 / 756',
+    aspect: '1169 / 756',
     variant: 'desktop',
   },
-  androidChatList: {
-    src: `${S}/android_chat_list.jpg`,
+  androidChats: {
+    src: `${S}/android_chats.webp`,
     alt: 'OwpenGram Android — chat list',
     caption: 'Android',
-    aspect: '572 / 1280',
-    variant: 'phone',
-  },
-  desktopChat1: {
-    src: `${S}/desktop_chat_window_1.png`,
-    alt: 'OwpenGram Windows — conversation',
-    caption: 'Windows',
-    aspect: '827 / 756',
-    variant: 'desktop',
-  },
-  androidChat1: {
-    src: `${S}/android_chat_window_1.jpg`,
-    alt: 'OwpenGram Android — conversation',
-    caption: 'Android',
-    aspect: '572 / 1280',
-    variant: 'phone',
-  },
-  desktopChat2: {
-    src: `${S}/desktop_chat_window_2.png`,
-    alt: 'OwpenGram Windows — media in chat',
-    caption: 'Windows',
-    aspect: '827 / 756',
-    variant: 'desktop',
-  },
-  androidChat2: {
-    src: `${S}/android_chat_window_2.jpg`,
-    alt: 'OwpenGram Android — media in chat',
-    caption: 'Android',
-    aspect: '572 / 1280',
-    variant: 'phone',
-  },
-  desktopChooseServer: {
-    src: `${S}/desktop_choose_server.png`,
-    alt: 'OwpenGram Windows — choose server at sign-in',
-    caption: 'Windows',
-    aspect: '827 / 756',
-    variant: 'desktop',
-  },
-  androidChooseServer: {
-    src: `${S}/android_choose_server.jpg`,
-    alt: 'OwpenGram Android — choose server',
-    caption: 'Android',
     aspect: '591 / 1280',
     variant: 'phone',
   },
-  desktopMultiserver: {
-    src: `${S}/desktop_multiserver_accounts.png`,
-    alt: 'OwpenGram Windows — multiple accounts on different servers',
-    caption: 'Windows',
-    aspect: '827 / 756',
+  webChat: {
+    src: `${S}/web_chat.webp`,
+    alt: 'OwpenGram web client in the browser — chat list and a group',
+    caption: 'Web',
+    aspect: '1279 / 756',
     variant: 'desktop',
-  },
-  androidMultiserver: {
-    src: `${S}/android_multiserver_accounts.jpg`,
-    alt: 'OwpenGram Android — multiple accounts',
-    caption: 'Android',
-    aspect: '591 / 1280',
-    variant: 'phone',
   },
   desktopCall: {
-    src: `${S}/desktop_call.png`,
-    alt: 'OwpenGram Windows — voice call',
-    caption: 'Windows',
-    aspect: '712 / 780',
+    src: `${S}/desktop_call.webp`,
+    alt: 'OwpenGram Windows — voice call with screencast, video and add-people controls',
+    caption: 'Voice and video calls',
+    aspect: '1019 / 784',
     variant: 'desktop',
   },
-  androidCall: {
-    src: `${S}/android_call.jpg`,
-    alt: 'OwpenGram Android — voice call',
+  desktopServers: {
+    src: `${S}/desktop_servers.webp`,
+    alt: 'OwpenGram Windows — server selection with Telegram, OwpenGram and a home server',
+    caption: 'Windows',
+    aspect: '1051 / 756',
+    variant: 'desktop',
+  },
+  androidServers: {
+    src: `${S}/android_servers.webp`,
+    alt: 'OwpenGram Android — choose a server',
     caption: 'Android',
     aspect: '591 / 1280',
     variant: 'phone',
-  },
-  serverAdminPanel: {
-    src: `${S}/server_admin_panel.png`,
-    alt: 'OwpenGram server — admin panel overview with accounts, content and server health',
-    caption: 'Admin panel',
-    aspect: '1920 / 927',
-    variant: 'wide',
   },
 }
 
@@ -180,17 +131,53 @@ export const SHOWCASE = [
     id: 'messaging',
     eyebrow: 'Product',
     title: 'Everything a modern messenger does',
-    text: 'Private chats, groups, supergroups, channels and forum topics — with media, replies, reactions, folders, bots and translation. Voice and video calls too, one-to-one or group, with screen sharing and live streams. The same app on Windows, Linux and Android.',
-    points: [
-      'Chats, groups, channels & topics',
-      'Media, files, stickers & reactions',
-      'Voice, video & group calls',
-    ],
+    text: 'Private chats, groups, supergroups, channels and forum topics — with media, replies, reactions, folders, bots and translation. Voice and video calls too, one-to-one or group, with screen sharing and live streams. The same app on Windows, Linux, Android and the web.',
     pairs: [
-      { desktop: 'desktopChat1', phone: 'androidChat1' },
-      { desktop: 'desktopCall', phone: 'androidCall' },
+      { desktop: 'webChat' },
+      { desktop: 'desktopCall' },
     ],
   },
+  {
+    id: 'economy',
+    eyebrow: 'Economy',
+    title: 'Stars, gifts and collectibles on your own server',
+    text: 'Users send gifts, upgrade them with Stars into unique collectibles and show them on their profile. Each server runs its own small economy, and its admin decides which gifts exist: import a ready pack or build your own. The gifts here are from the Grind Pack, playing exactly as they do in the apps.',
+    gifts: true,
+  },
+]
+
+// Grind Pack gifts shown live in the economy row. Plain entries are the gift
+// as bought, with its price in Stars; entries with a backdrop are upgraded
+// collectibles, drawn on that backdrop with their model. The colours and
+// models are the pack's own; the numbers are only examples.
+export const GIFT_SHOWCASE = [
+  { anim: 'coffee', title: 'Morning Coffee', stars: 15 },
+  { anim: 'cake', title: 'Birthday Cake', stars: 30 },
+  { anim: 'giftbox', title: 'Gift Box', stars: 20 },
+  {
+    anim: 'm-bear-panda',
+    title: 'Teddy Bear',
+    model: 'Panda',
+    number: 4211,
+    backdrop: { center: '#C9A8FF', edge: '#5E2FB8', text: '#FFFFFF' },
+  },
+  { anim: 'phone', title: 'Smartphone', stars: 25 },
+  {
+    anim: 'm-desktop-rgb',
+    title: 'Desktop PC',
+    model: 'RGB',
+    number: 777,
+    backdrop: { center: '#8A5CFF', edge: '#2A1566', text: '#FFFFFF' },
+  },
+  { anim: 'server', title: 'Data Server', stars: 55 },
+  {
+    anim: 'm-coin-gold',
+    title: 'Lucky Coin',
+    model: 'Gold',
+    number: 1024,
+    backdrop: { center: '#FFD24A', edge: '#B8801A', text: '#3A2A00' },
+  },
+  { anim: 'safe', title: 'Money Safe', stars: 250 },
 ]
 
 // ─── Paid services ───────────────────────────────────────────────────

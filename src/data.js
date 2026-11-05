@@ -78,15 +78,15 @@ export const SCREENSHOTS = {
 export const FAQ = [
   {
     q: 'What is OwpenGram?',
-    a: 'OwpenGram is an open-source, self-hosted MTProto-compatible messenger. It includes Windows, Linux and Android clients, plus a self-hosted Go server you run on your own hardware.',
+    a: 'OwpenGram is an open-source, self-hosted alternative to Telegram: a Telegram-compatible (MTProto) messenger server you run on your own hardware, plus Windows, Linux, Android and web clients. The name is Own + Open + Gram.',
   },
   {
     q: 'Is it compatible with Telegram?',
-    a: 'Yes. OwpenGram uses the MTProto protocol, so you can connect to the official Telegram network, your own OwpenGram server, or any compatible third-party node — all from the same app. The server speaks API layers 225 through 229 and admits each client on the exact layer it announces, so an older build keeps working after the server moves forward.',
+    a: 'Yes. OwpenGram uses the MTProto protocol, so you can connect to the official Telegram network, your own OwpenGram server, or any compatible third-party node — all from the same app. The server speaks API layers 225 through 232 and admits each client on the exact layer it announces, so an older build keeps working after the server moves forward.',
   },
   {
     q: 'What platforms are supported?',
-    a: 'Native clients for Windows, Linux and Android, and a web client that runs in any browser (ours is at web.owpengram.org); macOS is planned. The server is a single Go binary that runs directly on Linux, Windows, or macOS — it only uses Docker to run its PostgreSQL and Redis dependencies, not the server itself.',
+    a: 'Native clients for Windows, Linux and Android 6.0+, and a web client that runs in any browser (ours is at web.owpengram.org); macOS is planned. The server ships as ready-to-run archives for Linux, Windows and macOS, on x64 and ARM, with PostgreSQL built in. It does not use Docker.',
   },
   {
     q: 'Is there a web version?',
@@ -98,7 +98,11 @@ export const FAQ = [
   },
   {
     q: 'Can I run my own server?',
-    a: 'Yes, and it takes one command. Clone the repository and run owpengram-server.sh, or owpengram-server.bat on Windows. The launcher installs whatever is missing — Go, Python, Docker, OpenSSL — brings up the database, builds and starts everything, then hands you a browser setup wizard for the server name, public address and your admin account. Nothing has to be edited by hand.',
+    a: 'Yes. Download the server archive for your system from the latest GitHub release, unpack it and run start.sh, or start.bat on Windows. No Docker, no separate database and no compilers: PostgreSQL is built in. The script prints an address, and a setup wizard in your browser asks where to keep data (built-in PostgreSQL or your own, local disk or S3 storage), then sets up the server name, public address and your admin account. To build from source instead, clone the repository and run owpengram-server.sh or owpengram-server.bat (needs Go 1.25+).',
+  },
+  {
+    q: 'Is OwpenGram the same as OpenGram?',
+    a: 'No. OwpenGram, spelled with "Owp" (Own + Open + Gram), is its own independent project and is not related to similarly named projects. Its code lives at github.com/owpengram and its site is owpengram.org.',
   },
   {
     q: 'How do I connect the app to my server?',
@@ -301,9 +305,10 @@ export const CAPABILITY_GROUPS = [
   {
     icon: 'server',
     title: 'Run it yourself',
-    text: 'One command to install, then a browser panel for everything after.',
+    text: 'Unpack, run one script, then a browser panel for everything after.',
     items: [
       'A single Go binary — Linux, Windows or macOS',
+      'PostgreSQL built in: no Docker, no separate database',
       'Browser setup wizard on first run',
       'Admin panel with named operators and scoped permissions',
       'Media on local disk or S3/MinIO, with retention rules',
@@ -406,8 +411,8 @@ export const COMPARE = {
 // answers.
 
 export const RELEASE = {
-  tag: 'O8',
-  date: '2026-11-01',
+  tag: 'O9',
+  date: '2026-11-05',
   repos: ['owpengram-server', 'owpengram-desktop-client', 'owpengram-android-client'],
 }
 
@@ -424,7 +429,7 @@ export const DOWNLOADS = [
     title: 'Desktop',
     repo: 'owpengram-desktop-client',
     files: [
-      { asset: 'OwpenGram.exe', label: 'Windows', icon: 'windows', size: 228_500_000 },
+      { asset: 'OwpenGram.exe', label: 'Windows', icon: 'windows', size: 263_000_000 },
       // Linux (OwpenGram, OwpenGram.deb) is back once the current release ships a Linux build
     ],
   },
@@ -434,7 +439,7 @@ export const DOWNLOADS = [
     title: 'Mobile',
     repo: 'owpengram-android-client',
     files: [
-      { asset: 'OwpenGram.apk', label: 'Android', icon: 'android', size: 73_300_000 },
+      { asset: 'OwpenGram.apk', label: 'Android', icon: 'android', size: 71_100_000 },
     ],
   },
 ]

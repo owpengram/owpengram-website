@@ -20,7 +20,7 @@ const cards = [
   {
     icon: 'server',
     title: 'Server',
-    text: 'Docker deployment',
+    text: 'Ready-to-run archive, no Docker',
     href: LINKS.server,
     cta: 'Repository',
   },
